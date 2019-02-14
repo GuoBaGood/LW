@@ -1,4 +1,4 @@
-package com.huxl.fam;
+package com.huxl.fam.web;
 
 import com.huxl.fam.entity.BsUser;
 import com.huxl.fam.service.BsUserService;
