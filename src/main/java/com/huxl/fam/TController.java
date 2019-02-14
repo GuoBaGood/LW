@@ -1,8 +1,14 @@
 package com.huxl.fam;
 
+import com.huxl.fam.entity.BsUser;
+import com.huxl.fam.service.BsUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -14,9 +20,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/text")
 public class TController {
+    @Autowired
+    private BsUserService bsUserService;
     @RequestMapping(value = "/hallo",method = RequestMethod.GET)
     public String a(){
         return "hallo,world!";
+    }
+
+
+    @RequestMapping(value = "/abc")
+    public List<BsUser> aa(){
+        BsUser b = bsUserService.selectByPrimaryKey("1");
+        List<BsUser> list = new ArrayList<BsUser>();
+        list.add(b);
+        return list;
     }
 }
