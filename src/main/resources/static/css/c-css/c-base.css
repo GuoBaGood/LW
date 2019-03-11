@@ -1,0 +1,126 @@
+@charset "utf-8";
+* { box-sizing: border-box;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,select,textarea,p,table,th,tr,td,hr,button{ margin: 0;padding: 0; }
+html,body { width: 100%;height: 100%;overflow: auto; }
+body { font-family: "microsoft yahei", arial, sans-serif; font-size: 14px;color: #45556e;}
+table { border-collapse: collapse; border-spacing: 0; width: 100%;}
+h1, h2, h3, h4, h5, h6 { font-weight: normal;font-size: 100%; }
+input,textarea,select { font-family:inherit;font-weight:normal;font-size:inherit;outline: none; }
+button{ outline: none;cursor: pointer; }
+a{ text-decoration:none; color: #000; }
+ul,ol{ list-style: none; }
+img{ border: 0; }
+.hide{display: none;}
+
+/*定位*/
+.pos-rel { position: relative !important; }
+
+/*浮动及清除浮动*/
+.float-left { float: left; }
+.float-right { float: right; }
+.clearfix:after,.clearfix:before { content: ""; display: table; clear: both; }
+
+/*文字浮动*/
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+/*清除边框*/
+.bd-0 { border: 0 !important; }
+.bdt-0 { border-top: 0 !important; }
+.bdb-0 { border-bottom: 0 !important; }
+.bdl-0 { border-left: 0 !important; }
+.bdr-0 { border-right: 0 !important; }
+
+/*字体大小*/
+.font-s { font-size: 12px !important; }
+.font-l { font-size: 14px !important; }
+.font-xl { font-size: 20px !important; }
+.font-xxl { font-size: 26px !important; }
+.fwb { font-weight: bold; }
+
+/*行高*/
+.lh-s { line-height: 20px !important; }
+.lh-l { line-height: 30px !important; }
+.lh-xl { line-height: 40px !important; }
+.lh-xxl { line-height: 50px !important; }
+
+/*内外边距*/
+.mg-0{ margin: 0 !important; }
+.mg-s{ margin: 5px !important; }
+.mg-l{ margin: 10px !important; }
+.mg-xl{ margin: 15px !important; }
+.mg-xxl{ margin: 20px !important; }
+.mgt-0{ margin-top: 0 !important; }
+.mgt-s{ margin-top: 5px !important; }
+.mgt-l{ margin-top: 10px !important; }
+.mgt-xl{ margin-top: 15px !important; }
+.mgt-xxl{ margin-top: 20px !important; }
+.mgr-0{ margin-right: 0 !important; }
+.mgr-s{ margin-right: 5px !important; }
+.mgr-l{ margin-right: 6px !important; }
+.mgr-xl{ margin-right: 15px !important; }
+.mgr-xxl{ margin-right: 20px !important; }
+.mgb-0{ margin-bottom: 0 !important; }
+.mgb-s{ margin-bottom: 5px !important; }
+.mgb-l{ margin-bottom: 10px !important; }
+.mgb-xl{ margin-bottom: 15px !important; }
+.mgb-xxl{ margin-bottom: 20px !important; }
+.mgl-0{ margin-left: 0 !important; }
+.mgl-s{ margin-left: 5px !important; }
+.mgl-l{ margin-left: 10px !important; }
+.mgl-xl{ margin-left: 15px !important; }
+.mgl-xxl{ margin-left: 20px !important; }
+.pd-0{ padding: 0 !important; }
+.pd-s{ padding: 5px !important; }
+.pd-l{ padding: 10px !important; }
+.pd-xl{ padding: 15px !important; }
+.pd-xxl{ padding: 20px !important; }
+.pdt-0{ padding-top: 0 !important; }
+.pdt-s{ padding-top: 5px !important; }
+.pdt-l{ padding-top: 10px !important; }
+.pdt-xl{ padding-top: 15px !important; }
+.pdt-xxl{ padding-top: 20px !important; }
+.pdr-0{ padding-right: 0 !important; }
+.pdr-s{ padding-right: 5px !important; }
+.pdr-l{ padding-right: 10px !important; }
+.pdr-xl{ padding-right: 15px !important; }
+.pdr-xxl{ padding-right: 20px !important; }
+.pdb-0{ padding-bottom: 0 !important; }
+.pdb-s{ padding-bottom: 5px !important; }
+.pdb-l{ padding-bottom: 10px !important; }
+.pdb-xl{ padding-bottom: 15px !important; }
+.pdb-xxl{ padding-bottom: 20px !important; }
+.pdl-0{ padding-left: 0 !important; }
+.pdl-s{ padding-left: 5px !important; }
+.pdl-l{ padding-left: 10px !important; }
+.pdl-xl{ padding-left: 15px !important; }
+.pdl-xxl{ padding-left: 20px !important; }
+
+/*栅格化布局*/
+.c-row { width: 100%; }
+.c-row [class*="col-"] { float: left; min-height: 10px; }
+.c-row:after,.c-row:before{ content: ""; display: table; clear: both; }
+.col-1 { width: 8.33333333% !important; }
+.col-2 { width: 16.66666667% !important; }
+.col-3 { width: 25% !important; }
+.col-4 { width: 33.33333333% !important; }
+.col-5 { width: 41.66666667% !important; }
+.col-6 { width: 50% !important; }
+.col-7 { width: 58.33333333% !important; }
+.col-8 { width: 66.66666667% !important; }
+.col-9 { width: 75% !important; }
+.col-10 { width: 83.33333333% !important; }
+.col-11 { width: 91.66666667% !important; }
+.col-12 { width: 100% !important; }
+.col-5-1 { width: 20% !important; }
+
+#input-test::-webkit-input-placeholder{
+    color: #b6c2ce;
+}
+#input-text::-moz-placeholder{
+    color: #b6c2ce;
+}
+#input-text:-ms-input-placeholder{
+    color: #b6c2ce;
+}

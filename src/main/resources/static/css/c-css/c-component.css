@@ -1,0 +1,320 @@
+@charset "utf-8";
+
+/*表格--start*/
+/*表格相关操作图标*/
+.ctable-operate-top{
+	border: 1px solid #dbdbdb;
+	border-bottom: 0;
+	background-color: #f4f7f9;
+}
+.ctable-operate-top li{
+	float: left;
+	height: 40px;
+	line-height: 40px;
+}
+.ctable-link-list{
+	display: block;
+	padding: 0 10px;
+	font-size: 14px;
+	color: #333;
+}
+.ctable-operate{
+	display: inline-block;
+	padding: 0 5px;
+	font-size: 14px;
+	color: #0080cc;
+	vertical-align: middle;
+}
+.ctable-link-list i,
+.ctable-operate i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	vertical-align: middle;
+}
+.ctable-link-list i{
+	background-image: url(../c-images/c-icon/cicon-operate-gray.png);
+}
+.ctable-operate i{
+	background-image: url(../c-images/c-icon/cicon-operate-blue.png);
+}
+.ctable-link-list:hover{
+	background-color: #E8ECEC;
+	text-decoration: underline;
+}
+.ctable-operate:hover{
+	text-decoration: underline;
+}
+.ctable-link-list.list-look i,
+.ctable-operate.look i{
+	background-position-y: 0;
+}
+.ctable-link-list.list-down i,
+.ctable-operate.down i{
+	background-position-y: -40px;
+}
+.ctable-link-list.list-reset i,
+.ctable-operate.reset i{
+	background-position-y: -80px;
+}
+.ctable-link-list.list-start i,
+.ctable-operate.start i{
+	background-position-y: -120px;
+}
+.ctable-link-list.list-stop i,
+.ctable-operate.stop i{
+	background-position-y: -160px;
+}
+.ctable-link-list.list-send i,
+.ctable-operate.send i{
+	background-position-y: -200px;
+}
+.ctable-link-list.list-history i,
+.ctable-operate.history i{
+	background-position-y: -240px;
+}
+.ctable-link-list.list-amend i,
+.ctable-operate.amend i{
+	background-position-y: -280px;
+}
+.ctable-link-list.list-new i,
+.ctable-operate.new i{
+	background-position-y: -320px;
+}
+.ctable-link-list.list-export i,
+.ctable-operate.export i{
+	background-position-y: -360px;
+}
+.ctable-link-list.list-delete i,
+.ctable-operate.delete i{
+	background-position-y: -400px;
+}
+.ctable-link-list.list-hand i,
+.ctable-operate.hand i{
+	background-position-y: -440px;
+}
+.ctable-link-list.list-auto i,
+.ctable-operate.auto i{
+	background-position-y: -480px;
+}
+.ctable-link-list.list-set i,
+.ctable-operate.set i{
+	background-position-y: -520px;
+}
+.ctable-link-list.list-upload i,
+.ctable-operate.upload i{
+	background-position-y: -560px;
+}
+.ctable-link-list.list-warn i,
+.ctable-operate.warn i{
+	background-position-y: -600px;
+}
+.ctable-link-list.list-change i,
+.ctable-operate.change i{
+	background-position-y: -640px;
+}
+.ctable-link-list.list-approve i,
+.ctable-operate.approve i{
+	background-position-y: -680px;
+}
+.ctable-link-list.list-test i,
+.ctable-operate.test i{
+	background-position-y: -720px;
+}
+.ctable-link-list.list-issue i,
+.ctable-operate.issue i{
+	background-position-y: -760px;
+}
+.ctable-link-list.list-delay i,
+.ctable-operate.delay i{
+	background-position-y: -800px;
+}
+.ctable-link-list.list-template i,
+.ctable-operate.template i{
+	background-position-y: -840px;
+}
+.ctable-link-list.list-more i,
+.ctable-operate.more i{
+	background-position-y: -880px;
+}
+.ctable-link-list.list-termination i,
+.ctable-operate.termination i{
+	background-position-y: -920px;
+}
+/*表格收缩和排序图标*/
+.cicon-add{
+	width: 16px;
+	height: 16px;
+	background: url(../c-images/c-icon/cicon-add.png) no-repeat center;
+}
+.cicon-add.click{
+	background-image: url(../c-images/c-icon/cicon-minus.png);
+}
+.csort-up{
+	width: 6px;
+	height: 16px;
+	background: url(../c-images/c-icon/cicon-up-gray.png) no-repeat 0 center;
+	cursor: pointer;
+}
+.csort-up:hover,.csort-up.click{
+	background-image: url(../c-images/c-icon/cicon-up-blue.png);
+}
+.csort-down{
+	width: 6px;
+	height: 16px;
+	background: url(../c-images/c-icon/cicon-down-gray.png) no-repeat 0 center;
+	cursor: pointer;
+}
+.csort-down:hover,.csort-down.click{
+	background-image: url(../c-images/c-icon/cicon-down-blue.png);
+}
+/*表格操作隐藏*/
+.ctable-menuhide,.ctable-fold{
+	position: relative;
+	width: 40px;
+	cursor: pointer;
+}
+.ctable-menuhide .ctable-more{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 35px;
+	font-weight: bold;
+	vertical-align: top;
+}
+.ctable-menuhide ul{
+	position: absolute;
+	top: 0;
+	right: 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.ctable-menuhide ul li{
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: top;
+}
+/*表格--end*/
+
+/*表单--start*/
+/*表单样式*/
+.cicon-form{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 16px 16px;
+	font-style: normal;
+	cursor: pointer;
+}
+.cicon-form.form-true{
+	background-image: url(../c-images/c-icon/cicon-true-green.png);
+}
+.cicon-form.form-false{
+	background-image: url(../c-images/c-icon/cicon-error.png);
+}
+.cicon-form.form-date{
+	background-image: url(../c-images/c-icon/cicon-date.png);
+}
+.c-form-item .c-form-name{
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: right;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.c-form-item .c-form-name .c-form-nonull{
+	font-size: 16px;
+	color: red;
+}
+.c-form-item .c-form-info{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+.c-form-item .c-form-info input[disabled]{
+	background-color: #eee;
+	cursor: not-allowed;
+}
+/*自定义复选框和单选框*/
+.ctable-checkbox {
+	width: 40px;
+}
+.ctable-checkbox i,
+.c-checkbox i{
+	display: inline-block;
+	width:16px;
+	height: 16px;
+	background: url(../c-images/c-icon/cicon-checkbox.png) no-repeat center;
+	vertical-align: middle;
+}
+.ctable-checkbox i.choice,
+.c-checkbox.choice i{
+	background-image: url(../c-images/c-icon/cicon-checkbox-on.png);
+}
+.c-checkbox,.c-radio{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding-right: 10px;
+	cursor: pointer;
+}
+.c-checkbox span,.c-radio span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.c-radio i{
+	display: inline-block;
+	width:16px;
+	height: 16px;
+	background: url(../c-images/c-icon/cicon-radio.png) no-repeat center;
+	vertical-align: middle;
+}
+.c-radio.choice i{
+	background-image: url(../c-images/c-icon/cicon-radio-on.png);
+}
+/*滑块选择*/
+.c-slider{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.c-slider span{
+	float: left;
+	padding: 0 20px;
+	height: 100%;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.c-slider span:nth-of-type(1){
+	border-right: 0;
+	border-radius: 15px 0 0 15px;
+}
+.c-slider span:nth-of-type(2){
+	border-left: 0;
+	border-radius: 0 15px 15px 0;
+}
+/*表单--end*/
+
+/*按钮--start*/
+/*按钮样式*/
+.c-btn{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	outline: none;
+	cursor: pointer;
+}
+/*按钮--end*/
