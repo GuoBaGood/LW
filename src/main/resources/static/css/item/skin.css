@@ -1,0 +1,1456 @@
+@charset "utf-8";
+/*常用样式*/
+.bgc-main{background-color: #f0f3f8 !important;}
+.bgc-white{background-color: #fff;}
+.bgc-black{background-color: #000;}
+.bd-1{border: 1px solid #ccc;}
+.bdl-1{border-left: 1px solid #ccc;}
+.bdr-1{border-right: 1px solid #ccc;}
+.bdt-1{border-top: 1px solid #ccc;}
+.bdb-1{border-bottom: 1px solid #ccc;}
+.bd-dashed{border: 1px dashed #ccc;}
+.dva{display: inline-block;vertical-align: middle;}
+.inline-block{display: inline-block;}
+.block{display: block;}
+.mgr-50{margin-right: 50px !important;}
+.mgl-50{margin-left: 50px !important;}
+.pdl-50{padding-left: 50px !important;}
+/*input,select,textarea样式*/
+.c-input,.c-select,.c-textarea{
+	padding-left: 10px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+}
+.c-textarea{
+	width: 100%;
+	height: 100px;
+	resize: none;
+	overflow: auto;
+}
+.c-input:hover,.c-select:hover,.c-textarea:hover{
+	border-color: #aaa !important;
+}
+.c-input:focus,.c-select:focus,.c-textarea:focus{
+	border-color: #21a6de !important;
+}
+/*超链接样式*/
+.c-link{
+	text-decoration: underline;
+}
+.c-link:hover,.c-link-color:hover{
+	color: #46acfd;
+}
+.c-link-color{
+	color: #0080cc;
+}
+/*右上角通用新增图标*/
+.icon-new{
+	width: 32px;
+	height: 32px;
+	background: url(c-ui/c-images/c-icon/cicon-new.png) no-repeat 0 0;
+	background-size: 32px;
+}
+/*设置图标*/
+.cicon-set{
+	background-image: url(c-ui/c-images/c-icon/cicon-set.png);
+}
+/*箭头图标*/
+.cicon-arrow{
+	background-image: url(c-ui/c-images/c-icon/cpanel-arrow-up.png);
+}
+.cicon-arrow.choice{
+	background-image: url(c-ui/c-images/c-icon/cpanel-arrow-down.png);
+}
+/*
+ * 框架样式
+ */
+/*框架1样式开始*/
+.cframe1-top{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background-color: #1c2327;
+	z-index: 999;
+}
+.cframe1-top-menu{
+	display: inline-block;
+}
+.cframe1-tmenu-item{
+	float: left;
+}
+.cframe1-tmenu-item .cframe1-menu-first{
+	position: relative;
+	display: block;
+	padding: 0 20px;
+	height: 60px;
+	font-size: 16px;
+	color: #fff;
+}
+.cframe1-tmenu-item .cmenu-first-arrow{
+	display: none;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	margin-left: -10px;
+	border: 10px solid transparent;
+	border-bottom-color: #fff;
+}
+.cframe1-tmenu-item:hover .cframe1-menu-first,
+.cframe1-menu-hide a:hover,
+.cframe1-menu-hide li:hover{
+	color: #00c1de;
+}
+.cframe1-menu-hide{
+	position: absolute;
+	top: 60px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0 0 5px 1px #eee;
+}
+.cframe1-menu-hide .cframe1-menu-second{
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+}
+.cframe1-menu-hide li{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+}
+.cframe1-top-operate > li{
+	position: relative;
+	float: left;
+	padding: 0 15px;
+	height: 60px;
+	color: #fff;
+	font-size: 14px;
+	cursor: pointer;
+}
+.cframe1-top-operate > li:hover{
+	color: #00c1de;
+}
+.cframe1-top-operate > li:hover .icon-top.icon-user{
+	background-image: url(c-ui/c-images/c-icon/cicon-user.png);
+}
+.cframe1-content{
+	position: relative;
+	min-width: 1200px;
+	width: 100%;
+	height: 100%;
+	padding-top: 60px;
+}
+/*框架1样式结束*/
+/*框架2样式开始*/
+.cframe2-top{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background-color: #407cd5;
+	z-index: 999;
+}
+.cframe2-topswitch{
+	float: left;
+	width: 50px;
+	height: 60px;
+	background: url(c-ui/c-images/c-icon/cmenu-switch-white.png) no-repeat center;
+	background-size: 32px 32px;
+	cursor: pointer;
+}
+.cframe2-top-logo{
+	color: #fff;
+}
+.cframe2-top-menu > li{
+	position: relative;
+	float: left;
+	padding: 0 15px;
+	height: 60px;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+.icon-top{
+	width: 20px;
+	height: 20px;
+	/*background: url() no-repeat center center;*/
+}
+.icon-top.icon-search{
+	background-image: url(c-ui/c-images/c-icon/cicon-search.png);
+	background-size: cover;
+}
+.icon-top.icon-message{
+	background-image: url(c-ui/c-images/c-icon/icon-mess.png);
+	background-size: cover;
+}
+.icon-top.icon-support{
+	background-image: url(c-ui/c-images/c-icon/icon-header.png);
+	background-size: cover;
+}
+.icon-top.icon-user{
+	background-image: url(c-ui/c-images/c-icon/cicon-user.png);
+	background-size: cover;
+}
+.hint-num{
+	width: 30px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 5px;
+	background-color: #fa9a32;
+	text-align: center;
+	color: #fff;
+}
+.ctop-search{
+	display: none;
+	position: absolute;
+	right: 60px;
+	top: 16px;
+	width: 180px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	background-color: rgba(255,255,255,0);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00ffffff,endColorstr=#00ffffff);
+	color: #fff;
+	zoom: 1;
+}
+.top-hidebox{
+	position: absolute;
+	right: 0;
+	top: 40px;
+	width: 200px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	font-size: 14px;
+	color: #000;
+	box-shadow: 0 0 5px 1px #eee;
+}
+.top-hidebox:before{
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	margin-left: -10px;
+	border: 10px solid transparent;
+	border-bottom-color: #fff;
+}
+.hidebox-support{
+	width: 160px;
+	right: -30px;
+}
+.hidebox-support li:hover{
+	background-color: #f2f2f2;
+}
+.hidebox-message{
+	width: 280px;
+	right: -75px;
+}
+.hidebox-message li{
+	padding:10px;
+	line-height: normal;
+	border-bottom: 1px solid #ccc;
+}
+.hidebox-message li:hover{
+	background-color: #f2f2f2;
+}
+.hidebox-message li a{
+	display: block;
+	padding-left: 25px;
+	color: #0080cc;
+	background: url(c-ui/c-images/c-icon/cicon-list.png) no-repeat 0 center;
+	background-size: 16px 16px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.hidebox-message li a:hover{
+	text-decoration: underline;
+}
+.hidebox-user{
+	width: 200px;
+	right: -49px;
+}
+.hidebox-user li{
+	border-bottom: 1px solid #ccc;
+}
+.c-logout{
+	height: 40px;
+	line-height: 38px;
+}
+.c-logout:hover a{
+	color: #0080cc;
+	text-decoration: underline;
+}
+.c-logout i{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(c-ui/c-images/c-icon/c-close.png) no-repeat center;
+}
+.cframe2-content{
+	position: relative;
+	min-width: 1200px;
+	width: 100%;
+	height: 100%;
+	padding-top: 60px;
+	padding-left: 200px;
+}
+.cframe2-left-menu{
+	position: fixed;
+	left: 0;
+	top: 60px;
+	bottom: 0;
+	width: 200px;
+	background-color: #3b4960;
+	z-index: 998;
+}
+.cframe2-left-menu > ul{
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.cframe2-left-menu li{
+	border-bottom: 1px solid #626d80;
+}
+.cframe2-menu-hide li{
+	border: 0;
+	border-top: 1px solid #626d80;
+}
+.cframe2-left-menu a{
+	display: block;
+	padding: 0 5px;
+	height: 50px;
+	font-size: 16px;
+	color: #fff;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.cframe2-left-menu li > a:hover,
+.cframe2-left-menu a.choice{
+	background-color: #3e5171;
+}
+.cframe2-menu-list{
+	position: relative;
+	padding-left: 50px !important;
+	padding-right: 20px !important;
+	background: url(c-ui/c-images/c-icon/cframe-menu-left.png) no-repeat 0 0;
+}
+.cframe2-menu-list .cmenu-arrow{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 50px;
+	background: url(c-ui/c-images/c-icon/cmenu-down.png) no-repeat center;
+	background-size: 20px;
+}
+.cframe2-menu-list .cmenu-arrow.choice{
+	background-image: url(c-ui/c-images/c-icon/cmenu-up.png);
+}
+a.cframe2-menu-icon1{
+	background-position-y: -48px;
+}
+a.cframe2-menu-icon2{
+	background-position-y: -98px;
+}
+a.cframe2-menu-icon3{
+	background-position-y: -148px;
+}
+a.cframe2-menu-icon4{
+	background-position-y: -198px;
+}
+a.cframe2-menu-icon5{
+	background-position-y: -248px;
+}
+a.cframe2-menu-icon6{
+	background-position-y: -296px;
+}
+a.cframe2-menu-icon7{
+	background-position-y: -346px;
+}
+.cframe2-right-content{
+	position: relative;
+	height: 100%;
+	z-index: 997;
+}
+.cframe2-iframe-title{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid #aaa;
+	background-color: #fff;
+}
+.cframe2-arrow{
+	position: absolute;
+	top: 0;
+	width: 30px;
+	height: 39px;
+	line-height: 40px;
+	background-color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	color: #0080cc;
+	cursor: pointer;
+	z-index: 99;
+}
+.cframe2-arrow-left{
+	left: 0;
+	border-right: 1px solid #ccc;
+}
+.cframe2-arrow-right{
+	right: 0;
+	border-left: 1px solid #ccc;
+}
+.cframe2-home{
+	position: absolute;
+	top: 0;
+	left: 30px;
+	width: 40px;
+	height: 39px;
+	background: #fff url(c-ui/c-images/c-icon/cframe-home.png) no-repeat center;
+	background-size: 32px 32px;
+	border-right: 1px solid #ccc;
+	z-index: 99;
+}
+.cframe2-home.choice{
+	background-color: #eee;
+}
+.cframe2-title-box{
+	position: relative;
+	padding-left: 70px;
+	padding-right: 30px;
+	height: 40px;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: 98;
+}
+.cframe2-title-box li{
+	position: relative;
+	display: inline-block;
+	height: 38px;
+	border-right: 1px solid #ccc;
+}
+.cframe2-title-box li.choice{
+	background-color: #eee;
+}
+.cframe2-title-box li.choice a{
+	color: #0080cc;
+}
+.cframe2-title-box li.choice span{
+	border-color: #0080cc;
+	color: #0080cc;
+}
+.cframe2-title-box li a{
+	display: block;
+	padding: 0 30px 0 10px;
+	line-height: 40px;
+	font-size: 16px;
+	text-align: center;
+}
+.cframe2-title-box .tab-close{
+	position: absolute;
+	right: 5px;
+	top: 14px;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 10px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	text-align: center;
+	cursor: pointer;
+	color: #bbb;
+	font-size: 12px;
+}
+.cframe2-title-box .tab-close:hover{
+	border-color: #0080cc;
+	color: #0080cc;
+}
+.cframe2-iframe{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 40px;
+	overflow: hidden;
+}
+.cframe2-iframe iframe{
+	width: 100%;
+	height: 100%;
+}
+/*框架2样式结束*/
+/*框架3样式开始*/
+.cframe3-top{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #fff;
+	z-index: 999;
+	box-shadow: 0 3px 27px 10px rgba(15,114,244,.13);
+}
+.cframe3-topswitch{
+	float: left;
+	width: 50px;
+	height: 60px;
+	background: url(c-ui/c-images/c-icon/cmenu-switch-white.png) no-repeat center;
+	background-size: 32px 32px;
+	cursor: pointer;
+}
+.cframe3-top-menu li{
+	padding: 0 20px;
+	height: 60px;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+.cframe3-top-menu li.choice{
+	background-color: #4070B6;
+}
+.cframe3-top-operate > li{
+	position: relative;
+	float: left;
+	padding: 0 8px;
+	height: 40px;
+	color: #032b44;
+	font-size: 14px;
+	cursor: pointer;
+}
+.cframe3-top-operate > li .number{
+	background: #ff4948;
+	position: absolute;
+	right: -2px;
+	top: 8px;
+	line-height: 14px;
+	color: #fff;
+	padding: 0 5px;
+	border-radius: 7px;
+	font-style: normal;
+	font-size: 12px;
+}
+.cframe3-content{
+	position: relative;
+	min-width: 1200px;
+	width: 100%;
+	height: 100%;
+	padding-top: 40px;
+	padding-left: 70px;
+}
+.cframe3-left-menu{
+	position: fixed;
+	left: 0;
+	top: 40px;
+	bottom: 0;
+	width: 70px;
+	background-color: #032b44;
+	z-index: 998;
+}
+.cframe3-menu-box{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.cframe3-menu-box.active{
+	animation: rotate 1s ease both;
+}
+@keyframes rotate{
+	0%{transform: rotateY(-90deg);opacity: 0;}
+	100%{transform: rotateY(0deg);opacity: 1;}
+}
+.cframe3-menu-box li{
+	margin-top: 20px;
+}
+.cframe3-menu-box a{
+	display: block;
+	width: 100%;
+	padding: 0 5px;
+	height: 50px;
+	font-size: 12px;
+	color: #fff;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+	border-left:solid 3px #032b44;
+}
+.cframe3-menu-box a:hover,
+.cframe3-menu-box a.choice{
+	border-left-color: #fff;
+}
+.cframe3-menu-list i{
+	display: block;
+	width: 24px;
+	height: 24px;
+	margin: 0 auto 5px;
+	background: url(c-ui/c-images/c-icon/nav-icon.png) no-repeat center 0;
+}
+a.cframe3-menu-icon1 i{
+	background-position-y: 0;
+}
+a.cframe3-menu-icon2 i{
+	background-position-y: -48px;
+}
+a.cframe3-menu-icon3 i{
+	background-position-y: -96px;
+}
+a.cframe3-menu-icon4 i{
+	background-position-y: -144px;
+}
+a.cframe3-menu-icon5 i{
+	background-position-y: -192px;
+}
+a.cframe3-menu-icon6 i{
+	background-position-y: -240px;
+}
+.cframe3-menu-hide li{
+	border: 0;
+	border-top: 1px solid #626d80;
+}
+.cframe3-menu-box a:hover.cframe3-menu-icon1 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon1 i{
+	background-position-y: -24px;
+}
+.cframe3-menu-box a:hover.cframe3-menu-icon2 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon2 i{
+	background-position-y: -72px;
+}
+.cframe3-menu-box a:hover.cframe3-menu-icon3 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon3 i{
+	background-position-y: -120px;
+}
+
+.cframe3-menu-box a:hover.cframe3-menu-icon4 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon4 i{
+	background-position-y: -168px;
+}
+.cframe3-menu-box a:hover.cframe3-menu-icon5 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon5 i{
+	background-position-y: -216px;
+}
+.cframe3-menu-box a:hover.cframe3-menu-icon6 i,
+.cframe3-menu-box a.choice.cframe3-menu-icon6 i{
+	background-position-y: -264px;
+}
+.cframe3-right-content{
+	position: relative;
+	height: 100%;
+	z-index: 997;
+	background-color: #fff;
+}
+.cframe3-iframe{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 0;
+	overflow: hidden;
+}
+.cframe3-iframe iframe{
+	width: 100%;
+	height: 100%;
+}
+/*框架3样式结束*/
+
+/*
+ * 从这里开始包含的是组件可修改样式。
+*/
+/*表格*/
+.c-table table{
+	background-color: #fff;
+}
+.c-table table tr:hover{
+	background-color: #f6f8f9;
+}
+.c-table table tr.c-table-head{
+	background-color: #e9f6fb;
+}
+.c-table table th{
+	line-height: 40px;
+	border: 1px solid #b1daeb;
+	color: #0080cc;
+}
+.c-table table td{
+	line-height: 40px;
+	border: 1px solid #ededed;
+	text-align: center;
+}
+.c-table.c-table-zebralists tr:nth-of-type(2n){
+	background-color: #f6f8f9;
+}
+/*表格操作隐藏边框及hover效果*/
+.ctable-menuhide ul{
+	border: 1px solid #b1daeb;
+	background-color: #fff;
+}
+.ctable-menuhide ul li:hover{
+	background-color: #e9f6fb;
+}
+/*分页*/
+.c-paging-box span,
+.c-paging-box input,
+.c-paging-box a,
+.c-paging-box ul{
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+}
+.cpaging-num li{
+	float: left;
+	margin-right: -1px;
+	width: 40px;
+	height: 30px;
+	line-height: 28px;
+	border: 1px solid #ccc;
+	border-right: 0;
+	overflow: hidden;
+}
+.cpaging-num li:nth-of-type(1){
+	border-radius: 5px 0 0 5px;
+}
+.cpaging-num li:nth-last-of-type(1){
+	border-right: 1px solid #ccc;
+	border-radius: 0 5px 5px 0;
+}
+.cpaging-num li.cpaging-first,
+.cpaging-num li.cpaging-prev,
+.cpaging-num li.cpaging-next,
+.cpaging-num li.cpaging-last{
+	width: 60px;
+}
+.cpaging-input{
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+}
+.cpaging-jump{
+	padding: 0 15px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+/*分页选中和鼠标hover效果*/
+.cpaging-num li.choice,
+.c-paging-box li:hover,
+.c-paging-box a:hover{
+	background-color: #edf1f5;
+}
+
+/*按钮*/
+.c-btn{
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.c-btn:hover{
+	background-color: #f0f0f0;
+}
+.c-btn-s{
+	padding: 0 20px;
+	height: 30px;
+	line-height: 28px;
+	font-size: 14px;
+}
+.c-btn-l{
+	padding: 0 30px;
+	height: 32px;
+	line-height: 30px;
+	font-size: 14px;
+}
+.c-btn-xl{
+	padding: 0 40px;
+	height: 36px;
+	line-height: 34px;
+	font-size: 16px;
+}
+.c-btn-xxl{
+	padding: 0 50px;
+	height: 46px;
+	line-height: 44px;
+	font-size: 20px;
+}
+.c-btn-confirm{
+	background-color: #0080cc;
+	border-color: #0080cc;
+	color: #fff;
+}
+.c-btn-confirm:hover{
+	background-color: #1699E6;
+}
+.c-btn-disabled{
+	background-color: #efefef;
+	color: #aaa;
+}
+.c-btn-disabled:hover{
+	background-color: #efefef;
+	cursor: not-allowed;
+}
+.c-btn-icon{
+	padding: 0;
+}
+.c-btn-icon i{
+	width: 40px;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 50%;
+}
+.c-btn-icon i,.c-btn-icon span{
+	margin-top: -2px;
+}
+.c-btn-icon.c-btn-lg i{
+	width: 50px;
+}
+
+/*表单*/
+.c-form-item{
+	position: relative;
+	padding-left: 105px;
+	padding-right: 10px;
+	margin-bottom: 14px;
+}
+.c-form-item .c-form-name{
+	width: 95px;
+	height: 30px;
+	line-height: 30px;
+}
+.c-form-item .c-form-info{
+	width: 100%;
+}
+.c-form-item .c-form-info.c-form-info-w180 {
+	width: 180px;
+}
+.c-form-item .c-form-info input,
+.c-form-item .c-form-info select{
+	padding-right: 30px;
+	width: 100%;
+}
+.c-form-item .c-form-info textarea{
+	padding: 10px;
+	width: 100%;
+	height: 100px;
+	line-height: 20px;
+	resize: none;
+}
+.c-form-hint{
+	position: absolute;
+	left: 0;
+	bottom: -20px;
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	color: red;
+	overflow: hidden;
+}
+.c-form-error .c-input{
+	border-color: red !important;
+}
+.c-form-error i,.c-form-error .c-form-hint,.c-form-true i{
+	display: inline-block;
+}
+.c-form-true .c-input{
+	border-color: #67c23a !important;
+}
+.c-form-label li{
+	display: inline-block;
+	margin-right: 10px;
+	padding: 0 15px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+.c-form-label li.choice{
+	background: url(c-ui/c-images/c-icon/clabel-choice.png) no-repeat right bottom;
+	border-color: #0080cc;
+	color: #0080cc;
+}
+/*滑块选中状态*/
+.c-slider span.choice{
+	background-color: #0080cc;
+	border-color: #0080cc;
+	color: #fff;
+}
+/*单选多选选中文字颜色*/
+.c-radio.choice,.c-checkbox.choice{
+	color: #0080cc;
+}
+/*下拉多选*/
+.cform-multiselect-title{
+	padding: 0 10px;
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+}
+.cform-multiselect-hidebox{
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+}
+.cform-multiselect-hidebox ul{
+	max-height: 156px;
+	overflow: auto;
+}
+.cform-multiselect-hidebox li{
+	border-bottom: 1px dashed #ccc;
+}
+/*tag切换*/
+.ctag-box .ctag-title{
+	height: 40px;
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	/*overflow: hidden;*/
+}
+.ctag-box .ctag-title h3{
+	padding: 0 20px;
+	height: 38px;
+	line-height: 38px;
+	font-size: 20px;
+}
+.ctag-box .ctag-list li{
+	float: left;
+	position: relative;
+	margin: 9px 0 0 10px;
+	padding: 0 20px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	font-size: 16px;
+	cursor: pointer;
+}
+.ctag-box .ctag-list li.choice{
+	background-color: #fff;
+	border-bottom: 0;
+	color: #0080cc;
+}
+.ctag-box .ctag-list li.choice span{
+	position: absolute;
+	left: 0;
+	top: -1px;
+	width: 100%;
+	height: 2px;
+	background-color: #0080cc;
+	animation: spanMove .2s linear both;
+}
+@keyframes spanMove{
+	0%{width: 0;}
+	100%{width: 100%;}
+}
+.ctag-box .ctag-item{
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+/*面板*/
+.c-panel{
+	position: relative;
+	width: 100%;
+	border: 1px solid #ccc;
+}
+.c-panel .c-panel-title{
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+	background-color: #f9f9f9;
+}
+.c-panel .c-panel-title h3{
+	font-size: 20px;
+	font-style: normal;
+}
+.c-panel.c-panel-second .c-panel-title{
+	height: 32px;
+	line-height: 32px;
+}
+.c-panel.c-panel-second .c-panel-title h3{
+	font-size: 16px;
+}
+.c-panel .c-panel-body{
+	padding: 20px;
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+	overflow: auto;
+}
+.cpanel-mess{
+	display: inline-block;
+	padding: 0 10px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 10px;
+	background-color: #ccc;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	vertical-align: middle;
+}
+.cpanel-title-operate{
+	height: 100%;
+}
+.cpanel-title-operate i{
+	display: inline-block;
+	width: 40px;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25px;
+	cursor: pointer;
+}
+.c-panel.c-panel-accordion{
+	border-top: 0;
+}
+.c-panel.c-panel-accordion .c-panel-item{
+	border-top: 1px solid #ccc;
+}
+.c-panel.c-panel-accordion .c-panel-item .c-panel-title{
+	cursor: pointer;
+}
+/*标题下方说明容器样式*/
+.c-explain{
+	border: 1px dashed #ccc;
+	background-color: #f9f9f9;
+}
+.c-explain li{
+	position: relative;
+	line-height: 30px;
+}
+.cicon-explain{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 30px;
+	background: url(c-ui/c-images/c-icon/cicon-explain.png) no-repeat 0 center;
+	background-size: 20px;
+}
+.c-explain-content{
+	padding-left: 30px;
+}
+/*用法说明容器样式*/
+.instructions-link{
+	padding-left: 30px;
+}
+.c-instructions-box{
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	width: 600px;
+	margin-left: -300px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #000;
+	z-index: 9;
+}
+.c-instructions-box:before{
+	content: '';
+	position: absolute;
+	top: -40px;
+	left: 50%;
+	margin-left: -20px;
+	border: 20px solid transparent;
+	border-bottom-color: #ccc;
+}
+.c-instructions-box:after{
+	content: '';
+	position: absolute;
+	top: -38px;
+	left: 50%;
+	margin-left: -19px;
+	border: 19px solid transparent;
+	border-bottom-color: #fff;
+}
+/*颜色展示*/
+.span-square{
+	display: inline-block;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+.span-circle{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+.bgc-show1{
+	background-color: #437CD5;
+}
+.bgc-show2{
+	background-color: #3B4960;
+}
+.bgc-show3{
+	background-color: #069295;
+}
+.bgc-show4{
+	background-color: #f3f8fe !important;
+}
+.bgc-show5{
+	background-color: #f6f6f6;
+}
+.bgc-show6{
+	background-color: #ff9966;
+}
+.bgc-show7{
+	background-color: #cceecc;
+}
+.bgc-show8{
+	background-color: #fade7e;
+}
+
+/*弹窗*/
+.c-dialog-shadow{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: .3;
+	filter:alpha(opacity=30);
+	zoom: 1;
+	z-index: 1000;
+}
+.c-dialog{
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 450px;
+	height: 280px;
+	margin-left: -225px;
+	margin-top: -140px;
+	background-color: #fff;
+	overflow: hidden;
+	z-index: 1001;
+	border-radius: 3px;
+	box-shadow: 0 0 50px 1px rgba(0,0,0,.3);
+}
+.c-dialog-slide{
+	position: fixed;
+	right: -600px;
+	top: 0;
+	width: 600px;
+	height: 100%;
+	background-color: #fff;
+	border-left: 1px solid #ccc;
+	overflow: hidden;
+	z-index: 1001;
+}
+.c-dialog-slide.slideLeft{
+	right: 0;
+	animation: slideLeft .5s ease;
+}
+@keyframes slideLeft{
+	0%{right:-600px;}
+	100%{right:0;}
+}
+.c-dialog-slide.slideRight{
+	right: -600px;
+	animation: slideRight .5s ease;
+}
+@keyframes slideRight{
+	0%{right:0;}
+	100%{right:-600px;}
+}
+.c-dialog.c-dialog-s{
+	width: 400px;
+	height: 140px;
+	margin-left: -200px;
+	margin-top: -70px;
+}
+.c-dialog.c-dialog-s .c-dialog-body{
+	height: 90px;
+}
+.c-dialog.c-dialog-l{
+	width: 350px;
+	height: 260px;
+	margin-left: -175px;
+	margin-top: -130px;
+}
+.c-dialog.c-dialog-l .c-dialog-body{
+	height: 170px;
+}
+.c-dialog.c-dialog-xl{
+	width: 750px;
+	height: 460px;
+	margin-left: -375px;
+	margin-top: -230px;
+}
+.c-dialog.c-dialog-xl .c-dialog-body{
+	height: 370px;
+}
+.c-dialog.c-dialog-xxl{
+	width: 1000px;
+	height: 610px;
+	margin-left: -500px;
+	margin-top: -305px;
+}
+.c-dialog.c-dialog-xxl .c-dialog-body{
+	height: 520px;
+}
+.c-dialog-top{
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+}
+.c-dialog-title{
+	padding: 0 40px 0 20px;
+	background-color: #0080cc;
+	font-size: 16px;
+	color: #fff;
+}
+.c-dialog-close{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
+	cursor: pointer;
+}
+.c-dialog-bottom{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #f2f2f2;
+	text-align: center;
+}
+.c-dialog-bottom button{
+	display: inline-block;
+	padding: 0 20px;
+	margin: 0 5px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.c-dialog-bottom button:hover{
+	background-color: #eee;
+}
+.c-dialog-bottom .cdialog-btn-confirm{
+	background-color: #0080cc;
+	border-color: #0080cc;
+	color: #fff;
+}
+.c-dialog-bottom .cdialog-btn-confirm:hover{
+	background-color: #1699E6;
+	border-color: #1699E6;
+}
+.c-dialog-body{
+	height: 190px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.c-dialog-loading{
+	position: fixed;
+	left: 50%;
+	top: -100px;
+	width: 240px;
+	height: 60px;
+	line-height: 60px;
+	margin-left: -120px;
+	background-color: rgba(0,0,0,.8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#C8000000,endColorstr=#C8000000);
+	border-radius: 10px;
+	overflow: hidden;
+	z-index: 1001;
+}
+.c-dialog-loading.slideTop{
+	top: -100px;
+	animation: slideTop .5s ease;
+}
+@keyframes slideTop{
+	0%{top:300px;}
+	100%{top:-100px;}
+}
+.c-dialog-loading.slideBottom{
+	top: 300px;
+	animation: slideBottom .5s ease;
+}
+@keyframes slideBottom{
+	0%{top:-100px;}
+	100%{top:300px;}
+}
+.loading-animate span{
+	display: inline-block;
+	width: 8px;
+	height: 40px;
+	vertical-align: middle;
+	border-radius: 2px;
+	animation-name: load;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+}
+@keyframes load{
+	0%,40%,100%{transform: scaleY(1);}
+	20%,60%{transform: scaleY(0.2);}
+}
+.loading1{
+	background-color: #2ecc71;
+	animation-delay: -1s;
+}
+.loading2{
+	background-color: #3498db;
+	animation-delay: -0.9s;
+}
+.loading3{
+	background-color: #9b59b6;
+	animation-delay: -0.8s;
+}
+.loading4{
+	background-color: #e67e22;
+	animation-delay: -0.7s;
+}
+.loading5{
+	background-color: #c0392b;
+	animation-delay: -0.6s;
+}
+.loading6{
+	background-color: #e74c3c;
+	animation-delay: -0.5s;
+}
+.loading7{
+	background-color: #e74c8c;
+	animation-delay: -0.4s;
+}
+
+/*状态*/
+.c-status-img{
+	height: 100px;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	background-size: auto 100px;
+}
+.c-status-default1 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-default2 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-default3 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-default4 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-default5 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-default6 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem1 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem2 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem3 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem4 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem5 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem6 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+.c-status-problem7 .c-status-img{
+	background-image: url(c-ui/c-images/c-icon/ctable-null.png);
+}
+/*区域动画*/
+.c-anim-up{
+	animation: animationup 1s ease;
+}
+@keyframes animationup{
+	0%{transform: translateY(500px);opacity: 0;}
+	100%{transform: translateY(0);opacity: 1;}
+}
+.c-anim-down{
+	animation: animationdown 1s ease;
+}
+@keyframes animationdown{
+	0%{transform: translateY(-500px);opacity: 0;}
+	100%{transform: translateY(0);opacity: 1;}
+}
+.c-anim-left{
+	animation: animationleft 1s ease;
+}
+@keyframes animationleft{
+	0%{transform: translateX(-1000px);opacity: 0;}
+	100%{transform: translateX(0);opacity: 1;}
+}
+.c-anim-right{
+	animation: animationright 1s ease;
+}
+@keyframes animationright{
+	0%{transform: translateX(1000px);opacity: 0;}
+	100%{transform: translateX(0);opacity: 1;}
+}
+.c-anim-fadein{
+	animation: animationfadein 2s ease;
+}
+@keyframes animationfadein{
+	0%{opacity: 0;}
+	100%{opacity: 1;}
+}
+.c-anim-fadeout{
+	animation: animationfadeout 2s ease;
+}
+@keyframes animationfadeout{
+	0%{opacity: 1;}
+	100%{opacity: 0;}
+}
+.c-anim-3d{
+	animation: animation3d 2s ease;
+}
+@keyframes animation3d{
+	0%{transform: rotateY(0deg);}
+	100%{transform: rotateY(360deg);}
+}
+.c-anim-jump{
+	animation: animationjump 1s ease;
+}
+@keyframes animationjump{
+	0%{transform: translateX(-50px);}
+	25%{transform: translateX(50px);}
+	50%{transform: translateX(-25px);}
+	75%{transform: translateX(25px);}
+	100%{transform: rotateY(0px);}
+}
