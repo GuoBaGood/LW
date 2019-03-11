@@ -3,17 +3,18 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>index</title>
+<title>固定资产管理系统</title>
 <link rel="stylesheet" href="../static/css/c-css/c-base.css" />
 <link rel="stylesheet" href="../static/css/c-css/c-component.css" />
 <link rel="stylesheet" href="../static/css/item/skin.css" />
 <link rel="stylesheet" href="../static/powertip/jquery.powertip.css" />
+<link rel="stylesheet" href="../static/css/weadmin.css">
 </head>
 <body>
 <div class="cframe3-top clearfix">
     <!--顶部左侧logo区域-->
     <div class="float-left mgl-l">
-        <img src="../static/images/item/cframe-logo.png" alt="" class="dva"/>
+        <img src="../static/images/item/title.png" alt="" class="dva"/>
     </div>
     <!--顶部右侧操作区域-->
     <div class="float-right mgr-50 mgl-s">
@@ -74,13 +75,13 @@
         <div class="cframe3-menu-box" data-menu="menu3">
             <ul>
                 <li>
-                    <a _href="./pages/visual/myApp.html" class="cframe3-menu-list cframe3-menu-icon1 choice">
+                    <a _href="./static/view/assets.html" class="cframe3-menu-list cframe3-menu-icon1 choice">
                         <i></i>
                         <span>可视化</span>
                     </a>
                 </li>
                 <li>
-                    <a _href="./pages/data/myDataSource.html" class="cframe3-menu-list cframe3-menu-icon2">
+                    <a _href="./static/platform/platformMg.html" class="cframe3-menu-list cframe3-menu-icon2">
                         <i></i>
                         <span>我的数据</span>
                     </a>
@@ -116,13 +117,13 @@
     </div>
     <div class="cframe3-right-content">
         <div class="cframe3-iframe">
-            <iframe src="./pages/visual/myApp.html" frameborder="0" data-name="main"></iframe>
+            <iframe src="./static/view/assets.html" frameborder="0" data-name="main"></iframe>
         </div>
     </div>
 </div>
 </body>
 <script src="../static/js/jquery-1.11.3.min.js"></script>
-<script src="../static/js/c-js/c-component.js"></script>
+<script src="../static/js/c-component.js"></script>
 <script src="../static/powertip/jquery.powertip.min.js"></script>
 
 
@@ -165,7 +166,7 @@
         var _href = $(this).attr("_href");
         $(".cframe3-iframe iframe").attr("src",_href)
     });
-    $("*[title]").powerTip({ placement: 's' });
+//    $("*[title]").powerTip({ placement: 's' });
 
 </script>
 </html>
