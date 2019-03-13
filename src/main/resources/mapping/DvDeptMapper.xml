@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvDept" >
+    <id column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_principle" property="deptPrinciple" jdbcType="VARCHAR" />
+    <result column="dept_phone" property="deptPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huxl.fam.entity.DvDept" extends="BaseResultMap" >
+    <result column="dept_adddesec" property="deptAdddesec" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dept_id, dept_name, dept_principle, dept_phone
+  </sql>
+  <sql id="Blob_Column_List" >
+    dept_adddesec
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dv_dept
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_dept
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvDept" >
+    insert into dv_dept (dept_id, dept_name, dept_principle, 
+      dept_phone, dept_adddesec)
+    values (#{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{deptPrinciple,jdbcType=VARCHAR}, 
+      #{deptPhone,jdbcType=VARCHAR}, #{deptAdddesec,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvDept" >
+    insert into dv_dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="deptPrinciple != null" >
+        dept_principle,
+      </if>
+      <if test="deptPhone != null" >
+        dept_phone,
+      </if>
+      <if test="deptAdddesec != null" >
+        dept_adddesec,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPrinciple != null" >
+        #{deptPrinciple,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPhone != null" >
+        #{deptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAdddesec != null" >
+        #{deptAdddesec,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvDept" >
+    update dv_dept
+    <set >
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPrinciple != null" >
+        dept_principle = #{deptPrinciple,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPhone != null" >
+        dept_phone = #{deptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAdddesec != null" >
+        dept_adddesec = #{deptAdddesec,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huxl.fam.entity.DvDept" >
+    update dv_dept
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_principle = #{deptPrinciple,jdbcType=VARCHAR},
+      dept_phone = #{deptPhone,jdbcType=VARCHAR},
+      dept_adddesec = #{deptAdddesec,jdbcType=LONGVARCHAR}
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvDept" >
+    update dv_dept
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_principle = #{deptPrinciple,jdbcType=VARCHAR},
+      dept_phone = #{deptPhone,jdbcType=VARCHAR}
+    where dept_id = #{deptId,jdbcType=VARCHAR}
+  </update>
+</mapper>

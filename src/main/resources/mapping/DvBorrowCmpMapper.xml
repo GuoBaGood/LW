@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvBorrowCmpMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvBorrowCmp" >
+    <id column="cmp_id" property="cmpId" jdbcType="VARCHAR" />
+    <result column="cmp_name" property="cmpName" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="cmp_address" property="cmpAddress" jdbcType="VARCHAR" />
+    <result column="service_phone" property="servicePhone" jdbcType="VARCHAR" />
+    <result column="cmp_email" property="cmpEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cmp_id, cmp_name, legal_person, cmp_address, service_phone, cmp_email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dv_borrow_cmp
+    where cmp_id = #{cmpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_borrow_cmp
+    where cmp_id = #{cmpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvBorrowCmp" >
+    insert into dv_borrow_cmp (cmp_id, cmp_name, legal_person, 
+      cmp_address, service_phone, cmp_email
+      )
+    values (#{cmpId,jdbcType=VARCHAR}, #{cmpName,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{cmpAddress,jdbcType=VARCHAR}, #{servicePhone,jdbcType=VARCHAR}, #{cmpEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvBorrowCmp" >
+    insert into dv_borrow_cmp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmpId != null" >
+        cmp_id,
+      </if>
+      <if test="cmpName != null" >
+        cmp_name,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="cmpAddress != null" >
+        cmp_address,
+      </if>
+      <if test="servicePhone != null" >
+        service_phone,
+      </if>
+      <if test="cmpEmail != null" >
+        cmp_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmpId != null" >
+        #{cmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpName != null" >
+        #{cmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpAddress != null" >
+        #{cmpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpEmail != null" >
+        #{cmpEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvBorrowCmp" >
+    update dv_borrow_cmp
+    <set >
+      <if test="cmpName != null" >
+        cmp_name = #{cmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpAddress != null" >
+        cmp_address = #{cmpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null" >
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cmpEmail != null" >
+        cmp_email = #{cmpEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cmp_id = #{cmpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvBorrowCmp" >
+    update dv_borrow_cmp
+    set cmp_name = #{cmpName,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      cmp_address = #{cmpAddress,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      cmp_email = #{cmpEmail,jdbcType=VARCHAR}
+    where cmp_id = #{cmpId,jdbcType=VARCHAR}
+  </update>
+</mapper>

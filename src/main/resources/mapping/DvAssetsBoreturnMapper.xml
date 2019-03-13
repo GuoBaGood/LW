@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvAssetsBoreturnMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvAssetsBoreturn" >
+    <id column="boreturn_id" property="boreturnId" jdbcType="VARCHAR" />
+    <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="boreturn_amount" property="boreturnAmount" jdbcType="INTEGER" />
+    <result column="boreturn_account" property="boreturnAccount" jdbcType="VARCHAR" />
+    <result column="boreturn_userealname" property="boreturnUserealname" jdbcType="VARCHAR" />
+    <result column="boreturn_time" property="boreturnTime" jdbcType="VARCHAR" />
+    <result column="prescript_returntime" property="prescriptReturntime" jdbcType="VARCHAR" />
+    <result column="prescript_income" property="prescriptIncome" jdbcType="REAL" />
+    <result column="manager_account" property="managerAccount" jdbcType="VARCHAR" />
+    <result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+    <result column="assets_state_id" property="assetsStateId" jdbcType="VARCHAR" />
+    <result column="assets_state_name" property="assetsStateName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huxl.fam.entity.DvAssetsBoreturn" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    boreturn_id, assets_id, assets_name, boreturn_amount, boreturn_account, boreturn_userealname, 
+    boreturn_time, prescript_returntime, prescript_income, manager_account, manager_name, 
+    assets_state_id, assets_state_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dv_assets_boreturn
+    where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_assets_boreturn
+    where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsBoreturn" >
+    insert into dv_assets_boreturn (boreturn_id, assets_id, assets_name, 
+      boreturn_amount, boreturn_account, boreturn_userealname, 
+      boreturn_time, prescript_returntime, prescript_income, 
+      manager_account, manager_name, assets_state_id, 
+      assets_state_name, remark)
+    values (#{boreturnId,jdbcType=VARCHAR}, #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, 
+      #{boreturnAmount,jdbcType=INTEGER}, #{boreturnAccount,jdbcType=VARCHAR}, #{boreturnUserealname,jdbcType=VARCHAR}, 
+      #{boreturnTime,jdbcType=VARCHAR}, #{prescriptReturntime,jdbcType=VARCHAR}, #{prescriptIncome,jdbcType=REAL}, 
+      #{managerAccount,jdbcType=VARCHAR}, #{managerName,jdbcType=VARCHAR}, #{assetsStateId,jdbcType=VARCHAR}, 
+      #{assetsStateName,jdbcType=VARCHAR}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsBoreturn" >
+    insert into dv_assets_boreturn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="boreturnId != null" >
+        boreturn_id,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="boreturnAmount != null" >
+        boreturn_amount,
+      </if>
+      <if test="boreturnAccount != null" >
+        boreturn_account,
+      </if>
+      <if test="boreturnUserealname != null" >
+        boreturn_userealname,
+      </if>
+      <if test="boreturnTime != null" >
+        boreturn_time,
+      </if>
+      <if test="prescriptReturntime != null" >
+        prescript_returntime,
+      </if>
+      <if test="prescriptIncome != null" >
+        prescript_income,
+      </if>
+      <if test="managerAccount != null" >
+        manager_account,
+      </if>
+      <if test="managerName != null" >
+        manager_name,
+      </if>
+      <if test="assetsStateId != null" >
+        assets_state_id,
+      </if>
+      <if test="assetsStateName != null" >
+        assets_state_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="boreturnId != null" >
+        #{boreturnId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnAmount != null" >
+        #{boreturnAmount,jdbcType=INTEGER},
+      </if>
+      <if test="boreturnAccount != null" >
+        #{boreturnAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnUserealname != null" >
+        #{boreturnUserealname,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnTime != null" >
+        #{boreturnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptReturntime != null" >
+        #{prescriptReturntime,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptIncome != null" >
+        #{prescriptIncome,jdbcType=REAL},
+      </if>
+      <if test="managerAccount != null" >
+        #{managerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="managerName != null" >
+        #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateId != null" >
+        #{assetsStateId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateName != null" >
+        #{assetsStateName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsBoreturn" >
+    update dv_assets_boreturn
+    <set >
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnAmount != null" >
+        boreturn_amount = #{boreturnAmount,jdbcType=INTEGER},
+      </if>
+      <if test="boreturnAccount != null" >
+        boreturn_account = #{boreturnAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnUserealname != null" >
+        boreturn_userealname = #{boreturnUserealname,jdbcType=VARCHAR},
+      </if>
+      <if test="boreturnTime != null" >
+        boreturn_time = #{boreturnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptReturntime != null" >
+        prescript_returntime = #{prescriptReturntime,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptIncome != null" >
+        prescript_income = #{prescriptIncome,jdbcType=REAL},
+      </if>
+      <if test="managerAccount != null" >
+        manager_account = #{managerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="managerName != null" >
+        manager_name = #{managerName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateId != null" >
+        assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateName != null" >
+        assets_state_name = #{assetsStateName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huxl.fam.entity.DvAssetsBoreturn" >
+    update dv_assets_boreturn
+    set assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      boreturn_amount = #{boreturnAmount,jdbcType=INTEGER},
+      boreturn_account = #{boreturnAccount,jdbcType=VARCHAR},
+      boreturn_userealname = #{boreturnUserealname,jdbcType=VARCHAR},
+      boreturn_time = #{boreturnTime,jdbcType=VARCHAR},
+      prescript_returntime = #{prescriptReturntime,jdbcType=VARCHAR},
+      prescript_income = #{prescriptIncome,jdbcType=REAL},
+      manager_account = #{managerAccount,jdbcType=VARCHAR},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      assets_state_name = #{assetsStateName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsBoreturn" >
+    update dv_assets_boreturn
+    set assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      boreturn_amount = #{boreturnAmount,jdbcType=INTEGER},
+      boreturn_account = #{boreturnAccount,jdbcType=VARCHAR},
+      boreturn_userealname = #{boreturnUserealname,jdbcType=VARCHAR},
+      boreturn_time = #{boreturnTime,jdbcType=VARCHAR},
+      prescript_returntime = #{prescriptReturntime,jdbcType=VARCHAR},
+      prescript_income = #{prescriptIncome,jdbcType=REAL},
+      manager_account = #{managerAccount,jdbcType=VARCHAR},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      assets_state_name = #{assetsStateName,jdbcType=VARCHAR}
+    where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
+  </update>
+</mapper>

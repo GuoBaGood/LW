@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvAssetsReduceMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvAssetsReduce" >
+    <id column="reduce_id" property="reduceId" jdbcType="VARCHAR" />
+    <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="reduce_num" property="reduceNum" jdbcType="VARCHAR" />
+    <result column="reduce_time" property="reduceTime" jdbcType="VARCHAR" />
+    <result column="reduce_way" property="reduceWay" jdbcType="VARCHAR" />
+    <result column="reduce_reason" property="reduceReason" jdbcType="VARCHAR" />
+    <result column="cleaning_income" property="cleaningIncome" jdbcType="VARCHAR" />
+    <result column="cleaning_outlay" property="cleaningOutlay" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reduce_id, assets_id, assets_name, reduce_num, reduce_time, reduce_way, reduce_reason, 
+    cleaning_income, cleaning_outlay, account, user_name, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dv_assets_reduce
+    where reduce_id = #{reduceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_assets_reduce
+    where reduce_id = #{reduceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsReduce" >
+    insert into dv_assets_reduce (reduce_id, assets_id, assets_name, 
+      reduce_num, reduce_time, reduce_way, 
+      reduce_reason, cleaning_income, cleaning_outlay, 
+      account, user_name, remark
+      )
+    values (#{reduceId,jdbcType=VARCHAR}, #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, 
+      #{reduceNum,jdbcType=VARCHAR}, #{reduceTime,jdbcType=VARCHAR}, #{reduceWay,jdbcType=VARCHAR}, 
+      #{reduceReason,jdbcType=VARCHAR}, #{cleaningIncome,jdbcType=VARCHAR}, #{cleaningOutlay,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsReduce" >
+    insert into dv_assets_reduce
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reduceId != null" >
+        reduce_id,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="reduceNum != null" >
+        reduce_num,
+      </if>
+      <if test="reduceTime != null" >
+        reduce_time,
+      </if>
+      <if test="reduceWay != null" >
+        reduce_way,
+      </if>
+      <if test="reduceReason != null" >
+        reduce_reason,
+      </if>
+      <if test="cleaningIncome != null" >
+        cleaning_income,
+      </if>
+      <if test="cleaningOutlay != null" >
+        cleaning_outlay,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reduceId != null" >
+        #{reduceId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceNum != null" >
+        #{reduceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceTime != null" >
+        #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceWay != null" >
+        #{reduceWay,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceReason != null" >
+        #{reduceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningIncome != null" >
+        #{cleaningIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningOutlay != null" >
+        #{cleaningOutlay,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsReduce" >
+    update dv_assets_reduce
+    <set >
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceNum != null" >
+        reduce_num = #{reduceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceTime != null" >
+        reduce_time = #{reduceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceWay != null" >
+        reduce_way = #{reduceWay,jdbcType=VARCHAR},
+      </if>
+      <if test="reduceReason != null" >
+        reduce_reason = #{reduceReason,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningIncome != null" >
+        cleaning_income = #{cleaningIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="cleaningOutlay != null" >
+        cleaning_outlay = #{cleaningOutlay,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where reduce_id = #{reduceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsReduce" >
+    update dv_assets_reduce
+    set assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      reduce_num = #{reduceNum,jdbcType=VARCHAR},
+      reduce_time = #{reduceTime,jdbcType=VARCHAR},
+      reduce_way = #{reduceWay,jdbcType=VARCHAR},
+      reduce_reason = #{reduceReason,jdbcType=VARCHAR},
+      cleaning_income = #{cleaningIncome,jdbcType=VARCHAR},
+      cleaning_outlay = #{cleaningOutlay,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where reduce_id = #{reduceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

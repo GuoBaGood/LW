@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvAssetsDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvAssetsDetails" >
+    <id column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="assets_normtype" property="assetsNormtype" jdbcType="VARCHAR" />
+    <result column="assets_factory" property="assetsFactory" jdbcType="VARCHAR" />
+    <result column="assets_buytiem" property="assetsBuytiem" jdbcType="VARCHAR" />
+    <result column="assets_num" property="assetsNum" jdbcType="INTEGER" />
+    <result column="assets_univalent" property="assetsUnivalent" jdbcType="REAL" />
+    <result column="assets_all_amount" property="assetsAllAmount" jdbcType="REAL" />
+    <result column="asset_initialval" property="assetInitialval" jdbcType="REAL" />
+    <result column="assets_addway" property="assetsAddway" jdbcType="VARCHAR" />
+    <result column="assets_state_id" property="assetsStateId" jdbcType="VARCHAR" />
+    <result column="assets_state_name" property="assetsStateName" jdbcType="VARCHAR" />
+    <result column="assets_outfactory_time" property="assetsOutfactoryTime" jdbcType="VARCHAR" />
+    <result column="dep_way" property="depWay" jdbcType="VARCHAR" />
+    <result column="dep_monthnum" property="depMonthnum" jdbcType="INTEGER" />
+    <result column="carry_monthnum" property="carryMonthnum" jdbcType="INTEGER" />
+    <result column="dep_mothly" property="depMothly" jdbcType="REAL" />
+    <result column="except_netval" property="exceptNetval" jdbcType="REAL" />
+    <result column="dep_all" property="depAll" jdbcType="REAL" />
+    <result column="storage_location" property="storageLocation" jdbcType="VARCHAR" />
+    <result column="dept_use" property="deptUse" jdbcType="VARCHAR" />
+    <result column="assets_type" property="assetsType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huxl.fam.entity.DvAssetsDetails" extends="BaseResultMap" >
+    <result column="assets_remark" property="assetsRemark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    assets_id, assets_name, assets_normtype, assets_factory, assets_buytiem, assets_num, 
+    assets_univalent, assets_all_amount, asset_initialval, assets_addway, assets_state_id, 
+    assets_state_name, assets_outfactory_time, dep_way, dep_monthnum, carry_monthnum, 
+    dep_mothly, except_netval, dep_all, storage_location, dept_use, assets_type
+  </sql>
+  <sql id="Blob_Column_List" >
+    assets_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dv_assets_details
+    where assets_id = #{assetsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_assets_details
+    where assets_id = #{assetsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
+    insert into dv_assets_details (assets_id, assets_name, assets_normtype, 
+      assets_factory, assets_buytiem, assets_num, 
+      assets_univalent, assets_all_amount, asset_initialval, 
+      assets_addway, assets_state_id, assets_state_name, 
+      assets_outfactory_time, dep_way, dep_monthnum, 
+      carry_monthnum, dep_mothly, except_netval, 
+      dep_all, storage_location, dept_use, 
+      assets_type, assets_remark)
+    values (#{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, #{assetsNormtype,jdbcType=VARCHAR}, 
+      #{assetsFactory,jdbcType=VARCHAR}, #{assetsBuytiem,jdbcType=VARCHAR}, #{assetsNum,jdbcType=INTEGER}, 
+      #{assetsUnivalent,jdbcType=REAL}, #{assetsAllAmount,jdbcType=REAL}, #{assetInitialval,jdbcType=REAL}, 
+      #{assetsAddway,jdbcType=VARCHAR}, #{assetsStateId,jdbcType=VARCHAR}, #{assetsStateName,jdbcType=VARCHAR}, 
+      #{assetsOutfactoryTime,jdbcType=VARCHAR}, #{depWay,jdbcType=VARCHAR}, #{depMonthnum,jdbcType=INTEGER}, 
+      #{carryMonthnum,jdbcType=INTEGER}, #{depMothly,jdbcType=REAL}, #{exceptNetval,jdbcType=REAL}, 
+      #{depAll,jdbcType=REAL}, #{storageLocation,jdbcType=VARCHAR}, #{deptUse,jdbcType=VARCHAR}, 
+      #{assetsType,jdbcType=VARCHAR}, #{assetsRemark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
+    insert into dv_assets_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="assetsNormtype != null" >
+        assets_normtype,
+      </if>
+      <if test="assetsFactory != null" >
+        assets_factory,
+      </if>
+      <if test="assetsBuytiem != null" >
+        assets_buytiem,
+      </if>
+      <if test="assetsNum != null" >
+        assets_num,
+      </if>
+      <if test="assetsUnivalent != null" >
+        assets_univalent,
+      </if>
+      <if test="assetsAllAmount != null" >
+        assets_all_amount,
+      </if>
+      <if test="assetInitialval != null" >
+        asset_initialval,
+      </if>
+      <if test="assetsAddway != null" >
+        assets_addway,
+      </if>
+      <if test="assetsStateId != null" >
+        assets_state_id,
+      </if>
+      <if test="assetsStateName != null" >
+        assets_state_name,
+      </if>
+      <if test="assetsOutfactoryTime != null" >
+        assets_outfactory_time,
+      </if>
+      <if test="depWay != null" >
+        dep_way,
+      </if>
+      <if test="depMonthnum != null" >
+        dep_monthnum,
+      </if>
+      <if test="carryMonthnum != null" >
+        carry_monthnum,
+      </if>
+      <if test="depMothly != null" >
+        dep_mothly,
+      </if>
+      <if test="exceptNetval != null" >
+        except_netval,
+      </if>
+      <if test="depAll != null" >
+        dep_all,
+      </if>
+      <if test="storageLocation != null" >
+        storage_location,
+      </if>
+      <if test="deptUse != null" >
+        dept_use,
+      </if>
+      <if test="assetsType != null" >
+        assets_type,
+      </if>
+      <if test="assetsRemark != null" >
+        assets_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNormtype != null" >
+        #{assetsNormtype,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsFactory != null" >
+        #{assetsFactory,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsBuytiem != null" >
+        #{assetsBuytiem,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNum != null" >
+        #{assetsNum,jdbcType=INTEGER},
+      </if>
+      <if test="assetsUnivalent != null" >
+        #{assetsUnivalent,jdbcType=REAL},
+      </if>
+      <if test="assetsAllAmount != null" >
+        #{assetsAllAmount,jdbcType=REAL},
+      </if>
+      <if test="assetInitialval != null" >
+        #{assetInitialval,jdbcType=REAL},
+      </if>
+      <if test="assetsAddway != null" >
+        #{assetsAddway,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateId != null" >
+        #{assetsStateId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateName != null" >
+        #{assetsStateName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsOutfactoryTime != null" >
+        #{assetsOutfactoryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="depWay != null" >
+        #{depWay,jdbcType=VARCHAR},
+      </if>
+      <if test="depMonthnum != null" >
+        #{depMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="carryMonthnum != null" >
+        #{carryMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="depMothly != null" >
+        #{depMothly,jdbcType=REAL},
+      </if>
+      <if test="exceptNetval != null" >
+        #{exceptNetval,jdbcType=REAL},
+      </if>
+      <if test="depAll != null" >
+        #{depAll,jdbcType=REAL},
+      </if>
+      <if test="storageLocation != null" >
+        #{storageLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="deptUse != null" >
+        #{deptUse,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsType != null" >
+        #{assetsType,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsRemark != null" >
+        #{assetsRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
+    update dv_assets_details
+    <set >
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNormtype != null" >
+        assets_normtype = #{assetsNormtype,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsFactory != null" >
+        assets_factory = #{assetsFactory,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsBuytiem != null" >
+        assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNum != null" >
+        assets_num = #{assetsNum,jdbcType=INTEGER},
+      </if>
+      <if test="assetsUnivalent != null" >
+        assets_univalent = #{assetsUnivalent,jdbcType=REAL},
+      </if>
+      <if test="assetsAllAmount != null" >
+        assets_all_amount = #{assetsAllAmount,jdbcType=REAL},
+      </if>
+      <if test="assetInitialval != null" >
+        asset_initialval = #{assetInitialval,jdbcType=REAL},
+      </if>
+      <if test="assetsAddway != null" >
+        assets_addway = #{assetsAddway,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateId != null" >
+        assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsStateName != null" >
+        assets_state_name = #{assetsStateName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsOutfactoryTime != null" >
+        assets_outfactory_time = #{assetsOutfactoryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="depWay != null" >
+        dep_way = #{depWay,jdbcType=VARCHAR},
+      </if>
+      <if test="depMonthnum != null" >
+        dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="carryMonthnum != null" >
+        carry_monthnum = #{carryMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="depMothly != null" >
+        dep_mothly = #{depMothly,jdbcType=REAL},
+      </if>
+      <if test="exceptNetval != null" >
+        except_netval = #{exceptNetval,jdbcType=REAL},
+      </if>
+      <if test="depAll != null" >
+        dep_all = #{depAll,jdbcType=REAL},
+      </if>
+      <if test="storageLocation != null" >
+        storage_location = #{storageLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="deptUse != null" >
+        dept_use = #{deptUse,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsType != null" >
+        assets_type = #{assetsType,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsRemark != null" >
+        assets_remark = #{assetsRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where assets_id = #{assetsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
+    update dv_assets_details
+    set assets_name = #{assetsName,jdbcType=VARCHAR},
+      assets_normtype = #{assetsNormtype,jdbcType=VARCHAR},
+      assets_factory = #{assetsFactory,jdbcType=VARCHAR},
+      assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+      assets_num = #{assetsNum,jdbcType=INTEGER},
+      assets_univalent = #{assetsUnivalent,jdbcType=REAL},
+      assets_all_amount = #{assetsAllAmount,jdbcType=REAL},
+      asset_initialval = #{assetInitialval,jdbcType=REAL},
+      assets_addway = #{assetsAddway,jdbcType=VARCHAR},
+      assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      assets_state_name = #{assetsStateName,jdbcType=VARCHAR},
+      assets_outfactory_time = #{assetsOutfactoryTime,jdbcType=VARCHAR},
+      dep_way = #{depWay,jdbcType=VARCHAR},
+      dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      carry_monthnum = #{carryMonthnum,jdbcType=INTEGER},
+      dep_mothly = #{depMothly,jdbcType=REAL},
+      except_netval = #{exceptNetval,jdbcType=REAL},
+      dep_all = #{depAll,jdbcType=REAL},
+      storage_location = #{storageLocation,jdbcType=VARCHAR},
+      dept_use = #{deptUse,jdbcType=VARCHAR},
+      assets_type = #{assetsType,jdbcType=VARCHAR},
+      assets_remark = #{assetsRemark,jdbcType=LONGVARCHAR}
+    where assets_id = #{assetsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
+    update dv_assets_details
+    set assets_name = #{assetsName,jdbcType=VARCHAR},
+      assets_normtype = #{assetsNormtype,jdbcType=VARCHAR},
+      assets_factory = #{assetsFactory,jdbcType=VARCHAR},
+      assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+      assets_num = #{assetsNum,jdbcType=INTEGER},
+      assets_univalent = #{assetsUnivalent,jdbcType=REAL},
+      assets_all_amount = #{assetsAllAmount,jdbcType=REAL},
+      asset_initialval = #{assetInitialval,jdbcType=REAL},
+      assets_addway = #{assetsAddway,jdbcType=VARCHAR},
+      assets_state_id = #{assetsStateId,jdbcType=VARCHAR},
+      assets_state_name = #{assetsStateName,jdbcType=VARCHAR},
+      assets_outfactory_time = #{assetsOutfactoryTime,jdbcType=VARCHAR},
+      dep_way = #{depWay,jdbcType=VARCHAR},
+      dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      carry_monthnum = #{carryMonthnum,jdbcType=INTEGER},
+      dep_mothly = #{depMothly,jdbcType=REAL},
+      except_netval = #{exceptNetval,jdbcType=REAL},
+      dep_all = #{depAll,jdbcType=REAL},
+      storage_location = #{storageLocation,jdbcType=VARCHAR},
+      dept_use = #{deptUse,jdbcType=VARCHAR},
+      assets_type = #{assetsType,jdbcType=VARCHAR}
+    where assets_id = #{assetsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

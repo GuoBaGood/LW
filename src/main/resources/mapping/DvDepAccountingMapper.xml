@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvDepAccountingMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvDepAccounting" >
+    <id column="dep_id" property="depId" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="assets_origvalue" property="assetsOrigvalue" jdbcType="REAL" />
+    <result column="all_dep" property="allDep" jdbcType="REAL" />
+    <result column="dep_way" property="depWay" jdbcType="VARCHAR" />
+    <result column="dep_monthnum" property="depMonthnum" jdbcType="INTEGER" />
+    <result column="raised_monthnum" property="raisedMonthnum" jdbcType="INTEGER" />
+    <result column="month_reprice" property="monthReprice" jdbcType="REAL" />
+    <result column="expect_residualval" property="expectResidualval" jdbcType="REAL" />
+    <result column="Residual_value" property="residualValue" jdbcType="REAL" />
+    <result column="dep_month" property="depMonth" jdbcType="INTEGER" />
+    <result column="dep_year" property="depYear" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huxl.fam.entity.DvDepAccounting" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dep_id, dept_id, type_id, assets_id, assets_name, assets_origvalue, all_dep, dep_way, 
+    dep_monthnum, raised_monthnum, month_reprice, expect_residualval, Residual_value, 
+    dep_month, dep_year
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dv_dep_accounting
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_dep_accounting
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvDepAccounting" >
+    insert into dv_dep_accounting (dep_id, dept_id, type_id, 
+      assets_id, assets_name, assets_origvalue, 
+      all_dep, dep_way, dep_monthnum, 
+      raised_monthnum, month_reprice, expect_residualval, 
+      Residual_value, dep_month, dep_year, 
+      remark)
+    values (#{depId,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
+      #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, #{assetsOrigvalue,jdbcType=REAL}, 
+      #{allDep,jdbcType=REAL}, #{depWay,jdbcType=VARCHAR}, #{depMonthnum,jdbcType=INTEGER}, 
+      #{raisedMonthnum,jdbcType=INTEGER}, #{monthReprice,jdbcType=REAL}, #{expectResidualval,jdbcType=REAL}, 
+      #{residualValue,jdbcType=REAL}, #{depMonth,jdbcType=INTEGER}, #{depYear,jdbcType=INTEGER}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvDepAccounting" >
+    insert into dv_dep_accounting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        dep_id,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="assetsOrigvalue != null" >
+        assets_origvalue,
+      </if>
+      <if test="allDep != null" >
+        all_dep,
+      </if>
+      <if test="depWay != null" >
+        dep_way,
+      </if>
+      <if test="depMonthnum != null" >
+        dep_monthnum,
+      </if>
+      <if test="raisedMonthnum != null" >
+        raised_monthnum,
+      </if>
+      <if test="monthReprice != null" >
+        month_reprice,
+      </if>
+      <if test="expectResidualval != null" >
+        expect_residualval,
+      </if>
+      <if test="residualValue != null" >
+        Residual_value,
+      </if>
+      <if test="depMonth != null" >
+        dep_month,
+      </if>
+      <if test="depYear != null" >
+        dep_year,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depId != null" >
+        #{depId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsOrigvalue != null" >
+        #{assetsOrigvalue,jdbcType=REAL},
+      </if>
+      <if test="allDep != null" >
+        #{allDep,jdbcType=REAL},
+      </if>
+      <if test="depWay != null" >
+        #{depWay,jdbcType=VARCHAR},
+      </if>
+      <if test="depMonthnum != null" >
+        #{depMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="raisedMonthnum != null" >
+        #{raisedMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="monthReprice != null" >
+        #{monthReprice,jdbcType=REAL},
+      </if>
+      <if test="expectResidualval != null" >
+        #{expectResidualval,jdbcType=REAL},
+      </if>
+      <if test="residualValue != null" >
+        #{residualValue,jdbcType=REAL},
+      </if>
+      <if test="depMonth != null" >
+        #{depMonth,jdbcType=INTEGER},
+      </if>
+      <if test="depYear != null" >
+        #{depYear,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvDepAccounting" >
+    update dv_dep_accounting
+    <set >
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsOrigvalue != null" >
+        assets_origvalue = #{assetsOrigvalue,jdbcType=REAL},
+      </if>
+      <if test="allDep != null" >
+        all_dep = #{allDep,jdbcType=REAL},
+      </if>
+      <if test="depWay != null" >
+        dep_way = #{depWay,jdbcType=VARCHAR},
+      </if>
+      <if test="depMonthnum != null" >
+        dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="raisedMonthnum != null" >
+        raised_monthnum = #{raisedMonthnum,jdbcType=INTEGER},
+      </if>
+      <if test="monthReprice != null" >
+        month_reprice = #{monthReprice,jdbcType=REAL},
+      </if>
+      <if test="expectResidualval != null" >
+        expect_residualval = #{expectResidualval,jdbcType=REAL},
+      </if>
+      <if test="residualValue != null" >
+        Residual_value = #{residualValue,jdbcType=REAL},
+      </if>
+      <if test="depMonth != null" >
+        dep_month = #{depMonth,jdbcType=INTEGER},
+      </if>
+      <if test="depYear != null" >
+        dep_year = #{depYear,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huxl.fam.entity.DvDepAccounting" >
+    update dv_dep_accounting
+    set dept_id = #{deptId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      assets_origvalue = #{assetsOrigvalue,jdbcType=REAL},
+      all_dep = #{allDep,jdbcType=REAL},
+      dep_way = #{depWay,jdbcType=VARCHAR},
+      dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      raised_monthnum = #{raisedMonthnum,jdbcType=INTEGER},
+      month_reprice = #{monthReprice,jdbcType=REAL},
+      expect_residualval = #{expectResidualval,jdbcType=REAL},
+      Residual_value = #{residualValue,jdbcType=REAL},
+      dep_month = #{depMonth,jdbcType=INTEGER},
+      dep_year = #{depYear,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvDepAccounting" >
+    update dv_dep_accounting
+    set dept_id = #{deptId,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      assets_origvalue = #{assetsOrigvalue,jdbcType=REAL},
+      all_dep = #{allDep,jdbcType=REAL},
+      dep_way = #{depWay,jdbcType=VARCHAR},
+      dep_monthnum = #{depMonthnum,jdbcType=INTEGER},
+      raised_monthnum = #{raisedMonthnum,jdbcType=INTEGER},
+      month_reprice = #{monthReprice,jdbcType=REAL},
+      expect_residualval = #{expectResidualval,jdbcType=REAL},
+      Residual_value = #{residualValue,jdbcType=REAL},
+      dep_month = #{depMonth,jdbcType=INTEGER},
+      dep_year = #{depYear,jdbcType=INTEGER}
+    where dep_id = #{depId,jdbcType=VARCHAR}
+  </update>
+</mapper>

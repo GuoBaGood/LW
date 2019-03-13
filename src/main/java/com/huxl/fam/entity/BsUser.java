@@ -1,5 +1,7 @@
 package com.huxl.fam.entity;
 
+import java.io.Serializable;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -8,7 +10,8 @@ package com.huxl.fam.entity;
  * 日期:2019/2/13 13:29
  * 描述：用户登录表
  */
-public class BsUser {
+public class BsUser implements Serializable{
+    private static final long serialVersionUID = -7078272479286344442L;
     private String uId;
 
     private String uName;

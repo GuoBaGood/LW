@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvAssetsRepairecordMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvAssetsRepairecord" >
+    <id column="repairecord_id" property="repairecordId" jdbcType="VARCHAR" />
+    <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="assets_num" property="assetsNum" jdbcType="INTEGER" />
+    <result column="repair_time" property="repairTime" jdbcType="VARCHAR" />
+    <result column="complete_repairtime" property="completeRepairtime" jdbcType="VARCHAR" />
+    <result column="repair_price" property="repairPrice" jdbcType="VARCHAR" />
+    <result column="repair_company" property="repairCompany" jdbcType="VARCHAR" />
+    <result column="repair_companyphone" property="repairCompanyphone" jdbcType="VARCHAR" />
+    <result column="repair_situation" property="repairSituation" jdbcType="VARCHAR" />
+    <result column="malfunction_reson" property="malfunctionReson" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    repairecord_id, assets_id, assets_name, assets_num, repair_time, complete_repairtime, 
+    repair_price, repair_company, repair_companyphone, repair_situation, malfunction_reson, 
+    account, user_name, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dv_assets_repairecord
+    where repairecord_id = #{repairecordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_assets_repairecord
+    where repairecord_id = #{repairecordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsRepairecord" >
+    insert into dv_assets_repairecord (repairecord_id, assets_id, assets_name, 
+      assets_num, repair_time, complete_repairtime, 
+      repair_price, repair_company, repair_companyphone, 
+      repair_situation, malfunction_reson, account, 
+      user_name, remark)
+    values (#{repairecordId,jdbcType=VARCHAR}, #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, 
+      #{assetsNum,jdbcType=INTEGER}, #{repairTime,jdbcType=VARCHAR}, #{completeRepairtime,jdbcType=VARCHAR}, 
+      #{repairPrice,jdbcType=VARCHAR}, #{repairCompany,jdbcType=VARCHAR}, #{repairCompanyphone,jdbcType=VARCHAR}, 
+      #{repairSituation,jdbcType=VARCHAR}, #{malfunctionReson,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsRepairecord" >
+    insert into dv_assets_repairecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repairecordId != null" >
+        repairecord_id,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="assetsNum != null" >
+        assets_num,
+      </if>
+      <if test="repairTime != null" >
+        repair_time,
+      </if>
+      <if test="completeRepairtime != null" >
+        complete_repairtime,
+      </if>
+      <if test="repairPrice != null" >
+        repair_price,
+      </if>
+      <if test="repairCompany != null" >
+        repair_company,
+      </if>
+      <if test="repairCompanyphone != null" >
+        repair_companyphone,
+      </if>
+      <if test="repairSituation != null" >
+        repair_situation,
+      </if>
+      <if test="malfunctionReson != null" >
+        malfunction_reson,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repairecordId != null" >
+        #{repairecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNum != null" >
+        #{assetsNum,jdbcType=INTEGER},
+      </if>
+      <if test="repairTime != null" >
+        #{repairTime,jdbcType=VARCHAR},
+      </if>
+      <if test="completeRepairtime != null" >
+        #{completeRepairtime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPrice != null" >
+        #{repairPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCompany != null" >
+        #{repairCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCompanyphone != null" >
+        #{repairCompanyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="repairSituation != null" >
+        #{repairSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="malfunctionReson != null" >
+        #{malfunctionReson,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsRepairecord" >
+    update dv_assets_repairecord
+    <set >
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNum != null" >
+        assets_num = #{assetsNum,jdbcType=INTEGER},
+      </if>
+      <if test="repairTime != null" >
+        repair_time = #{repairTime,jdbcType=VARCHAR},
+      </if>
+      <if test="completeRepairtime != null" >
+        complete_repairtime = #{completeRepairtime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPrice != null" >
+        repair_price = #{repairPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCompany != null" >
+        repair_company = #{repairCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCompanyphone != null" >
+        repair_companyphone = #{repairCompanyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="repairSituation != null" >
+        repair_situation = #{repairSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="malfunctionReson != null" >
+        malfunction_reson = #{malfunctionReson,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where repairecord_id = #{repairecordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsRepairecord" >
+    update dv_assets_repairecord
+    set assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      assets_num = #{assetsNum,jdbcType=INTEGER},
+      repair_time = #{repairTime,jdbcType=VARCHAR},
+      complete_repairtime = #{completeRepairtime,jdbcType=VARCHAR},
+      repair_price = #{repairPrice,jdbcType=VARCHAR},
+      repair_company = #{repairCompany,jdbcType=VARCHAR},
+      repair_companyphone = #{repairCompanyphone,jdbcType=VARCHAR},
+      repair_situation = #{repairSituation,jdbcType=VARCHAR},
+      malfunction_reson = #{malfunctionReson,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where repairecord_id = #{repairecordId,jdbcType=VARCHAR}
+  </update>
+</mapper>
