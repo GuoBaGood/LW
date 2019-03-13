@@ -21,6 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class LoginController {
 
+
     @ResponseBody  //加上该标签返回的是一个“login”的字符串；
     @RequestMapping(value = "/fam")
     public ModelAndView index(HttpServletRequest request, ModelAndView view){
@@ -38,6 +39,7 @@ public class LoginController {
         session.invalidate();
         String name = request.getParameter("loginUser");
         String pwd = request.getParameter("loginPwd");
+
         view.setViewName("loginMain");
         return view;
     }
