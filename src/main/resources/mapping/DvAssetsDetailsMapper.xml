@@ -6,7 +6,7 @@
     <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
     <result column="assets_normtype" property="assetsNormtype" jdbcType="VARCHAR" />
     <result column="assets_factory" property="assetsFactory" jdbcType="VARCHAR" />
-    <result column="assets_buytiem" property="assetsBuytiem" jdbcType="VARCHAR" />
+    <result column="assets_buytime" property="assetsBuytime" jdbcType="TIMESTAMP" />
     <result column="assets_num" property="assetsNum" jdbcType="INTEGER" />
     <result column="assets_univalent" property="assetsUnivalent" jdbcType="REAL" />
     <result column="assets_all_amount" property="assetsAllAmount" jdbcType="REAL" />
@@ -14,7 +14,7 @@
     <result column="assets_addway" property="assetsAddway" jdbcType="VARCHAR" />
     <result column="assets_state_id" property="assetsStateId" jdbcType="VARCHAR" />
     <result column="assets_state_name" property="assetsStateName" jdbcType="VARCHAR" />
-    <result column="assets_outfactory_time" property="assetsOutfactoryTime" jdbcType="VARCHAR" />
+    <result column="assets_outfactory_time" property="assetsOutfactoryTime" jdbcType="TIMESTAMP" />
     <result column="dep_way" property="depWay" jdbcType="VARCHAR" />
     <result column="dep_monthnum" property="depMonthnum" jdbcType="INTEGER" />
     <result column="carry_monthnum" property="carryMonthnum" jdbcType="INTEGER" />
@@ -24,24 +24,18 @@
     <result column="storage_location" property="storageLocation" jdbcType="VARCHAR" />
     <result column="dept_use" property="deptUse" jdbcType="VARCHAR" />
     <result column="assets_type" property="assetsType" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.huxl.fam.entity.DvAssetsDetails" extends="BaseResultMap" >
-    <result column="assets_remark" property="assetsRemark" jdbcType="LONGVARCHAR" />
+    <result column="assets_remark" property="assetsRemark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    assets_id, assets_name, assets_normtype, assets_factory, assets_buytiem, assets_num, 
+    assets_id, assets_name, assets_normtype, assets_factory, assets_buytime, assets_num,
     assets_univalent, assets_all_amount, asset_initialval, assets_addway, assets_state_id, 
     assets_state_name, assets_outfactory_time, dep_way, dep_monthnum, carry_monthnum, 
-    dep_mothly, except_netval, dep_all, storage_location, dept_use, assets_type
+    dep_mothly, except_netval, dep_all, storage_location, dept_use, assets_type, assets_remark
   </sql>
-  <sql id="Blob_Column_List" >
-    assets_remark
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from dv_assets_details
     where assets_id = #{assetsId,jdbcType=VARCHAR}
   </select>
@@ -51,7 +45,7 @@
   </delete>
   <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
     insert into dv_assets_details (assets_id, assets_name, assets_normtype, 
-      assets_factory, assets_buytiem, assets_num, 
+      assets_factory, assets_buytime, assets_num,
       assets_univalent, assets_all_amount, asset_initialval, 
       assets_addway, assets_state_id, assets_state_name, 
       assets_outfactory_time, dep_way, dep_monthnum, 
@@ -83,7 +77,7 @@
         assets_factory,
       </if>
       <if test="assetsBuytiem != null" >
-        assets_buytiem,
+        assets_buytime,
       </if>
       <if test="assetsNum != null" >
         assets_num,
@@ -225,7 +219,7 @@
         assets_factory = #{assetsFactory,jdbcType=VARCHAR},
       </if>
       <if test="assetsBuytiem != null" >
-        assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+        assets_buytime = #{assetsBuytiem,jdbcType=VARCHAR},
       </if>
       <if test="assetsNum != null" >
         assets_num = #{assetsNum,jdbcType=INTEGER},
@@ -289,7 +283,7 @@
     set assets_name = #{assetsName,jdbcType=VARCHAR},
       assets_normtype = #{assetsNormtype,jdbcType=VARCHAR},
       assets_factory = #{assetsFactory,jdbcType=VARCHAR},
-      assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+      assets_buytime = #{assetsBuytiem,jdbcType=VARCHAR},
       assets_num = #{assetsNum,jdbcType=INTEGER},
       assets_univalent = #{assetsUnivalent,jdbcType=REAL},
       assets_all_amount = #{assetsAllAmount,jdbcType=REAL},
@@ -315,7 +309,7 @@
     set assets_name = #{assetsName,jdbcType=VARCHAR},
       assets_normtype = #{assetsNormtype,jdbcType=VARCHAR},
       assets_factory = #{assetsFactory,jdbcType=VARCHAR},
-      assets_buytiem = #{assetsBuytiem,jdbcType=VARCHAR},
+      assets_buytime = #{assetsBuytiem,jdbcType=VARCHAR},
       assets_num = #{assetsNum,jdbcType=INTEGER},
       assets_univalent = #{assetsUnivalent,jdbcType=REAL},
       assets_all_amount = #{assetsAllAmount,jdbcType=REAL},
@@ -335,4 +329,22 @@
       assets_type = #{assetsType,jdbcType=VARCHAR}
     where assets_id = #{assetsId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--分页条件查询-->
+  <select id="queryDatasBypage" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from dv_assets_details
+    WHERE 1=1
+    <if test="assetsName != null" >
+      AND assets_name = #{assetsName,jdbcType=VARCHAR},
+    </if>
+  </select>
+  <!--满足条件的数量-->
+  <select id="queryNumByCon" resultType="java.lang.Integer">
+    SELECT count(*) FROM dv_assets_details
+    WHERE 1=1
+  </select>
+
 </mapper>

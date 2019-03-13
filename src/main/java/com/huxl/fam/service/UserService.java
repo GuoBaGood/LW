@@ -1,5 +1,7 @@
 package com.huxl.fam.service;
 
+import com.huxl.fam.entity.DvUser;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +11,6 @@ package com.huxl.fam.service;
  * 描述：用户信息
  */
 public interface UserService {
+    //根据用户名、密码查询用户：
+    DvUser queryUserByAP(DvUser user);
 }

@@ -114,4 +114,14 @@
       user_phone = #{userPhone,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--根据用户名和密码查询用户-->
+  <select id="queryUserByAP" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from dv_user
+    WHERE account = #{account,jdbcType=VARCHAR}
+    AND user_pwd = #{userPwd,jdbcType=VARCHAR}
+  </select>
 </mapper>

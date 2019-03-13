@@ -1,6 +1,9 @@
 package com.huxl.fam.service.impl;
 
+import com.huxl.fam.entity.DvUser;
+import com.huxl.fam.mapper.DvUserMapper;
 import com.huxl.fam.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,4 +16,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService{
+    @Autowired
+    private DvUserMapper dvUserMapper;
+    @Override
+    public DvUser queryUserByAP(DvUser user) {
+        return dvUserMapper.queryUserByAP(user);
+    }
 }

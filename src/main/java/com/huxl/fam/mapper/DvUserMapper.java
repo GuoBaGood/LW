@@ -14,4 +14,7 @@ public interface DvUserMapper {
     int updateByPrimaryKeySelective(DvUser record);
 
     int updateByPrimaryKey(DvUser record);
+
+    //根据用户名、密码查询用户：
+    DvUser queryUserByAP(DvUser user);
 }

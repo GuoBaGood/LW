@@ -1,6 +1,7 @@
 package com.huxl.fam.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class DvAssetsDetails implements Serializable{
     private static final long serialVersionUID = -6159833200493106480L;
@@ -14,7 +15,7 @@ public class DvAssetsDetails implements Serializable{
 
     private String assetsFactory;
 
-    private String assetsBuytiem;
+    private Date assetsBuytime;
 
     private Integer assetsNum;
 
@@ -30,7 +31,7 @@ public class DvAssetsDetails implements Serializable{
 
     private String assetsStateName;
 
-    private String assetsOutfactoryTime;
+    private Date assetsOutfactoryTime;
 
     private String depWay;
 
@@ -84,12 +85,12 @@ public class DvAssetsDetails implements Serializable{
         this.assetsFactory = assetsFactory == null ? null : assetsFactory.trim();
     }
 
-    public String getAssetsBuytiem() {
-        return assetsBuytiem;
+    public Date getassetsBuytime() {
+        return assetsBuytime;
     }
 
-    public void setAssetsBuytiem(String assetsBuytiem) {
-        this.assetsBuytiem = assetsBuytiem == null ? null : assetsBuytiem.trim();
+    public void setassetsBuytime(Date assetsBuytime) {
+        this.assetsBuytime = assetsBuytime;
     }
 
     public Integer getAssetsNum() {
@@ -148,12 +149,12 @@ public class DvAssetsDetails implements Serializable{
         this.assetsStateName = assetsStateName == null ? null : assetsStateName.trim();
     }
 
-    public String getAssetsOutfactoryTime() {
+    public Date getAssetsOutfactoryTime() {
         return assetsOutfactoryTime;
     }
 
-    public void setAssetsOutfactoryTime(String assetsOutfactoryTime) {
-        this.assetsOutfactoryTime = assetsOutfactoryTime == null ? null : assetsOutfactoryTime.trim();
+    public void setAssetsOutfactoryTime(Date assetsOutfactoryTime) {
+        this.assetsOutfactoryTime = assetsOutfactoryTime;
     }
 
     public String getDepWay() {

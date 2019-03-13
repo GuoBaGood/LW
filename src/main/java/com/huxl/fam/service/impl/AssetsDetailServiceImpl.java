@@ -1,7 +1,13 @@
 package com.huxl.fam.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsDetails;
+import com.huxl.fam.mapper.DvAssetsDetailsMapper;
 import com.huxl.fam.service.AssetsDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -13,4 +19,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AssetsDetailServiceImpl implements AssetsDetailService{
+    @Autowired
+    private DvAssetsDetailsMapper detailsMapper;
+    @Override
+    public List<DvAssetsDetails> queryDatasBypage(DvAssetsDetails d, PageBounds pageBounds) {
+        return detailsMapper.queryDatasBypage(d,pageBounds);
+    }
+
+    @Override
+    public int queryNumByCon(DvAssetsDetails d) {
+        return detailsMapper.queryNumByCon(d);
+    }
 }

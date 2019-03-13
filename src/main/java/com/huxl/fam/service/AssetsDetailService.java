@@ -1,5 +1,10 @@
 package com.huxl.fam.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsDetails;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +14,8 @@ package com.huxl.fam.service;
  * 描述：资产详情
  */
 public interface AssetsDetailService {
+    //条件分页查询：
+    List<DvAssetsDetails> queryDatasBypage(DvAssetsDetails d, PageBounds pageBounds);
+    //满足条件的数量
+    int queryNumByCon(DvAssetsDetails d);
 }

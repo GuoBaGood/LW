@@ -14,5 +14,12 @@
 
                 <!--驼峰命名：将bs_user会转换成BsUser-->
                 <setting name="mapUnderscoreToCamelCase" value="true"/>
+
             </settings>
+            <!--mybatis的插件依赖-->
+            <plugins>
+                <plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+                    <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+                </plugin>
+            </plugins>
         </configuration>

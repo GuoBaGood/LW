@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+</head>
+<body>
+    <div>
+        <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+    </div>
+</body>
+<script src="/static/js/jquery-1.11.3.min.js"></script>
+<script src="/static/layui.js"></script>
+<script src="/static/js/c-component.js"></script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#detailTb'
+            ,limit:10
+            ,url:'/details/assetsDet'
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+             }
+            ,cols: [[
+                {field:'assetsId', width:'10%', title: '资产编号', sort: true}
+                ,{field:'assetsName', width:'10%', title: '资产名称'}
+                ,{field:'assetsNum', width:'10%', title: '数量', sort: true}
+                ,{field:'deptUse', width:'10%', title: '使用部门'}
+                ,{field:'assetsType', title: '资产类型', width: '20%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'assetsBuytime', title: '购买时间', sort: true, width:'10%'}
+                ,{field:'assetInitialval', title: '资产原值', sort: true, width:'10%'}
+                ,{field:'exceptNetval', title: '预计净残值', width:'10%'}
+                ,{field:'assetsStateName', width:'10%', title: '使用情况', sort: true}
+            ]]
+        });
+
+    });
+</script>
+</html>

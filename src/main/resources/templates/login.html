@@ -17,6 +17,7 @@
         <div id="darkbannerwrap"></div>
         <form class="layui-form" method="post" action="loginMain">
             <input name="loginUser" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <input id="mag" type="hidden" th:utext="${errormag}" style="color: red">
             <hr class="hr15">
             <input name="loginPwd" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
@@ -26,6 +27,7 @@
                 欢迎使用，忘记密码，请联系管理员
             </div>
         </form>
+
     </div>
 
 
@@ -43,7 +45,6 @@
         var table = layui.table;
 
         form.on('submit(login)', function(data){
-            window.location.href="loginMain.html";
         });
     });
 </script>
