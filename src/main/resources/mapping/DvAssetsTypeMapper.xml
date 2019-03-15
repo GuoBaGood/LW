@@ -8,51 +8,10 @@
   <sql id="Base_Column_List" >
     assets_type_id, assets_type_name
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from dv_assets_type
-    where assets_type_id = #{assetsTypeId,jdbcType=VARCHAR}
+
+  <!--查询所有数据-->
+  <select id="queryAllTyep" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM dv_assets_type
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from dv_assets_type
-    where assets_type_id = #{assetsTypeId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsType" >
-    insert into dv_assets_type (assets_type_id, assets_type_name)
-    values (#{assetsTypeId,jdbcType=VARCHAR}, #{assetsTypeName,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsType" >
-    insert into dv_assets_type
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="assetsTypeId != null" >
-        assets_type_id,
-      </if>
-      <if test="assetsTypeName != null" >
-        assets_type_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="assetsTypeId != null" >
-        #{assetsTypeId,jdbcType=VARCHAR},
-      </if>
-      <if test="assetsTypeName != null" >
-        #{assetsTypeName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsType" >
-    update dv_assets_type
-    <set >
-      <if test="assetsTypeName != null" >
-        assets_type_name = #{assetsTypeName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where assets_type_id = #{assetsTypeId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsType" >
-    update dv_assets_type
-    set assets_type_name = #{assetsTypeName,jdbcType=VARCHAR}
-    where assets_type_id = #{assetsTypeId,jdbcType=VARCHAR}
-  </update>
 </mapper>

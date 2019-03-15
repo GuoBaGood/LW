@@ -1,5 +1,9 @@
 package com.huxl.fam.service;
 
+import com.huxl.fam.entity.DvState;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +13,6 @@ package com.huxl.fam.service;
  * 描述：资产状态：使用中等
  */
 public interface StateService {
+    //查询所有
+    List<DvState> queryAllState();
 }

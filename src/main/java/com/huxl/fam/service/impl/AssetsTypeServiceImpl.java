@@ -1,7 +1,12 @@
 package com.huxl.fam.service.impl;
 
+import com.huxl.fam.entity.DvAssetsType;
+import com.huxl.fam.mapper.DvAssetsTypeMapper;
 import com.huxl.fam.service.AssetsTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -13,4 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AssetsTypeServiceImpl implements AssetsTypeService{
+    @Autowired
+    private DvAssetsTypeMapper typeMapper;
+    @Override
+    public List<DvAssetsType> queryAllTyep() {
+        return typeMapper.queryAllTyep();
+    }
 }

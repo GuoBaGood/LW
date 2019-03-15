@@ -332,19 +332,34 @@
 
 
   <!--分页条件查询-->
+
+  <sql id="conditions">
+    <if test="assetsId != null and assetsId != '' " >
+      AND assets_id LIKE '%${assetsId}%'
+    </if>
+    <if test="assetsName != null and assetsName != '' " >
+      AND assets_name LIKE '%${assetsName}%'
+    </if>
+    <if test="assetsType != null and assetsType != '' " >
+      AND assets_type = #{assetsType,jdbcType=VARCHAR}
+    </if>
+    <if test="assetsStateId != null and assetsStateId != '' " >
+      AND assets_state_id = #{assetsStateId,jdbcType=VARCHAR}
+    </if>
+  </sql>
+
   <select id="queryDatasBypage" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from dv_assets_details
     WHERE 1=1
-    <if test="assetsName != null" >
-      AND assets_name = #{assetsName,jdbcType=VARCHAR},
-    </if>
+    <include refid="conditions"/>
   </select>
   <!--满足条件的数量-->
   <select id="queryNumByCon" resultType="java.lang.Integer">
     SELECT count(*) FROM dv_assets_details
     WHERE 1=1
+    <include refid="conditions"/>
   </select>
 
 </mapper>

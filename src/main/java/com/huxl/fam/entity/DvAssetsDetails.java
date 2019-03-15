@@ -19,39 +19,39 @@ public class DvAssetsDetails implements Serializable{
 
     private Integer assetsNum;
 
-    private Float assetsUnivalent;
+    private Float assetsUnivalent; //单价
 
-    private Float assetsAllAmount;
+    private Float assetsAllAmount; //资产总额
 
-    private Float assetInitialval;
+    private Float assetInitialval; //资产原值
 
-    private String assetsAddway;
+    private String assetsAddway; //购买方式
 
-    private String assetsStateId;
+    private String assetsStateId; //状态id
 
-    private String assetsStateName;
+    private String assetsStateName; //状态
 
-    private Date assetsOutfactoryTime;
+    private Date assetsOutfactoryTime; //出厂时间
 
-    private String depWay;
+    private String depWay; //折旧方式
 
-    private Integer depMonthnum;
+    private Integer depMonthnum; //折旧月数
 
-    private Integer carryMonthnum;
+    private Integer carryMonthnum; //以提月数
 
-    private Float depMothly;
+    private Float depMothly; //月度折旧额
 
-    private Float exceptNetval;
+    private Float exceptNetval;//预计残净值
 
-    private Float depAll;
+    private Float depAll; //累计折旧
 
-    private String storageLocation;
+    private String storageLocation; //存储地
 
-    private String deptUse;
+    private String deptUse; //使用部门
 
-    private String assetsType;
+    private String assetsType; //资产类型
 
-    private String assetsRemark;
+    private String assetsRemark; //说明
 
     public String getAssetsId() {
         return assetsId;

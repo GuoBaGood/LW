@@ -1,5 +1,9 @@
 package com.huxl.fam.service;
 
+import com.huxl.fam.entity.DvAssetsType;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +13,6 @@ package com.huxl.fam.service;
  * 描述：资产类型
  */
 public interface AssetsTypeService {
+    //查询所有类型：
+    List<DvAssetsType> queryAllTyep();
 }
