@@ -11,6 +11,7 @@ public class FamApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		int a = 0;
 	}
 
 }
