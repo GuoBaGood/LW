@@ -56,7 +56,7 @@ public class LoginController {
             if (u != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("user", u); //保存用户的值；
-                view.setViewName("loginMain");
+                view.setViewName("lgMain");
             }else {
                 view.setViewName("login");
                 view.addObject("errormag", "该用户不存在！");
