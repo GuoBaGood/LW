@@ -2,9 +2,8 @@ package com.huxl.fam.entity;
 
 import java.io.Serializable;
 
-public class DvDept implements Serializable{
+public class DvDept implements Serializable {
     private static final long serialVersionUID = -5316811773948956830L;
-
     private String deptId;
 
     private String deptName;

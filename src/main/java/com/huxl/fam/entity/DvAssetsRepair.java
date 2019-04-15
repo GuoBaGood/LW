@@ -1,10 +1,10 @@
 package com.huxl.fam.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class DvAssetsRepair implements Serializable{
-    private static final long serialVersionUID = -6300432115466035497L;
-
+public class DvAssetsRepair implements Serializable {
+    private static final long serialVersionUID = 4867201619778864995L;
     private String repairId;
 
     private String assetsId;
@@ -13,11 +13,15 @@ public class DvAssetsRepair implements Serializable{
 
     private String assetsNum;
 
-    private String repairTime;
+    private Date repairTime;
 
-    private String estimatedCompletionTime;
+    private Date estimatedCompletionTime;
 
-    private String estimatedRepairPrice;
+    private Date completionTime;
+
+    private Float repairPrice;
+
+    private Float estimatedRepairPrice;
 
     private String repairCompany;
 
@@ -32,6 +36,8 @@ public class DvAssetsRepair implements Serializable{
     private String userName;
 
     private String remark;
+
+    private String repairStyle;
 
     public String getRepairId() {
         return repairId;
@@ -65,28 +71,44 @@ public class DvAssetsRepair implements Serializable{
         this.assetsNum = assetsNum == null ? null : assetsNum.trim();
     }
 
-    public String getRepairTime() {
+    public Date getRepairTime() {
         return repairTime;
     }
 
-    public void setRepairTime(String repairTime) {
-        this.repairTime = repairTime == null ? null : repairTime.trim();
+    public void setRepairTime(Date repairTime) {
+        this.repairTime = repairTime;
     }
 
-    public String getEstimatedCompletionTime() {
+    public Date getEstimatedCompletionTime() {
         return estimatedCompletionTime;
     }
 
-    public void setEstimatedCompletionTime(String estimatedCompletionTime) {
-        this.estimatedCompletionTime = estimatedCompletionTime == null ? null : estimatedCompletionTime.trim();
+    public void setEstimatedCompletionTime(Date estimatedCompletionTime) {
+        this.estimatedCompletionTime = estimatedCompletionTime;
     }
 
-    public String getEstimatedRepairPrice() {
+    public Date getCompletionTime() {
+        return completionTime;
+    }
+
+    public void setCompletionTime(Date completionTime) {
+        this.completionTime = completionTime;
+    }
+
+    public Float getRepairPrice() {
+        return repairPrice;
+    }
+
+    public void setRepairPrice(Float repairPrice) {
+        this.repairPrice = repairPrice;
+    }
+
+    public Float getEstimatedRepairPrice() {
         return estimatedRepairPrice;
     }
 
-    public void setEstimatedRepairPrice(String estimatedRepairPrice) {
-        this.estimatedRepairPrice = estimatedRepairPrice == null ? null : estimatedRepairPrice.trim();
+    public void setEstimatedRepairPrice(Float estimatedRepairPrice) {
+        this.estimatedRepairPrice = estimatedRepairPrice;
     }
 
     public String getRepairCompany() {
@@ -143,5 +165,13 @@ public class DvAssetsRepair implements Serializable{
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getRepairStyle() {
+        return repairStyle;
+    }
+
+    public void setRepairStyle(String repairStyle) {
+        this.repairStyle = repairStyle == null ? null : repairStyle.trim();
     }
 }

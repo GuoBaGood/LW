@@ -13,7 +13,5 @@ public interface DvDeptMapper {
 
     int updateByPrimaryKeySelective(DvDept record);
 
-    int updateByPrimaryKeyWithBLOBs(DvDept record);
-
     int updateByPrimaryKey(DvDept record);
 }

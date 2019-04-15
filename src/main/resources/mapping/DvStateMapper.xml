@@ -9,9 +9,8 @@
     state_id, state_name
   </sql>
   <select id="queryAllState" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from dv_state
   </select>
-
 </mapper>

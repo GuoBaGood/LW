@@ -9,6 +9,7 @@
     assets_type_id, assets_type_name
   </sql>
 
+
   <!--查询所有数据-->
   <select id="queryAllTyep" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>

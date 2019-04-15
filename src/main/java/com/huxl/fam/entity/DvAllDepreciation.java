@@ -2,9 +2,8 @@ package com.huxl.fam.entity;
 
 import java.io.Serializable;
 
-public class DvAllDepreciation implements Serializable{
+public class DvAllDepreciation implements Serializable {
     private static final long serialVersionUID = -8709560688732727801L;
-
     private String depId;
 
     private String assetsId;

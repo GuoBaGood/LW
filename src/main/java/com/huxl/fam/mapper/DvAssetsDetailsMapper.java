@@ -2,6 +2,7 @@ package com.huxl.fam.mapper;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsDetails;
+
 import java.util.List;
 
 public interface DvAssetsDetailsMapper {
@@ -14,8 +15,6 @@ public interface DvAssetsDetailsMapper {
     DvAssetsDetails selectByPrimaryKey(String assetsId);
 
     int updateByPrimaryKeySelective(DvAssetsDetails record);
-
-    int updateByPrimaryKeyWithBLOBs(DvAssetsDetails record);
 
     int updateByPrimaryKey(DvAssetsDetails record);
 

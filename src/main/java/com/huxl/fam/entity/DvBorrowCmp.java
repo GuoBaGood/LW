@@ -2,9 +2,8 @@ package com.huxl.fam.entity;
 
 import java.io.Serializable;
 
-public class DvBorrowCmp implements Serializable{
+public class DvBorrowCmp implements Serializable {
     private static final long serialVersionUID = -3063178533179593101L;
-
     private String cmpId;
 
     private String cmpName;

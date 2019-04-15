@@ -6,9 +6,11 @@
     <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
     <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
     <result column="assets_num" property="assetsNum" jdbcType="VARCHAR" />
-    <result column="repair_time" property="repairTime" jdbcType="VARCHAR" />
-    <result column="estimated_completion_time" property="estimatedCompletionTime" jdbcType="VARCHAR" />
-    <result column="estimated_repair_price" property="estimatedRepairPrice" jdbcType="VARCHAR" />
+    <result column="repair_time" property="repairTime" jdbcType="TIMESTAMP" />
+    <result column="estimated_completion_time" property="estimatedCompletionTime" jdbcType="TIMESTAMP" />
+    <result column="completion_time" property="completionTime" jdbcType="TIMESTAMP" />
+    <result column="repair_price" property="repairPrice" jdbcType="REAL" />
+    <result column="estimated_repair_price" property="estimatedRepairPrice" jdbcType="REAL" />
     <result column="repair_company" property="repairCompany" jdbcType="VARCHAR" />
     <result column="repair_companyphone" property="repairCompanyphone" jdbcType="VARCHAR" />
     <result column="repair_situation" property="repairSituation" jdbcType="VARCHAR" />
@@ -16,11 +18,12 @@
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="repair_style" property="repairStyle" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     repair_id, assets_id, assets_name, assets_num, repair_time, estimated_completion_time, 
-    estimated_repair_price, repair_company, repair_companyphone, repair_situation, malfunction_reson, 
-    account, user_name, remark
+    completion_time, repair_price, estimated_repair_price, repair_company, repair_companyphone, 
+    repair_situation, malfunction_reson, account, user_name, remark, repair_style
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -35,14 +38,16 @@
   <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsRepair" >
     insert into dv_assets_repair (repair_id, assets_id, assets_name, 
       assets_num, repair_time, estimated_completion_time, 
-      estimated_repair_price, repair_company, repair_companyphone, 
-      repair_situation, malfunction_reson, account, 
-      user_name, remark)
+      completion_time, repair_price, estimated_repair_price, 
+      repair_company, repair_companyphone, repair_situation, 
+      malfunction_reson, account, user_name, 
+      remark, repair_style)
     values (#{repairId,jdbcType=VARCHAR}, #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, 
-      #{assetsNum,jdbcType=VARCHAR}, #{repairTime,jdbcType=VARCHAR}, #{estimatedCompletionTime,jdbcType=VARCHAR}, 
-      #{estimatedRepairPrice,jdbcType=VARCHAR}, #{repairCompany,jdbcType=VARCHAR}, #{repairCompanyphone,jdbcType=VARCHAR}, 
-      #{repairSituation,jdbcType=VARCHAR}, #{malfunctionReson,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{userName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      #{assetsNum,jdbcType=VARCHAR}, #{repairTime,jdbcType=TIMESTAMP}, #{estimatedCompletionTime,jdbcType=TIMESTAMP}, 
+      #{completionTime,jdbcType=TIMESTAMP}, #{repairPrice,jdbcType=REAL}, #{estimatedRepairPrice,jdbcType=REAL}, 
+      #{repairCompany,jdbcType=VARCHAR}, #{repairCompanyphone,jdbcType=VARCHAR}, #{repairSituation,jdbcType=VARCHAR}, 
+      #{malfunctionReson,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{repairStyle,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsRepair" >
     insert into dv_assets_repair
@@ -64,6 +69,12 @@
       </if>
       <if test="estimatedCompletionTime != null" >
         estimated_completion_time,
+      </if>
+      <if test="completionTime != null" >
+        completion_time,
+      </if>
+      <if test="repairPrice != null" >
+        repair_price,
       </if>
       <if test="estimatedRepairPrice != null" >
         estimated_repair_price,
@@ -89,6 +100,9 @@
       <if test="remark != null" >
         remark,
       </if>
+      <if test="repairStyle != null" >
+        repair_style,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="repairId != null" >
@@ -104,13 +118,19 @@
         #{assetsNum,jdbcType=VARCHAR},
       </if>
       <if test="repairTime != null" >
-        #{repairTime,jdbcType=VARCHAR},
+        #{repairTime,jdbcType=TIMESTAMP},
       </if>
       <if test="estimatedCompletionTime != null" >
-        #{estimatedCompletionTime,jdbcType=VARCHAR},
+        #{estimatedCompletionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionTime != null" >
+        #{completionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairPrice != null" >
+        #{repairPrice,jdbcType=REAL},
       </if>
       <if test="estimatedRepairPrice != null" >
-        #{estimatedRepairPrice,jdbcType=VARCHAR},
+        #{estimatedRepairPrice,jdbcType=REAL},
       </if>
       <if test="repairCompany != null" >
         #{repairCompany,jdbcType=VARCHAR},
@@ -133,6 +153,9 @@
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="repairStyle != null" >
+        #{repairStyle,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsRepair" >
@@ -148,13 +171,19 @@
         assets_num = #{assetsNum,jdbcType=VARCHAR},
       </if>
       <if test="repairTime != null" >
-        repair_time = #{repairTime,jdbcType=VARCHAR},
+        repair_time = #{repairTime,jdbcType=TIMESTAMP},
       </if>
       <if test="estimatedCompletionTime != null" >
-        estimated_completion_time = #{estimatedCompletionTime,jdbcType=VARCHAR},
+        estimated_completion_time = #{estimatedCompletionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionTime != null" >
+        completion_time = #{completionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairPrice != null" >
+        repair_price = #{repairPrice,jdbcType=REAL},
       </if>
       <if test="estimatedRepairPrice != null" >
-        estimated_repair_price = #{estimatedRepairPrice,jdbcType=VARCHAR},
+        estimated_repair_price = #{estimatedRepairPrice,jdbcType=REAL},
       </if>
       <if test="repairCompany != null" >
         repair_company = #{repairCompany,jdbcType=VARCHAR},
@@ -177,6 +206,9 @@
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="repairStyle != null" >
+        repair_style = #{repairStyle,jdbcType=VARCHAR},
+      </if>
     </set>
     where repair_id = #{repairId,jdbcType=VARCHAR}
   </update>
@@ -185,16 +217,19 @@
     set assets_id = #{assetsId,jdbcType=VARCHAR},
       assets_name = #{assetsName,jdbcType=VARCHAR},
       assets_num = #{assetsNum,jdbcType=VARCHAR},
-      repair_time = #{repairTime,jdbcType=VARCHAR},
-      estimated_completion_time = #{estimatedCompletionTime,jdbcType=VARCHAR},
-      estimated_repair_price = #{estimatedRepairPrice,jdbcType=VARCHAR},
+      repair_time = #{repairTime,jdbcType=TIMESTAMP},
+      estimated_completion_time = #{estimatedCompletionTime,jdbcType=TIMESTAMP},
+      completion_time = #{completionTime,jdbcType=TIMESTAMP},
+      repair_price = #{repairPrice,jdbcType=REAL},
+      estimated_repair_price = #{estimatedRepairPrice,jdbcType=REAL},
       repair_company = #{repairCompany,jdbcType=VARCHAR},
       repair_companyphone = #{repairCompanyphone,jdbcType=VARCHAR},
       repair_situation = #{repairSituation,jdbcType=VARCHAR},
       malfunction_reson = #{malfunctionReson,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR},
+      repair_style = #{repairStyle,jdbcType=VARCHAR}
     where repair_id = #{repairId,jdbcType=VARCHAR}
   </update>
 </mapper>

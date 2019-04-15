@@ -1,28 +1,31 @@
 package com.huxl.fam.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class DvAssetsBoreturn implements Serializable{
-    private static final long serialVersionUID = -5442072304158371281L;
+public class DvAssetsBoreturn implements Serializable {
+    private static final long serialVersionUID = -2688842133960219658L;
     private String boreturnId;
 
     private String assetsId;
 
     private String assetsName;
 
-    private Integer boreturnAmount;
-
     private String boreturnAccount;
 
     private String boreturnUserealname;
 
-    private String boreturnTime;
+    private Date boreturnTime;
 
-    private String prescriptReturntime;
+    private Date prescriptReturntime;
 
     private Float prescriptIncome;
 
     private String managerAccount;
+
+    private Date realReturntime;
+
+    private Float realIncome;
 
     private String managerName;
 
@@ -31,6 +34,10 @@ public class DvAssetsBoreturn implements Serializable{
     private String assetsStateName;
 
     private String remark;
+
+    private String boreturnStyle;
+
+    private String userType;
 
     public String getBoreturnId() {
         return boreturnId;
@@ -56,14 +63,6 @@ public class DvAssetsBoreturn implements Serializable{
         this.assetsName = assetsName == null ? null : assetsName.trim();
     }
 
-    public Integer getBoreturnAmount() {
-        return boreturnAmount;
-    }
-
-    public void setBoreturnAmount(Integer boreturnAmount) {
-        this.boreturnAmount = boreturnAmount;
-    }
-
     public String getBoreturnAccount() {
         return boreturnAccount;
     }
@@ -80,20 +79,20 @@ public class DvAssetsBoreturn implements Serializable{
         this.boreturnUserealname = boreturnUserealname == null ? null : boreturnUserealname.trim();
     }
 
-    public String getBoreturnTime() {
+    public Date getBoreturnTime() {
         return boreturnTime;
     }
 
-    public void setBoreturnTime(String boreturnTime) {
-        this.boreturnTime = boreturnTime == null ? null : boreturnTime.trim();
+    public void setBoreturnTime(Date boreturnTime) {
+        this.boreturnTime = boreturnTime;
     }
 
-    public String getPrescriptReturntime() {
+    public Date getPrescriptReturntime() {
         return prescriptReturntime;
     }
 
-    public void setPrescriptReturntime(String prescriptReturntime) {
-        this.prescriptReturntime = prescriptReturntime == null ? null : prescriptReturntime.trim();
+    public void setPrescriptReturntime(Date prescriptReturntime) {
+        this.prescriptReturntime = prescriptReturntime;
     }
 
     public Float getPrescriptIncome() {
@@ -110,6 +109,22 @@ public class DvAssetsBoreturn implements Serializable{
 
     public void setManagerAccount(String managerAccount) {
         this.managerAccount = managerAccount == null ? null : managerAccount.trim();
+    }
+
+    public Date getRealReturntime() {
+        return realReturntime;
+    }
+
+    public void setRealReturntime(Date realReturntime) {
+        this.realReturntime = realReturntime;
+    }
+
+    public Float getRealIncome() {
+        return realIncome;
+    }
+
+    public void setRealIncome(Float realIncome) {
+        this.realIncome = realIncome;
     }
 
     public String getManagerName() {
@@ -142,5 +157,21 @@ public class DvAssetsBoreturn implements Serializable{
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getBoreturnStyle() {
+        return boreturnStyle;
+    }
+
+    public void setBoreturnStyle(String boreturnStyle) {
+        this.boreturnStyle = boreturnStyle == null ? null : boreturnStyle.trim();
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType == null ? null : userType.trim();
     }
 }

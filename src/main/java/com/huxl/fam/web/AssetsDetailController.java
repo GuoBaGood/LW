@@ -12,16 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IDEA
@@ -65,10 +60,10 @@ public class AssetsDetailController {
         if (buytime != null && buytime != ""){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
-                d.setassetsBuytime(sdf.parse(buytime));
+                d.setAssetsBuytime(sdf.parse(buytime));
             } catch (ParseException e) {
                 e.printStackTrace();
-                d.setassetsBuytime(null);
+                d.setAssetsBuytime(null);
             }
         }
         //条件查询

@@ -3,10 +3,8 @@ package com.huxl.fam.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class DvAssetsDetails implements Serializable{
-    private static final long serialVersionUID = -6159833200493106480L;
-
-
+public class DvAssetsDetails implements Serializable {
+    private static final long serialVersionUID = -5041279993688064920L;
     private String assetsId;
 
     private String assetsName;
@@ -19,39 +17,39 @@ public class DvAssetsDetails implements Serializable{
 
     private Integer assetsNum;
 
-    private Float assetsUnivalent; //单价
+    private Float assetsUnivalent;
 
-    private Float assetsAllAmount; //资产总额
+    private Float assetsAllAmount;
 
-    private Float assetInitialval; //资产原值
+    private Float assetInitialval;
 
-    private String assetsAddway; //购买方式
+    private String assetsAddway;
 
-    private String assetsStateId; //状态id
+    private String assetsStateId;
 
-    private String assetsStateName; //状态
+    private String assetsStateName;
 
-    private Date assetsOutfactoryTime; //出厂时间
+    private Date assetsOutfactoryTime;
 
-    private String depWay; //折旧方式
+    private String depWay;
 
-    private Integer depMonthnum; //折旧月数
+    private Integer depMonthnum;
 
-    private Integer carryMonthnum; //以提月数
+    private String assetsRemark;
 
-    private Float depMothly; //月度折旧额
+    private Integer carryMonthnum;
 
-    private Float exceptNetval;//预计残净值
+    private Float depMothly;
 
-    private Float depAll; //累计折旧
+    private Float exceptNetval;
 
-    private String storageLocation; //存储地
+    private Float depAll;
 
-    private String deptUse; //使用部门
+    private String deptUse;
 
-    private String assetsType; //资产类型
+    private String assetsType;
 
-    private String assetsRemark; //说明
+    private String storageLocation;
 
     public String getAssetsId() {
         return assetsId;
@@ -85,11 +83,11 @@ public class DvAssetsDetails implements Serializable{
         this.assetsFactory = assetsFactory == null ? null : assetsFactory.trim();
     }
 
-    public Date getassetsBuytime() {
+    public Date getAssetsBuytime() {
         return assetsBuytime;
     }
 
-    public void setassetsBuytime(Date assetsBuytime) {
+    public void setAssetsBuytime(Date assetsBuytime) {
         this.assetsBuytime = assetsBuytime;
     }
 
@@ -173,6 +171,14 @@ public class DvAssetsDetails implements Serializable{
         this.depMonthnum = depMonthnum;
     }
 
+    public String getAssetsRemark() {
+        return assetsRemark;
+    }
+
+    public void setAssetsRemark(String assetsRemark) {
+        this.assetsRemark = assetsRemark == null ? null : assetsRemark.trim();
+    }
+
     public Integer getCarryMonthnum() {
         return carryMonthnum;
     }
@@ -205,14 +211,6 @@ public class DvAssetsDetails implements Serializable{
         this.depAll = depAll;
     }
 
-    public String getStorageLocation() {
-        return storageLocation;
-    }
-
-    public void setStorageLocation(String storageLocation) {
-        this.storageLocation = storageLocation == null ? null : storageLocation.trim();
-    }
-
     public String getDeptUse() {
         return deptUse;
     }
@@ -229,11 +227,11 @@ public class DvAssetsDetails implements Serializable{
         this.assetsType = assetsType == null ? null : assetsType.trim();
     }
 
-    public String getAssetsRemark() {
-        return assetsRemark;
+    public String getStorageLocation() {
+        return storageLocation;
     }
 
-    public void setAssetsRemark(String assetsRemark) {
-        this.assetsRemark = assetsRemark == null ? null : assetsRemark.trim();
+    public void setStorageLocation(String storageLocation) {
+        this.storageLocation = storageLocation == null ? null : storageLocation.trim();
     }
 }

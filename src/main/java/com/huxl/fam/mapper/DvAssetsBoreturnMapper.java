@@ -13,7 +13,5 @@ public interface DvAssetsBoreturnMapper {
 
     int updateByPrimaryKeySelective(DvAssetsBoreturn record);
 
-    int updateByPrimaryKeyWithBLOBs(DvAssetsBoreturn record);
-
     int updateByPrimaryKey(DvAssetsBoreturn record);
 }
