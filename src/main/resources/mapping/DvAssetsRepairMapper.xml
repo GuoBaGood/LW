@@ -232,4 +232,35 @@
       repair_style = #{repairStyle,jdbcType=VARCHAR}
     where repair_id = #{repairId,jdbcType=VARCHAR}
   </update>
+
+  <!--按照条件查询维修中的资产-->
+
+  <!--查询条件-->
+  <sql id="conditions">
+    <if test="assetsId != null and assetsId != '' " >
+      AND assets_id LIKE '%${assetsId}%'
+    </if>
+    <if test="assetsName != null and assetsName != '' " >
+      AND assets_name LIKE '%${assetsName}%'
+    </if>
+    <if test="repairTime != null and repairTime != '' " >
+      AND DATE(repair_time)= #{repairTime}
+    </if>
+  </sql>
+  <select id="repairingAssets" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM dv_assets_repair r
+    WHERE 1=1
+    AND r.repair_style = '0'
+    <include refid="conditions"/>
+  </select>
+
+  <!--满足条件的数量-->
+  <select id="repairingAssetsNum" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM dv_assets_repair
+    WHERE 1=1
+    <include refid="conditions"/>
+  </select>
 </mapper>

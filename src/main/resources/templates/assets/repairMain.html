@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+    <style>
+        .weadmin-body {
+            padding: 1%;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this" style="margin-left: 1%;">资产维修详情</li>
+        <li>新增维修单</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <div class="weadmin-body">
+                <div class="weadmin-body">
+                    <div class="layui-row" id="model">
+                        <form class="layui-form we-search" style="color: #666;">
+                            资产编号：
+                            <div class="layui-inline">
+                                <input type="text" name="aId" id="aId" placeholder="" autocomplete="off" class="layui-input">
+                            </div>
+                            资产名称：
+                            <div class="layui-inline">
+                                <input type="text" name="aName" id="aName" placeholder="" autocomplete="off" class="layui-input">
+                            </div>
+
+                            送修时间：
+                            <div class="layui-inline">
+                                <input type="text" class="layui-input" name="sendtime" id="sendtime" placeholder="yyyy-MM-dd">
+                            </div>
+
+                            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                        </form>
+                    </div>
+
+                    <div style="">
+                        <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab-item">
+            <div class="weadmin-body">
+                hallo!,维修单
+                <div style="">
+                    <table class="layui-table" id="" lay-filter="repairTb"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../static/layui.js"></script>
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="../../static/js/c-component.js"></script>
+<script>
+    layui.use(['table','laydate', 'form'], function(){
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //时间样式：
+        laydate.render({
+            elem: '#sendtime',
+        });
+
+        //维修表格：
+        table.render({
+            elem: '#repairTb'
+            ,limit:8
+            ,url:'/repair/repairing'
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            ,cols: [[
+                {field:'assetsId', width:'10%', title: '资产编号', sort: true}
+                ,{field:'assetsName', width:'10%', title: '资产名称'}
+                ,{field:'repairTime', width:'10%', title: '送修时间'}
+                ,{field:'repairSituation', width:'10%', title: '维修原因'}
+                ,{field:'repairCompany', width:'10%', title: '维修单位'}
+                ,{field:'repairCompanyphone', width:'10%', title: '联系方式'}
+                ,{field:'estimatedRepairPrice', width:'10%', title: '预计维修价格'}
+                ,{field:'estimatedCompletionTime', width:'10%', title: '预计完修时间'}
+                ,{field:'account', width:'10%', title: '经办人账号'}
+                ,{field:'userName', width:'10%', title: '经办人姓名'}
+                ,{field:'remark', width:'10%', title: '补充说明'}
+            ]]
+        });
+
+    });
+
+
+</script>
+</html>
