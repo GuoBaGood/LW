@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增资产</title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+</head>
+<body>
+<div class="weadmin-body">
+    <div class="layui-row">
+        <form class="layui-form we-search" style="color: #666;">
+            <div class="layui-form-item">
+                资产编号：
+                <div class="layui-inline">
+                    <input type="text" name="assetsId" id="assetsId" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+                资产名称：
+                <div class="layui-inline">
+                    <input type="text" name="assetsName" id="assetsName" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                规格型号：
+                <div class="layui-inline">
+                    <input type="text" name="assetsNormtype" id="assetsNormtype" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                制造厂家：
+                <div class="layui-inline">
+                    <input type="text" name="assetsFactory" id="assetsFactory" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                购买日期：
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" name="assetsBuytime" id="assetsBuytime" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+
+                购买数量：
+                <div class="layui-inline">
+                    <input type="text" name="assetsNum" id="assetsNum" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                购买单价：
+                <div class="layui-inline">
+                    <input type="text" name="assetsUnivalent" id="assetsUnivalent" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                购买金额：
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" name="assetsAllAmount" id="assetsAllAmount" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+
+                资产原值：
+                <div class="layui-inline">
+                    <input type="text" name="assetInitialval" id="assetInitialval" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                增加方式：
+                <div class="layui-inline">
+                    <input type="text" name="assetsAddway" id="assetsAddway" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                资产状态：
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" name="assetsStateName" id="assetsStateName" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+
+                出厂时间：
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <input type="text" class="layui-input" name="assetsOutfactoryTime" id="assetsOutfactoryTime" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                折旧方法：
+                <div class="layui-inline">
+                    <input type="text" name="depWay" id="depWay" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                折旧月数：
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" name="depMonthnum" id="depMonthnum" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+
+                已提月数：
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <input type="text" class="layui-input" name="carryMonthnum" id="carryMonthnum" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+                预计残净值：
+                <div class="layui-inline">
+                    <input type="text" name="exceptNetval" id="exceptNetval" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+
+                累计折旧：
+                <div class="layui-inline">
+                    <input type="text" class="layui-input" name="depMonthnum" id="depMonthnum" placeholder="yyyy-MM-dd HH:mm:ss">
+                </div>
+
+                已提月数：
+                <div class="layui-inline">
+                    <div class="layui-inline">
+                        <input type="text" class="layui-input" name="carryMonthnum" id="carryMonthnum" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                </div>
+
+            </div>
+
+            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+
+    <div style="">
+        <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+    </div>
+</div>
+</body>
+</html>
