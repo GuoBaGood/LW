@@ -57,7 +57,6 @@ public class DvAssetsDetails implements Serializable {
 
     private String useId;
 
-    private String remark;
     public String getAssetsId() {
         return assetsId;
     }
@@ -274,11 +273,5 @@ public class DvAssetsDetails implements Serializable {
         this.useId = useId;
     }
 
-    public String getRemark() {
-        return remark;
-    }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 }

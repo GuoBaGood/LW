@@ -28,13 +28,12 @@
     <result column="use_accountype" property="useAccountype" jdbcType="VARCHAR" />
     <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
     <result column="use_id" property="useId" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     assets_id, assets_name, assets_normtype, assets_factory, assets_buytime, assets_num, 
     assets_univalent, assets_all_amount, asset_initialval, assets_addway, assets_state_id, 
     assets_state_name, assets_outfactory_time, dep_way, dep_monthnum, assets_remark, 
-    carry_monthnum, dep_mothly, except_netval, dep_all, use_name, assets_type, storage_location,use_time,use_accountype,use_id,remark
+    carry_monthnum, dep_mothly, except_netval, dep_all, use_name, assets_type, storage_location,use_time,use_accountype,use_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
