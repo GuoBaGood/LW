@@ -6,13 +6,17 @@ import com.huxl.fam.service.*;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 
 /**
  * Created with IDEA
@@ -101,4 +105,21 @@ public class AssetsDetailController {
         map.put("borrowCmps", borrowCmps);
         return map;
     }
+
+    /**
+     * 增加部门or 企业信息
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/addDeptOrCmp/{type}",method = RequestMethod.GET)
+    public String addDeptOrCmp(HttpServletRequest request,@PathVariable(value = "type") String type){
+        String str = request.getParameter("datas");
+        if ("cmp" == type){ //新增企业
+
+        }
+        if ("dept" == type){ //新增部门
+//            List<DvDept> depts = JSON.parseArray(str, PprtDvTplArea.class);
+        }
+        return "hallo";
+    }
+
 }

@@ -16,6 +16,177 @@
         }
     </style>
 </head>
+
+<!--详情的弹窗-->
+<div id="detailsWindow" style="display: none;margin-top: 1%;">
+
+    <form class="layui-form" style="color: #666;" id="adetailform">
+
+        <div id="tdetail">
+            <div class="layui-form-item">
+                <label for="assetsId" class="layui-form-label">
+                    资产编号
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly  type="text" id="assetsId" name="assetsId" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsName" class="layui-form-label">
+                    资产名称
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsName" name="assetsName" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsNormtype" class="layui-form-label">
+                    规格型号
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsNormtype" name="assetsNormtype" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="assetsFactory" class="layui-form-label">
+                    生产厂家
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="assetsFactory" name="assetsFactory" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsBuytime" class="layui-form-label">
+                    购买日期
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="assetsBuytime" name="assetsBuytime" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsNum" class="layui-form-label">
+                    购买数量
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsNum" name="assetsNum" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  for="assetsUnivalent" class="layui-form-label">
+                    资产单价
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsUnivalent" name="assetsUnivalent" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsAllAmount" class="layui-form-label">
+                    资产总额
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsAllAmount" name="assetsAllAmount" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetInitialval" class="layui-form-label">
+                    资产原值
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetInitialval" name="assetInitialval" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  for="assetsAddway" class="layui-form-label">
+                    增加方式
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsAddway" name="assetsAddway" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsStateName" class="layui-form-label">
+                    资产状态
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsStateName" name="assetsStateName" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsOutfactoryTime" class="layui-form-label">
+                    出厂日期
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsOutfactoryTime" name="assetsOutfactoryTime" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="deptUse" class="layui-form-label">
+                    使用部门
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" readonly id="deptUse" name="deptUse" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsType" class="layui-form-label">
+                    资产类型
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="assetsType" name="assetsType" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="storageLocation" class="layui-form-label">
+                    存储地
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" readonly id="storageLocation" name="storageLocation" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item" style="width: 50%">
+                <label for="assetsRemark" class="layui-form-label">
+                    补充说明
+                </label>
+                <div class="layui-input-block">
+                    <textarea  type="text" readonly id="assetsRemark" name="assetsRemark" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!--新建部门-->
+<div id="newD" style="display: none;margin-top: 1%;">
+    <form class="layui-form" style="color: #666;" id="dform">
+        <div class="layui-form-item">
+            <label for="deptName" class="layui-form-label">
+                使用部门
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text" id="deptName" name="deptName" autocomplete="off" class="layui-input">
+            </div>
+
+            <label for="deptPrinciple" class="layui-form-label">
+                部门负责人
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="deptPrinciple" name="deptPrinciple" autocomplete="off" class="layui-input">
+            </div>
+
+            <label for="storageLocation" class="layui-form-label">
+                联系电话
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text" readonly id="deptPhone" name="deptPhone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+
+            <textarea placeholder="补充说明" class="layui-textarea" name="deptAdddesec"  style="width: 84%; margin-left: 3%;"></textarea>
+
+        </div>
+        <button title="提交" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addDept" >提交</button>
+
+    </form>
+</div>
 <body>
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
@@ -87,7 +258,7 @@
                                     <option value="">请选择</option>
                                 </select>
                             </div>
-                            <a class="layui-btn layui-btn-xs deptC" href="javascript:;" title="新增部门">新增</a>
+                            <a class="layui-btn layui-btn-xs deptC" href="javascript:;" title="新增部门" onclick="addDC('dept')">新增</a>
 
 
                             <!--租借企业信息-->
@@ -97,7 +268,7 @@
                                     <option value="">请选择</option>
                                 </select>
                             </div>
-                            <a class="layui-btn layui-btn-xs cmpC" href="javascript:;" title="新增企业">新增</a>
+                            <a class="layui-btn layui-btn-xs cmpC" href="javascript:;" title="新增企业"  onclick="addDC('cmp')">新增</a>
 
                             <span>&nbsp;&nbsp;领用时间</span>
                             <div class="layui-inline">
@@ -114,21 +285,21 @@
                             <div class="layui-form-item">
                                 资产编号：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsId" id="assetsId" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsId"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
                                 资产名称：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsName" id="assetsName" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsName"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 规格型号：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsNormtype" id="assetsNormtype" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsNormtype"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 制造厂家：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsFactory" id="assetsFactory" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsFactory"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -136,22 +307,22 @@
 
                                 购买日期：
                                 <div class="layui-inline">
-                                    <input type="text" class="layui-input timeYMD" name="assetsBuytime" id="assetsBuytime" placeholder="yyyy-MM-dd">
+                                    <input type="text" class="layui-input timeYMD" name="assetsBuytime"  placeholder="yyyy-MM-dd">
                                 </div>
 
                                 购买数量：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsNum" id="assetsNum" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsNum"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 购买单价：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsUnivalent" id="assetsUnivalent" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsUnivalent"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 购买金额：
                                 <div class="layui-inline">
-                                    <input type="text" class="layui-input" name="assetsAllAmount" id="assetsAllAmount">
+                                    <input type="text" class="layui-input" name="assetsAllAmount" >
                                 </div>
 
                             </div>
@@ -159,29 +330,29 @@
                             <div class="layui-form-item">
                                 资产原值：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetInitialval" id="assetInitialval" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetInitialval" id="" placeholder="" autocomplete="off" class="layui-input">
                                 </div>
                                 增加方式：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsAddway" id="assetsAddway" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsAddway" id="" placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 资产状态：
                                 <div class="layui-inline">
-                                    <input type="text" class="layui-input timeYMD" name="assetsStateName" id="assetsStateName" placeholder="yyyy-MM-dd">
+                                    <input type="text" class="layui-input timeYMD" name="assetsStateName" id="" placeholder="yyyy-MM-dd">
                                 </div>
 
                                 出厂时间：
                                 <div class="layui-inline">
                                     <div class="layui-inline">
-                                        <input type="text" class="layui-input timeYMD" name="assetsOutfactoryTime" id="assetsOutfactoryTime" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input timeYMD" name="assetsOutfactoryTime" id="" placeholder="yyyy-MM-dd">
                                     </div>
                                 </div>
 
                             </div>
 
                             <div class="layui-form-item">
-                                    <textarea placeholder="请输入备注" class="layui-textarea" name="remark" id="remark" style="width: 93%;"></textarea>
+                                    <textarea placeholder="请输入备注" class="layui-textarea" name="assetsRemark"  style="width: 93%;"></textarea>
                             </div>
 
 
@@ -369,6 +540,58 @@
             table.reload('detailTb', {where: serchDatas});
         });
 
+        form.on('submit(addDept)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            var arry = [];
+            arry.push(serchDatas);
+            var type = "dept"; //部门的创建；
+            $.ajax({
+                type: 'get',
+                url: '/details/addDeptOrCmp/'+type,
+                data:{datas:JSON.stringify(arry)},
+                async:false,
+                success: function (data) {
+                    alert("hh");
+                }
+            });
+            //table.reload('detailTb', {where: serchDatas});
+        });
+
     });
+
+
+    //负责打开弹窗
+    var newDC; //弹窗对象
+    function addDC(type) {
+        var title = "";
+        var divId = ""
+        if ("dept" == type){
+            title = "新增部门信息";
+            divId = "#newD";
+
+        }
+        if ("cmp" == type){
+            title = "新增企业信息"
+        }
+        newDC = layer.open({
+            type:1,
+            area:['949px','344px'],
+            title:title,
+            //btn:['确定','取消'],
+            success: function(layero, index){ //弹窗打开的发生的事件
+                $(divId).show();
+            },
+            yes:function (index,layero) {
+                layer.close(index);
+            },
+            btn2:function (index,layero) {
+            },
+            content:$(divId),
+            end: function (){
+                $(divId).hide();
+            }
+        });
+
+    }
 </script>
 </html>
