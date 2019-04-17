@@ -1,8 +1,11 @@
 package com.huxl.fam.web;
 
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.*;
 import com.huxl.fam.service.*;
+import com.huxl.fam.tool.IdTool;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
+
+
 
 /**
  * Created with IDEA
@@ -113,13 +117,26 @@ public class AssetsDetailController {
     @RequestMapping(value = "/addDeptOrCmp/{type}",method = RequestMethod.GET)
     public String addDeptOrCmp(HttpServletRequest request,@PathVariable(value = "type") String type){
         String str = request.getParameter("datas");
-        if ("cmp" == type){ //新增企业
-
+        String data = "";
+        if (type.equals("cmp")){ //新增企业
+            DvBorrowCmp cmp = JSON.parseArray(str, DvBorrowCmp.class).get(0);
+            cmp.setCmpId(IdTool.deptId(IdTool.CMP_ID));
+            try{
+                data = borrowCmpService.insertSelective(cmp);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
-        if ("dept" == type){ //新增部门
-//            List<DvDept> depts = JSON.parseArray(str, PprtDvTplArea.class);
+        if (type.equals("dept")){ //新增部门
+           DvDept dept = JSON.parseArray(str, DvDept.class).get(0);
+           dept.setDeptId(IdTool.deptId(IdTool.DEPT_ID));
+           try{
+               data = deptService.insertSelective(dept);
+           }catch (Exception e){
+               e.printStackTrace();
+           }
         }
-        return "hallo";
+        return data;
     }
 
 }

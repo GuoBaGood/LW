@@ -24,4 +24,17 @@ public class BorrowCmpServiceImpl implements BorrowCmpService{
     public List<DvBorrowCmp> queryCmp() {
         return borrowCmpMapper.queryCmp();
     }
+
+    @Override
+    public String insertSelective(DvBorrowCmp record) {
+        String str = "error";
+        try{
+            int a = borrowCmpMapper.insertSelective(record);
+            str = "success";
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return str;
+    }
 }

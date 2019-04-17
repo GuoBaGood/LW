@@ -24,4 +24,16 @@ public class DeptServiceImpl implements DeptService{
     public List<DvDept> queryDepts() {
         return dvDeptMapper.queryDepts();
     }
+
+    @Override
+    public String insertSelective(DvDept record) {
+        String str = "error";
+        try{
+            dvDeptMapper.insertSelective(record);
+            str = "success";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return str;
+    }
 }

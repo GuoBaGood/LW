@@ -175,7 +175,7 @@
                 联系电话
             </label>
             <div class="layui-input-inline">
-                <input  type="text" readonly id="deptPhone" name="deptPhone" autocomplete="off" class="layui-input">
+                <input  type="text" id="deptPhone" name="deptPhone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -184,6 +184,49 @@
 
         </div>
         <button title="提交" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addDept" >提交</button>
+
+    </form>
+</div>
+<!--新建企业信息-->
+<div id="newC" style="display: none;margin-top: 1%;">
+    <form class="layui-form" style="color: #666;" id="cform">
+        <div class="layui-form-item">
+            <label for="cmpName" class="layui-form-label">
+                企业名称
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text"  name="cmpName" autocomplete="off" class="layui-input">
+            </div>
+
+            <label for="legalPerson" class="layui-form-label">
+                企业负责人
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="legalPerson" name="legalPerson" autocomplete="off" class="layui-input">
+            </div>
+
+            <label for="cmpAddress" class="layui-form-label">
+                企业地址
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text" id="cmpAddress" name="cmpAddress" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="servicePhone" class="layui-form-label">
+                联系电话
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text" id="servicePhone" name="servicePhone" autocomplete="off" class="layui-input">
+            </div>
+            <label for="cmpEmail" class="layui-form-label">
+                企业邮箱
+            </label>
+            <div class="layui-input-inline">
+                <input  type="text" id="cmpEmail" name="cmpEmail" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <button title="提交" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addNewCmp" >提交</button>
 
     </form>
 </div>
@@ -545,17 +588,17 @@
             var arry = [];
             arry.push(serchDatas);
             var type = "dept"; //部门的创建；
-            $.ajax({
-                type: 'get',
-                url: '/details/addDeptOrCmp/'+type,
-                data:{datas:JSON.stringify(arry)},
-                async:false,
-                success: function (data) {
-                    alert("hh");
-                }
-            });
-            //table.reload('detailTb', {where: serchDatas});
+            addNewDc(type, arry);
         });
+
+        form.on('submit(addNewCmp)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            var arry = [];
+            arry.push(serchDatas);
+            var type = "cmp"; //企业的创建；
+            addNewDc(type, arry);
+        });
+
 
     });
 
@@ -571,7 +614,8 @@
 
         }
         if ("cmp" == type){
-            title = "新增企业信息"
+            title = "新增企业信息";
+            divId = "#newC";
         }
         newDC = layer.open({
             type:1,
@@ -593,5 +637,20 @@
         });
 
     }
+
+    function addNewDc(type, arry) {
+        $.ajax({
+            type: 'get',
+            url: '/details/addDeptOrCmp/'+type,
+            data:{datas:JSON.stringify(arry)},
+            async:false,
+            success: function (data) {
+                alert("hh");
+                layer.close(newDC);
+            }
+        });
+    }
+
+
 </script>
 </html>

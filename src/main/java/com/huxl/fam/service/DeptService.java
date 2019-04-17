@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface DeptService {
     List<DvDept> queryDepts();
+    String insertSelective(DvDept record);
 }

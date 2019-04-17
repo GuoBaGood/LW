@@ -18,8 +18,8 @@ public class IdTool {
 
     public static String deptId(String type){
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String id = type + sdf.format(date).replaceAll(" ", ""); //去掉所有空格
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH:mm:ss");
+        String id = "d" + sdf.format(date).replaceAll(":", "");//去掉所有空格
         return id;
     }
 }

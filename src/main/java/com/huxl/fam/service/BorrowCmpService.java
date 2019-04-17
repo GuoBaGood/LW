@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface BorrowCmpService {
     List<DvBorrowCmp> queryCmp();
+
+    String insertSelective(DvBorrowCmp record);
 }
