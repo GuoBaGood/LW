@@ -18,4 +18,6 @@ public interface AssetsDetailService {
     List<DvAssetsDetails> queryDatasBypage(DvAssetsDetails d, PageBounds pageBounds);
     //满足条件的数量
     int queryNumByCon(DvAssetsDetails d);
+
+    String insertSelective(DvAssetsDetails record);
 }

@@ -30,4 +30,16 @@ public class AssetsDetailServiceImpl implements AssetsDetailService{
     public int queryNumByCon(DvAssetsDetails d) {
         return detailsMapper.queryNumByCon(d);
     }
+
+    @Override
+    public String insertSelective(DvAssetsDetails record) {
+        String str = "error";
+        try{
+            detailsMapper.insertSelective(record);
+            str = "success";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return str;
+    }
 }

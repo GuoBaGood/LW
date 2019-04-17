@@ -92,6 +92,16 @@ public class AssetsDetailController {
         return res;
     }
 
+
+    /*
+    * 新建资产订单
+    * **/
+    @ResponseBody
+    @RequestMapping(value = "/addNewDetails")
+    public String addNewDetails(HttpServletRequest request){
+        return null;
+    }
+
     /**
      * 查询使用情况、类别的信息、部门信息、企业信息；
      */
