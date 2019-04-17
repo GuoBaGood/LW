@@ -1,6 +1,9 @@
 package com.huxl.fam.mapper;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsRepair;
+
+import java.util.List;
 
 public interface DvAssetsRepairMapper {
     int deleteByPrimaryKey(String repairId);
@@ -14,4 +17,10 @@ public interface DvAssetsRepairMapper {
     int updateByPrimaryKeySelective(DvAssetsRepair record);
 
     int updateByPrimaryKey(DvAssetsRepair record);
+
+    //条件分页查询：
+    List<DvAssetsRepair> queryRepairingAssets(DvAssetsRepair d, PageBounds pageBounds);
+
+    //满足条件的数量
+    int queryRepairingAssetsNum(DvAssetsRepair d);
 }

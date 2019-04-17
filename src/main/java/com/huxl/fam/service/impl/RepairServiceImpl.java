@@ -1,7 +1,13 @@
 package com.huxl.fam.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsRepair;
+import com.huxl.fam.mapper.DvAssetsRepairMapper;
 import com.huxl.fam.service.RepairService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -13,4 +19,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RepairServiceImpl implements RepairService{
+    @Autowired
+    private DvAssetsRepairMapper repairMapper;
+    @Override
+    public List<DvAssetsRepair> queryRepairingAssets(DvAssetsRepair d, PageBounds pageBounds) {
+        return repairMapper.queryRepairingAssets(d, pageBounds);
+    }
+
+    @Override
+    public int queryRepairingAssetsNum(DvAssetsRepair d) {
+        return repairMapper.queryRepairingAssetsNum(d);
+    }
 }

@@ -1,5 +1,10 @@
 package com.huxl.fam.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsRepair;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +14,8 @@ package com.huxl.fam.service;
  * 描述：修理资产
  */
 public interface RepairService {
+    List<DvAssetsRepair> queryRepairingAssets(DvAssetsRepair d, PageBounds pageBounds);
+
+    //满足条件的数量
+    int queryRepairingAssetsNum(DvAssetsRepair d);
 }

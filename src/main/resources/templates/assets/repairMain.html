@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/static/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/static/css/item/layui.css">
     <link rel="stylesheet" href="/static/css/weadmin.css">
     <style>
         .weadmin-body {
@@ -26,7 +23,6 @@
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">
             <div class="weadmin-body">
-                <div class="weadmin-body">
                     <div class="layui-row" id="model">
                         <form class="layui-form we-search" style="color: #666;">
                             资产编号：
@@ -48,16 +44,15 @@
                     </div>
 
                     <div style="">
-                        <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+                        <table class="layui-table" id="repairTb" lay-filter="repairTb"></table>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="layui-tab-item">
             <div class="weadmin-body">
                 hallo!,维修单
                 <div style="">
-                    <table class="layui-table" id="" lay-filter="repairTb"></table>
+                    <table class="layui-table" id="" lay-filter=""></table>
                 </div>
             </div>
         </div>
@@ -68,10 +63,11 @@
 <script src="../../static/js/jquery-1.11.3.min.js"></script>
 <script src="../../static/js/c-component.js"></script>
 <script>
-    layui.use(['table','laydate', 'form'], function(){
+    layui.use(['table','laydate', 'form', 'element'], function(){
         var table = layui.table;
         var laydate = layui.laydate;
         var form = layui.form;
+        var element = layui.element;
 
         //时间样式：
         laydate.render({
@@ -103,6 +99,12 @@
                 ,{field:'userName', width:'10%', title: '经办人姓名'}
                 ,{field:'remark', width:'10%', title: '补充说明'}
             ]]
+        });
+
+        // 搜索条件表单监听
+        form.on('submit(search)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            table.reload('repairTb', {where: serchDatas});
         });
 
     });

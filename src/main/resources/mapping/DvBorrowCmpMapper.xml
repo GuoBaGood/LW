@@ -103,4 +103,11 @@
       cmp_email = #{cmpEmail,jdbcType=VARCHAR}
     where cmp_id = #{cmpId,jdbcType=VARCHAR}
   </update>
+
+  <!--查询所有信息-->
+  <select id="queryCmp" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dv_borrow_cmp
+  </select>
 </mapper>

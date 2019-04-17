@@ -1,5 +1,9 @@
 package com.huxl.fam.service;
 
+import com.huxl.fam.entity.DvBorrowCmp;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +13,5 @@ package com.huxl.fam.service;
  * 描述：租借资产的企业信息
  */
 public interface BorrowCmpService {
+    List<DvBorrowCmp> queryCmp();
 }

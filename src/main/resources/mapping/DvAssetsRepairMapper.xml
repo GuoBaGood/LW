@@ -237,6 +237,7 @@
 
   <!--查询条件-->
   <sql id="conditions">
+    AND repair_style = '0'
     <if test="assetsId != null and assetsId != '' " >
       AND assets_id LIKE '%${assetsId}%'
     </if>
@@ -247,17 +248,16 @@
       AND DATE(repair_time)= #{repairTime}
     </if>
   </sql>
-  <select id="repairingAssets" resultMap="BaseResultMap">
+  <select id="queryRepairingAssets" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM dv_assets_repair r
     WHERE 1=1
-    AND r.repair_style = '0'
     <include refid="conditions"/>
   </select>
 
   <!--满足条件的数量-->
-  <select id="repairingAssetsNum" resultType="java.lang.Integer">
+  <select id="queryRepairingAssetsNum" resultType="java.lang.Integer">
     SELECT count(*)
     FROM dv_assets_repair
     WHERE 1=1

@@ -1,7 +1,12 @@
 package com.huxl.fam.service.impl;
 
+import com.huxl.fam.entity.DvBorrowCmp;
+import com.huxl.fam.mapper.DvBorrowCmpMapper;
 import com.huxl.fam.service.BorrowCmpService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -13,4 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BorrowCmpServiceImpl implements BorrowCmpService{
+    @Autowired
+    private DvBorrowCmpMapper borrowCmpMapper;
+    @Override
+    public List<DvBorrowCmp> queryCmp() {
+        return borrowCmpMapper.queryCmp();
+    }
 }

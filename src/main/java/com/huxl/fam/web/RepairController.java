@@ -1,12 +1,18 @@
 package com.huxl.fam.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsRepair;
+import com.huxl.fam.service.RepairService;
 import com.huxl.fam.tool.PageResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -20,12 +26,34 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/repair")
 public class RepairController {
 
+    @Autowired
+    private RepairService repairService;
+
     /*
     * 查询维修中的资产：
     * */
     @ResponseBody
     @RequestMapping(value = "/repairing")
     public PageResponse queryRepairingAssets(HttpServletRequest request, PageBounds pageBounds){
-        return null;
+        PageResponse res = new PageResponse();
+        //条件
+        DvAssetsRepair d = new DvAssetsRepair();
+        d.setAssetsId(request.getParameter("aId"));
+        d.setAssetsName(request.getParameter("aName"));
+        String sendtime = request.getParameter("sendtime");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        try {
+//            d.setRepairTime(sdf.parse(sendtime));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            d.setRepairTime(null);
+//        }
+        List<DvAssetsRepair> list = repairService.queryRepairingAssets(d, pageBounds);
+        int num = repairService.queryRepairingAssetsNum(d);
+        res.setTotal(num);
+        res.setData(list);
+        res.setResponseCode(200);
+        res.setResponseDesc("操作成功！");
+        return res;
     }
 }

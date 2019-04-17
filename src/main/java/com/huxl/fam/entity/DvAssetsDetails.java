@@ -45,12 +45,19 @@ public class DvAssetsDetails implements Serializable {
 
     private Float depAll;
 
-    private String deptUse;
+    private String useName;
 
     private String assetsType;
 
     private String storageLocation;
 
+    private Date useTime;
+
+    private String useAccountype;
+
+    private String useId;
+
+    private String remark;
     public String getAssetsId() {
         return assetsId;
     }
@@ -212,11 +219,11 @@ public class DvAssetsDetails implements Serializable {
     }
 
     public String getDeptUse() {
-        return deptUse;
+        return useName;
     }
 
-    public void setDeptUse(String deptUse) {
-        this.deptUse = deptUse == null ? null : deptUse.trim();
+    public void setDeptUse(String useName) {
+        this.useName = useName == null ? null : useName.trim();
     }
 
     public String getAssetsType() {
@@ -233,5 +240,45 @@ public class DvAssetsDetails implements Serializable {
 
     public void setStorageLocation(String storageLocation) {
         this.storageLocation = storageLocation == null ? null : storageLocation.trim();
+    }
+
+    public Date getUseTime() {
+        return useTime;
+    }
+
+    public void setUseTime(Date useTime) {
+        this.useTime = useTime;
+    }
+
+    public String getUseAccountype() {
+        return useAccountype;
+    }
+
+    public void setUseAccountype(String useAccountype) {
+        this.useAccountype = useAccountype == null ? null : useAccountype.trim();;
+    }
+
+    public String getUseName() {
+        return useName;
+    }
+
+    public void setUseName(String useName) {
+        this.useName = useName;
+    }
+
+    public String getUseId() {
+        return useId;
+    }
+
+    public void setUseId(String useId) {
+        this.useId = useId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

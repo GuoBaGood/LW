@@ -2,6 +2,8 @@ package com.huxl.fam.mapper;
 
 import com.huxl.fam.entity.DvBorrowCmp;
 
+import java.util.List;
+
 public interface DvBorrowCmpMapper {
     int deleteByPrimaryKey(String cmpId);
 
@@ -14,4 +16,6 @@ public interface DvBorrowCmpMapper {
     int updateByPrimaryKeySelective(DvBorrowCmp record);
 
     int updateByPrimaryKey(DvBorrowCmp record);
+
+    List<DvBorrowCmp> queryCmp();
 }

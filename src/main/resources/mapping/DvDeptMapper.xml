@@ -90,4 +90,13 @@
       dept_adddesec = #{deptAdddesec,jdbcType=VARCHAR}
     where dept_id = #{deptId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--查询所有-->
+  <select id="queryDepts" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from dv_dept
+  </select>
+
 </mapper>

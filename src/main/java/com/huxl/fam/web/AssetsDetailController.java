@@ -1,12 +1,8 @@
 package com.huxl.fam.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.huxl.fam.entity.DvAssetsDetails;
-import com.huxl.fam.entity.DvAssetsType;
-import com.huxl.fam.entity.DvState;
-import com.huxl.fam.service.AssetsDetailService;
-import com.huxl.fam.service.AssetsTypeService;
-import com.huxl.fam.service.StateService;
+import com.huxl.fam.entity.*;
+import com.huxl.fam.service.*;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +35,12 @@ public class AssetsDetailController {
 
     @Autowired
     private StateService stateService;
+
+    @Autowired
+    private DeptService deptService; //部门
+
+    @Autowired
+    private BorrowCmpService borrowCmpService; //租借企业信息；
     /**
      * 获取资产详情
      */
@@ -83,7 +85,7 @@ public class AssetsDetailController {
     }
 
     /**
-     * 查询使用情况、类别的信息；
+     * 查询使用情况、类别的信息、部门信息、企业信息；
      */
     @ResponseBody
     @RequestMapping(value = "/queryStateAndType")
@@ -91,8 +93,12 @@ public class AssetsDetailController {
         Map map = new HashMap();
         List<DvAssetsType> types = typeService.queryAllTyep();
         List<DvState> states = stateService.queryAllState();
+        List<DvDept> depts = deptService.queryDepts();
+        List<DvBorrowCmp> borrowCmps = borrowCmpService.queryCmp();
         map.put("types", types);
         map.put("states", states);
+        map.put("depts", depts);
+        map.put("borrowCmps", borrowCmps);
         return map;
     }
 }

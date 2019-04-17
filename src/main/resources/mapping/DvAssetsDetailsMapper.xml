@@ -22,15 +22,19 @@
     <result column="dep_mothly" property="depMothly" jdbcType="REAL" />
     <result column="except_netval" property="exceptNetval" jdbcType="REAL" />
     <result column="dep_all" property="depAll" jdbcType="REAL" />
-    <result column="dept_use" property="deptUse" jdbcType="VARCHAR" />
+    <result column="use_name" property="useName" jdbcType="VARCHAR" />
     <result column="assets_type" property="assetsType" jdbcType="VARCHAR" />
     <result column="storage_location" property="storageLocation" jdbcType="VARCHAR" />
+    <result column="use_accountype" property="useAccountype" jdbcType="VARCHAR" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="use_id" property="useId" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     assets_id, assets_name, assets_normtype, assets_factory, assets_buytime, assets_num, 
     assets_univalent, assets_all_amount, asset_initialval, assets_addway, assets_state_id, 
     assets_state_name, assets_outfactory_time, dep_way, dep_monthnum, assets_remark, 
-    carry_monthnum, dep_mothly, except_netval, dep_all, dept_use, assets_type, storage_location
+    carry_monthnum, dep_mothly, except_netval, dep_all, use_name, assets_type, storage_location,use_time,use_accountype,use_id,remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

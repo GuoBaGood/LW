@@ -1,7 +1,12 @@
 package com.huxl.fam.service.impl;
 
+import com.huxl.fam.entity.DvDept;
+import com.huxl.fam.mapper.DvDeptMapper;
 import com.huxl.fam.service.DeptService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -13,4 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DeptServiceImpl implements DeptService{
+    @Autowired
+    private DvDeptMapper dvDeptMapper;
+    @Override
+    public List<DvDept> queryDepts() {
+        return dvDeptMapper.queryDepts();
+    }
 }

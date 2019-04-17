@@ -1,5 +1,9 @@
 package com.huxl.fam.service;
 
+import com.huxl.fam.entity.DvDept;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +13,5 @@ package com.huxl.fam.service;
  * 描述：部门信息
  */
 public interface DeptService {
+    List<DvDept> queryDepts();
 }

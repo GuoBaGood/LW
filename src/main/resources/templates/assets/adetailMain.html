@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+    <link rel="stylesheet" href="/static/iconfont/QuestionMark.css">
+    <style>
+        .weadmin-body {
+            padding: 1%;
+        }
+
+        #model .we-search input.layui-input {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this" style="margin-left: 1%;">资产详情</li>
+        <li>新增资产</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <div class="weadmin-body">
+                <div class="layui-row" id="model">
+                    <form class="layui-form we-search" style="color: #666;">
+                        资产编号：
+                        <div class="layui-inline">
+                            <input type="text" name="aId" id="aId" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        资产名称：
+                        <div class="layui-inline">
+                            <input type="text" name="aName" id="aName" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+
+                        资产类型：
+                        <div class="layui-inline">
+                            <select name="atype" lay-search id="atype" lay-filter="atype">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+
+                        使用情况：
+                        <div class="layui-inline">
+                            <select name="astate" id="astate" lay-search lay-filter="astate">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+
+                        购买时间：
+                        <div class="layui-inline">
+                            <input type="text" class="layui-input" name="buytime" id="buytime" placeholder="yyyy-MM-dd">
+                        </div>
+
+                        <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                    </form>
+                </div>
+
+                <div style="">
+                    <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab-item">
+            <div class="weadmin-body">
+                <form class="layui-form we-search" style="color: #666;">
+                    <div class="layui-row">
+                        <div class="layui-form-item">
+                            <span style="    font-size: 16px;font-weight: 34;">使用信息<i class="iconfont icon-wenhao" title="若您需要填写使用信息,则需要完整的填写使用部门,使用人,使用地,领用时间的信息.不填写则默认改为资产为闲置状态"></i></span>
+                        </div>
+                        <div class="layui-form-item">
+                            <b class="red" style="color:red">*</b>使用者类型<i class="iconfont icon-wenhao" title="是企业内部使用还是租借给其他公司"></i>
+                            <div class="layui-inline">
+                                <select name="useAccountype" id="useAccountype" lay-filter="useAccountype">
+                                    <option>请选择类型</option>
+                                    <option value="0">企业内部</option>
+                                    <option value="1">租借单位</option>
+                                </select>
+                            </div>
+                            <!--部门信息-->
+                            <span class="deptC">使用部门：</span>
+                            <div class="layui-inline deptC" style="margin-right: 0px;">
+                                <select name="useName" lay-search id="useName" lay-filter="useName">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <a class="layui-btn layui-btn-xs deptC" href="javascript:;" title="新增部门">新增</a>
+
+
+                            <!--租借企业信息-->
+                            <span class="cmpC">&nbsp;&nbsp;租借单位</span>：
+                            <div class="layui-inline cmpC" style="margin-right: 0px;">
+                                <select name="useName" id="cmpName" lay-filter="useName">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <a class="layui-btn layui-btn-xs cmpC" href="javascript:;" title="新增企业">新增</a>
+
+                            <span>&nbsp;&nbsp;领用时间</span>
+                            <div class="layui-inline">
+                                <input type="text" class="layui-input" name="useTime" id="useTime" placeholder="yyyy-MM-dd">
+
+                            </div>
+
+                        <fieldset class="layui-elem-field layui-field-title" style="">
+                        </fieldset>
+                    </div>
+                    </div>
+                    <div class="layui-row" style="margin-left: 2%;">
+
+                            <div class="layui-form-item">
+                                资产编号：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsId" id="assetsId" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                                资产名称：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsName" id="assetsName" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                规格型号：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsNormtype" id="assetsNormtype" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                制造厂家：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsFactory" id="assetsFactory" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+
+
+                                购买日期：
+                                <div class="layui-inline">
+                                    <input type="text" class="layui-input timeYMD" name="assetsBuytime" id="assetsBuytime" placeholder="yyyy-MM-dd">
+                                </div>
+
+                                购买数量：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsNum" id="assetsNum" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                购买单价：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsUnivalent" id="assetsUnivalent" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                购买金额：
+                                <div class="layui-inline">
+                                    <input type="text" class="layui-input" name="assetsAllAmount" id="assetsAllAmount">
+                                </div>
+
+                            </div>
+
+                            <div class="layui-form-item">
+                                资产原值：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetInitialval" id="assetInitialval" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                                增加方式：
+                                <div class="layui-inline">
+                                    <input type="text" name="assetsAddway" id="assetsAddway" placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                资产状态：
+                                <div class="layui-inline">
+                                    <input type="text" class="layui-input timeYMD" name="assetsStateName" id="assetsStateName" placeholder="yyyy-MM-dd">
+                                </div>
+
+                                出厂时间：
+                                <div class="layui-inline">
+                                    <div class="layui-inline">
+                                        <input type="text" class="layui-input timeYMD" name="assetsOutfactoryTime" id="assetsOutfactoryTime" placeholder="yyyy-MM-dd">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="layui-form-item">
+                                    <textarea placeholder="请输入备注" class="layui-textarea" name="remark" id="remark" style="width: 93%;"></textarea>
+                            </div>
+
+
+
+                            <button title="新建" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addNew" >提交</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../static/layui.js"></script>
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="../../static/js/c-component.js"></script>
+<script src="../../static/js/jquery.tmpl.js"></script>
+
+<!--类型选项-->
+<script type="text/x-jquery-tmpl" id="select1">
+    <option value=${assetsTypeId}>${assetsTypeName}</option>
+</script>
+<!--状态-->
+<script type="text/x-jquery-tmpl" id="select2">
+    <option value=${stateId}>${stateName}</option>
+</script>
+
+<!--部门-->
+<script type="text/x-jquery-tmpl" id="select3">
+    <option value=${deptId}>${deptName}</option>
+</script>
+
+<!--租借单位-->
+<script type="text/x-jquery-tmpl" id="select4">
+    <option value=${cmpId}>${cmpName}</option>
+</script>
+
+<!--表格的操作事件-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="details">详情</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    $(function () {
+        getStateAndType();
+    });
+
+    //查询使用情况和类型：
+    function getStateAndType(){
+        layui.use('form', function() {
+            var form = layui.form;
+            var typeList = "", stateList = "", depts = "", borrowCmps="";
+            $.ajax({
+                type: 'get',
+                url: '/details/queryStateAndType',
+                async:false,
+                success: function (data) {
+                    typeList = data.types;
+                    stateList = data.states;
+                    depts = data.depts;
+                    borrowCmps = data.borrowCmps;
+                }
+            });
+
+            if (typeList.length>0 && typeList!=null){
+                $('#select1').tmpl(typeList).appendTo('#atype');
+            }
+
+            if (stateList.length>0 && stateList!=null){
+                $('#select2').tmpl(stateList).appendTo('#astate');
+            }
+
+            if (depts.length>0 && depts!=null){
+                $('#select3').tmpl(depts).appendTo('#useName');
+            }
+
+            if (borrowCmps.length>0 && borrowCmps!=null){
+                $('#select4').tmpl(borrowCmps).appendTo('#cmpName');
+            }
+
+
+            form.render('select');
+
+        });
+    }
+
+    layui.use(['table','laydate', 'form','element'], function(){
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //时间样式：
+        laydate.render({
+            elem: '.timeYMD',
+        });
+        table.render({
+            elem: '#detailTb'
+            ,limit:8
+            ,url:'/details/assetsDet'
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            ,cols: [[
+                {field:'assetsId', width:'10%', title: '资产编号', sort: true}
+                ,{field:'assetsName', width:'10%', title: '资产名称'}
+                ,{field:'assetsBuytime', title: '购买时间', sort: true, width:'15%'}
+                ,{field:'assetsNum', width:'5%', title: '数量', sort: true}
+                ,{field:'assetInitialval', title: '资产原值', sort: true, width:'10%'}
+                ,{field:'exceptNetval', title: '预计净残值', width:'10%'}
+                ,{field:'assetsType', title: '资产类型', width: '10%'}
+                ,{field:'useName', width:'10%', title: '使用部门'}
+                ,{field:'assetsStateName', width:'10%', title: '使用情况', templet: function(d){
+                    var color = "";
+                    var state = d.assetsStateName;
+                    switch (state){
+                        case "使用中":
+                            color = "#5551b8";
+                            break;
+                        case "出售":
+                            color = "#bababc";
+                            break;
+                        case "已借出":
+                            color = "#ff9d22";
+                            break;
+                        default:
+                            color = "#8ecbff";
+                            break;
+                    }
+
+                    var dhtml =
+                        "<li style=\"text-align: center; color:"+color+";\">" +
+                        "<a href='javascript:void(0)'  style='color:"+color+" '>·"+state+"</a>" +
+                        "</li>  " ;
+                    return dhtml;
+                }}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: '10%'}
+            ]]
+        });
+
+        //监听行的操作事件：
+        table.on('tool(detailTb)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'details'){
+                //详情
+                layer.open({ //弹出新建业务模板类型的弹窗；
+                    type:1,
+                    area:['1100px','600px'],
+                    title:"资产详情",
+                    // btn:['确定','取消'],
+                    success: function(layero, index){ //弹窗打开的发生的事件
+                        for (var k in data){
+                            var str = "#tdetail #"+k;
+                            $(str).val(data[k]);
+                        }
+                        $("#detailsWindow").show();
+                    },
+                    yes:function (index,layero) {
+                        layer.close(index);
+                    },
+                    btn2:function (index,layero) {
+                    },
+                    content:$("#detailsWindow"),
+                    end: function (){
+                        $("#detailsWindow").hide();
+                    }
+                });
+
+
+            }
+        });
+
+        // 搜索条件表单监听
+        form.on('submit(search)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            table.reload('detailTb', {where: serchDatas});
+        });
+
+    });
+</script>
+</html>
