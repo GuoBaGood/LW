@@ -33,24 +33,24 @@
     <div class="layui-side-scroll">
         <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline NavigateUL" lay-filter="demo">
             <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">资产管理</a>
+                <a href="javascript:;" class="aclass">资产管理</a>
                 <dl class="layui-nav-child">
-                    <dd class="layui-this"><a href="##/static/assets/adetailMain.html">资产列表</a></dd>
-                    <dd><a href="##/static/assets/repairMain.html">维修资产</a></dd>
+                    <dd class="layui-this"><a href="##/assets/adetailMain.html">资产列表</a></dd>
+                    <dd><a href="##/assets/repairMain.html">维修资产</a></dd>
                     <dd><a href="javascript:;">租借资产</a></dd>
                     <dd><a href="javascript:;">闲置资产</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;">历史记录</a>
+                <a href="javascript:;" class="aclass">历史记录</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">维修记录</a></dd>
-                    <dd><a href="">租借记录</a></dd>
-                    <dd><a href="">报废记录</a></dd>
+                    <dd><a href="##/record/repairecord.html">维修记录</a></dd>
+                    <dd><a href="##/record/boreturnrecord.html">租借记录</a></dd>
+                    <dd><a href="##/record/repairecord.html">报废记录</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;">系统管理</a>
+                <a href="javascript:;" class="aclass">系统管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="">人员管理</a></dd>
                     <dd><a href="">日志管理</a></dd>
@@ -75,7 +75,11 @@
 
         //监听导航点击
         element.on('nav(demo)', function(elem){
-            var href = elem[0].href.split("##")[1];
+            var className = elem[0].className;
+            if (className == "aclass"){
+                return false;
+            }
+            var href = "/static"+elem[0].href.split("##")[1];
             $("#bodyIframe").attr("src", href);
         });
 

@@ -237,7 +237,9 @@
 
   <!--查询条件-->
   <sql id="conditions">
-    AND repair_style = '0'
+    <if test="repairStyle != null and repairStyle != '' " >
+      AND repair_style = #{repairStyle}
+    </if>
     <if test="assetsId != null and assetsId != '' " >
       AND assets_id LIKE '%${assetsId}%'
     </if>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>维修记录</title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+</head>
+<body>
+<div class="weadmin-body">
+    <div class="layui-row" id="model">
+        <form class="layui-form we-search" style="color: #666;">
+            资产编号：
+            <div class="layui-inline">
+                <input type="text" name="aId" id="aId" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            资产名称：
+            <div class="layui-inline">
+                <input type="text" name="aName" id="aName" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+
+            送修时间：
+            <div class="layui-inline">
+                <input type="text" class="layui-input" name="sendtime" id="sendtime" placeholder="yyyy-MM-dd">
+            </div>
+
+            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+
+    <div style="">
+        <table class="layui-table" id="repairTb" lay-filter="repairTb"></table>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery-1.11.3.min.js"></script>
+<script src="/static/layui.js"></script>
+<script src="/static/js/c-component.js"></script>
+<script>
+    layui.use(['table','laydate', 'form', 'element'], function(){
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var element = layui.element;
+
+        //时间样式：
+        laydate.render({
+            elem: '#sendtime',
+        });
+
+        //维修表格：
+        table.render({
+            elem: '#repairTb'
+            ,limit:8
+            ,url:'/repair/aboutrepair/'+"repaired"
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            ,cols: [[
+                {field:'assetsId', width:'10%', title: '资产编号', sort: true}
+                ,{field:'assetsName', width:'10%', title: '资产名称'}
+                ,{field:'repairTime', width:'10%', title: '送修时间'}
+                ,{field:'malfunctionReson', width:'10%', title: '故障原因'}
+                ,{field:'repairCompany', width:'10%', title: '维修单位'}
+                ,{field:'repairCompanyphone', width:'10%', title: '联系方式'}
+                ,{field:'repairPrice', width:'10%', title: '维修价格'}
+                ,{field:'completionTime', width:'10%', title: '完修时间'}
+                ,{field:'account', width:'10%', title: '经办人账号'}
+                ,{field:'userName', width:'10%', title: '经办人姓名'}
+                ,{field:'remark', width:'10%', title: '补充说明'}
+            ]]
+        });
+
+        // 搜索条件表单监听
+        form.on('submit(search)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            table.reload('repairTb', {where: serchDatas});
+        });
+
+    });
+</script>
+
+</html>

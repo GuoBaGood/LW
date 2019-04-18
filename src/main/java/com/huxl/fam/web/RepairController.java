@@ -6,7 +6,9 @@ import com.huxl.fam.service.RepairService;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,17 +32,23 @@ public class RepairController {
     private RepairService repairService;
 
     /*
-    * 查询维修中的资产：
+    * 查询维修中和维修完成的资产：
     * */
     @ResponseBody
-    @RequestMapping(value = "/repairing")
-    public PageResponse queryRepairingAssets(HttpServletRequest request, PageBounds pageBounds){
+    @RequestMapping(value = "/aboutrepair/{type}",method = RequestMethod.GET)
+    public PageResponse queryRepairingAssets(HttpServletRequest request, @PathVariable(value = "type") String type, PageBounds pageBounds){
         PageResponse res = new PageResponse();
         //条件
         DvAssetsRepair d = new DvAssetsRepair();
         d.setAssetsId(request.getParameter("aId"));
         d.setAssetsName(request.getParameter("aName"));
         String sendtime = request.getParameter("sendtime");
+        if (type.equals("repairing")){
+            d.setRepairStyle("0");
+        }
+        if (type.equals("repaired")){
+            d.setRepairStyle("1"); //维修完成
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        try {
 //            d.setRepairTime(sdf.parse(sendtime));
@@ -56,4 +64,9 @@ public class RepairController {
         res.setResponseDesc("操作成功！");
         return res;
     }
+
+
+    /**
+     * 维修记录
+     * */
 }
