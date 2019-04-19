@@ -3,7 +3,7 @@ package com.huxl.fam.entity;
 import java.util.Date;
 
 public class DvLog {
-    private String logid;
+    private String logId;
 
     private String account;
 
@@ -13,12 +13,12 @@ public class DvLog {
 
     private String logDesc;
 
-    public String getLogid() {
-        return logid;
+    public String getLogId() {
+        return logId;
     }
 
-    public void setLogid(String logid) {
-        this.logid = logid == null ? null : logid.trim();
+    public void setLogId(String logId) {
+        this.logId = logId == null ? null : logId.trim();
     }
 
     public String getAccount() {

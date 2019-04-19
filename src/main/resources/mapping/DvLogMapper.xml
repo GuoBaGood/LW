@@ -2,36 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.huxl.fam.mapper.DvLogMapper" >
   <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvLog" >
-    <id column="LogId" property="logid" jdbcType="VARCHAR" />
+    <id column="log_id" property="logId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="manage_name" property="manageName" jdbcType="VARCHAR" />
     <result column="manage_time" property="manageTime" jdbcType="TIMESTAMP" />
     <result column="log_desc" property="logDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    LogId, account, manage_name, manage_time, log_desc
+    log_id, account, manage_name, manage_time, log_desc
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from dv_log
-    where LogId = #{logid,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from dv_log
-    where LogId = #{logid,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.huxl.fam.entity.DvLog" >
-    insert into dv_log (LogId, account, manage_name, 
+    insert into dv_log (log_id, account, manage_name, 
       manage_time, log_desc)
-    values (#{logid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{manageName,jdbcType=VARCHAR}, 
+    values (#{logId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{manageName,jdbcType=VARCHAR}, 
       #{manageTime,jdbcType=TIMESTAMP}, #{logDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvLog" >
     insert into dv_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="logid != null" >
-        LogId,
+      <if test="logId != null" >
+        log_id,
       </if>
       <if test="account != null" >
         account,
@@ -47,8 +47,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="logid != null" >
-        #{logid,jdbcType=VARCHAR},
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
@@ -80,7 +80,7 @@
         log_desc = #{logDesc,jdbcType=VARCHAR},
       </if>
     </set>
-    where LogId = #{logid,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvLog" >
     update dv_log
@@ -88,6 +88,6 @@
       manage_name = #{manageName,jdbcType=VARCHAR},
       manage_time = #{manageTime,jdbcType=TIMESTAMP},
       log_desc = #{logDesc,jdbcType=VARCHAR}
-    where LogId = #{logid,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=VARCHAR}
   </update>
 </mapper>
