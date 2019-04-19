@@ -1,5 +1,10 @@
 package com.huxl.fam.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsBoreturn;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +14,8 @@ package com.huxl.fam.service;
  * 描述：租借资产
  */
 public interface BoreturnService {
+
+    List<DvAssetsBoreturn> selectBoreturn(DvAssetsBoreturn boreturn, PageBounds pageBounds);
+
+    int queryNum(DvAssetsBoreturn boreturn);
 }

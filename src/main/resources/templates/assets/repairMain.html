@@ -12,56 +12,41 @@
     </style>
 </head>
 <body>
-<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-    <ul class="layui-tab-title">
-        <li class="layui-this" style="margin-left: 1%;">资产维修详情</li>
-        <li>新增维修单</li>
-        <li>权限分配</li>
-        <li>商品管理</li>
-        <li>订单管理</li>
-    </ul>
-    <div class="layui-tab-content" style="height: 100px;">
-        <div class="layui-tab-item layui-show">
-            <div class="weadmin-body">
-                    <div class="layui-row" id="model">
-                        <form class="layui-form we-search" style="color: #666;">
-                            资产编号：
-                            <div class="layui-inline">
-                                <input type="text" name="aId" id="aId" placeholder="" autocomplete="off" class="layui-input">
-                            </div>
-                            资产名称：
-                            <div class="layui-inline">
-                                <input type="text" name="aName" id="aName" placeholder="" autocomplete="off" class="layui-input">
-                            </div>
-
-                            送修时间：
-                            <div class="layui-inline">
-                                <input type="text" class="layui-input" name="sendtime" id="sendtime" placeholder="yyyy-MM-dd">
-                            </div>
-
-                            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
-                        </form>
-                    </div>
-
-                    <div style="">
-                        <table class="layui-table" id="repairTb" lay-filter="repairTb"></table>
-                    </div>
-                </div>
-        </div>
-        <div class="layui-tab-item">
-            <div class="weadmin-body">
-                hallo!,维修单
-                <div style="">
-                    <table class="layui-table" id="" lay-filter=""></table>
-                </div>
+<div class="weadmin-body">
+    <div class="layui-row" id="model">
+        <form class="layui-form we-search" style="color: #666;">
+            资产编号：
+            <div class="layui-inline">
+                <input type="text" name="aId" id="aId" placeholder="" autocomplete="off" class="layui-input">
             </div>
-        </div>
+            资产名称：
+            <div class="layui-inline">
+                <input type="text" name="aName" id="aName" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+
+            送修时间：
+            <div class="layui-inline">
+                <input type="text" class="layui-input" name="sendtime" id="sendtime" placeholder="yyyy-MM-dd">
+            </div>
+
+            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+
+    <div style="">
+        <table class="layui-table" id="repairTb" lay-filter="repairTb"></table>
     </div>
 </div>
 </body>
 <script src="../../static/layui.js"></script>
 <script src="../../static/js/jquery-1.11.3.min.js"></script>
 <script src="../../static/js/c-component.js"></script>
+
+<!--表格的操作事件-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="details">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">归还</a>
+</script>
 <script>
     layui.use(['table','laydate', 'form', 'element'], function(){
         var table = layui.table;

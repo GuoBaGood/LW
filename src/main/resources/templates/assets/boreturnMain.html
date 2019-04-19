@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>租借记录</title>
+    <title>租借资产</title>
     <link rel="stylesheet" href="/static/css/item/layui.css">
     <link rel="stylesheet" href="/static/css/weadmin.css">
 </head>
@@ -56,7 +56,7 @@
         table.render({
             elem: '#repairTb'
             ,limit:8
-            ,url:'/boreturn/aboutboreturn/'+"return"
+            ,url:'/boreturn/aboutboreturn/'+"borrow"
             ,page:true
             ,response: {
                 statusName: 'responseCode',
@@ -70,8 +70,8 @@
                 ,{field:'boreturnAccount', title: '租借者账号'}
                 ,{field:'boreturnUserealname', title: '组接者名称'}
                 ,{field:'boreturnTime', title: '租借时间'}
-                ,{field:'realReturntime', title: '归还时间'}
-                ,{field:'realIncome', title: '实际收益'}
+                ,{field:'prescriptReturntime', title: '预计归还时间'}
+                ,{field:'prescriptIncome', title: '预计收入'}
                 ,{field:'managerAccount', title: '经办人账号'}
                 ,{field:'managerName', title: '经办人姓名'}
                 ,{field:'remark', title: '补充说明'}

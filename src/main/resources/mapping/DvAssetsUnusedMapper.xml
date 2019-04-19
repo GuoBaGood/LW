@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvAssetsUnusedMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvAssetsUnused" >
+    <id column="unused_id" property="unusedId" jdbcType="VARCHAR" />
+    <result column="assets_id" property="assetsId" jdbcType="VARCHAR" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+    <result column="unused_time" property="unusedTime" jdbcType="TIMESTAMP" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="stayplace" property="stayplace" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    unused_id, assets_id, assets_name, unused_time, account, user_name, remark, stayplace
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dv_assets_unused
+    where unused_id = #{unusedId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_assets_unused
+    where unused_id = #{unusedId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvAssetsUnused" >
+    insert into dv_assets_unused (unused_id, assets_id, assets_name, 
+      unused_time, account, user_name, 
+      remark, stayplace)
+    values (#{unusedId,jdbcType=VARCHAR}, #{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, 
+      #{unusedTime,jdbcType=TIMESTAMP}, #{account,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{stayplace,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsUnused" >
+    insert into dv_assets_unused
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unusedId != null" >
+        unused_id,
+      </if>
+      <if test="assetsId != null" >
+        assets_id,
+      </if>
+      <if test="assetsName != null" >
+        assets_name,
+      </if>
+      <if test="unusedTime != null" >
+        unused_time,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="stayplace != null" >
+        stayplace,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unusedId != null" >
+        #{unusedId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsId != null" >
+        #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="unusedTime != null" >
+        #{unusedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stayplace != null" >
+        #{stayplace,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvAssetsUnused" >
+    update dv_assets_unused
+    <set >
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="unusedTime != null" >
+        unused_time = #{unusedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="stayplace != null" >
+        stayplace = #{stayplace,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where unused_id = #{unusedId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvAssetsUnused" >
+    update dv_assets_unused
+    set assets_id = #{assetsId,jdbcType=VARCHAR},
+      assets_name = #{assetsName,jdbcType=VARCHAR},
+      unused_time = #{unusedTime,jdbcType=TIMESTAMP},
+      account = #{account,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      stayplace = #{stayplace,jdbcType=VARCHAR}
+    where unused_id = #{unusedId,jdbcType=VARCHAR}
+  </update>
+
+  <!--分页条件查询-->
+  <select id="queryUnusedByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dv_assets_unused
+    where 1=1
+  </select>
+
+  <select id="queryNum" resultType="java.lang.Integer">
+    select
+    COUNT(*)
+    from dv_assets_unused
+    where 1=1
+  </select>
+
+
+</mapper>

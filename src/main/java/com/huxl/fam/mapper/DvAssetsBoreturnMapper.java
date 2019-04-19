@@ -1,6 +1,9 @@
 package com.huxl.fam.mapper;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
+
+import java.util.List;
 
 public interface DvAssetsBoreturnMapper {
     int deleteByPrimaryKey(String boreturnId);
@@ -14,4 +17,8 @@ public interface DvAssetsBoreturnMapper {
     int updateByPrimaryKeySelective(DvAssetsBoreturn record);
 
     int updateByPrimaryKey(DvAssetsBoreturn record);
+
+    List<DvAssetsBoreturn> selectBoreturn(DvAssetsBoreturn boreturn, PageBounds pageBounds);
+
+    int queryNum(DvAssetsBoreturn boreturn);
 }

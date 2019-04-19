@@ -232,4 +232,36 @@
       user_type = #{userType,jdbcType=VARCHAR}
     where boreturn_id = #{boreturnId,jdbcType=VARCHAR}
   </update>
+
+  <!--条件查询-->
+  <sql id="conditions">
+    <if test="boreturnStyle != null and boreturnStyle != '' " >
+      AND boreturn_style = #{boreturnStyle}
+    </if>
+    <if test=" assetsId!=null and assetsId!='' ">
+      AND assets_id = #{assets_id}
+    </if>
+    <if test="assetsName != null and assetsName != '' " >
+      AND assets_name LIKE '%${assetsName}%'
+    </if>
+    <if test="boreturnTime != null and boreturnTime != '' " >
+      AND DATE(boreturn_time)= #{boreturnTime}
+    </if>
+  </sql>
+
+  <select id="selectBoreturn" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dv_assets_boreturn
+    where 1=1
+    <include refid="conditions"/>
+  </select>
+
+  <select id="queryNum" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    from dv_assets_boreturn
+    WHERE 1=1
+    <include refid="conditions"/>
+  </select>
+
 </mapper>
