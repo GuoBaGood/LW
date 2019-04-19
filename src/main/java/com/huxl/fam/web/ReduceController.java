@@ -2,15 +2,12 @@ package com.huxl.fam.web;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsReduce;
-import com.huxl.fam.mapper.DvAssetsReduceMapper;
 import com.huxl.fam.service.AssetsReduceService;
-import com.huxl.fam.tool.Log;
+import com.huxl.fam.tool.LogUtil;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +39,7 @@ public class ReduceController {
         DvAssetsReduce d = new DvAssetsReduce();
         List<DvAssetsReduce> list = reduceService.queryReduce(d, pageBounds);
         int num = reduceService.queryNum(d);
-        Log.ADDLOG(request, "查询报废资产记录");
+        LogUtil.ADDLOG(request, "查询报废资产记录");
         res.setTotal(num);
         res.setData(list);
         res.setResponseCode(200);

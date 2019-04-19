@@ -3,8 +3,6 @@ package com.huxl.fam.tool;
 import com.huxl.fam.entity.DvLog;
 import com.huxl.fam.mapper.DvLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +18,7 @@ import java.util.Date;
  * 描述：处理日志
  */
 @Component
-public class Log {
+public class LogUtil {
     @Autowired
     private DvLogMapper logMapper;
 
@@ -33,9 +31,9 @@ public class Log {
 
     public static void ADDLOG(HttpServletRequest request, String  desc){
         DvLog lg = new DvLog();
-        lg.setLogId(ComTool.deptId(ComTool.LOG_ID));
-        lg.setAccount(ComTool.UserDatas(request).getAccount());
-        lg.setManageName(ComTool.UserDatas(request).getUserRealname());
+        lg.setLogId(ComUtil.deptId(ComUtil.LOG_ID));
+        lg.setAccount(ComUtil.UserDatas(request).getAccount());
+        lg.setManageName(ComUtil.UserDatas(request).getUserRealname());
         lg.setLogDesc(desc);
         lg.setManageTime(new Date());
         try {

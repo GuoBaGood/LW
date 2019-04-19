@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.*;
 import com.huxl.fam.service.*;
-import com.huxl.fam.tool.ComTool;
-import com.huxl.fam.tool.Log;
+import com.huxl.fam.tool.ComUtil;
+import com.huxl.fam.tool.LogUtil;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -67,7 +65,7 @@ public class AssetsDetailController {
         d.setAssetsName(assetsName);
         d.setAssetsType(atype);
         d.setAssetsStateId(astate);
-        d.setAssetsBuytime(ComTool.StingToDate(buytime));
+        d.setAssetsBuytime(ComUtil.StingToDate(buytime));
         //条件查询
         List<DvAssetsDetails> detailsList = new ArrayList<>();
         try{
@@ -77,7 +75,7 @@ public class AssetsDetailController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Log.ADDLOG(request, "查找资产详情列表");
+        LogUtil.ADDLOG(request, "查找资产详情列表");
         res.setData(detailsList);
         res.setResponseCode(200);
         res.setResponseDesc("操作成功！");
@@ -94,17 +92,17 @@ public class AssetsDetailController {
         String str = request.getParameter("datas");
         List<DvAssetsDetails> details = JSON.parseArray(str, DvAssetsDetails.class);
         DvAssetsDetails d = details.get(0);
-        d.setAssetsId(ComTool.deptId(ComTool.ASSETS_ID));
+        d.setAssetsId(ComUtil.deptId(ComUtil.ASSETS_ID));
         DvAssetsUnused u = new DvAssetsUnused();
         DvAssetsBoreturn bt = new DvAssetsBoreturn();
         String type = "";
         if (d.getUseAccountype().equals("")){ //闲置资产
-            u.setUnusedId(ComTool.deptId(ComTool.UNUSED_ID));
+            u.setUnusedId(ComUtil.deptId(ComUtil.UNUSED_ID));
             u.setAssetsId(d.getAssetsId());
             u.setAssetsName(d.getAssetsName());
             u.setUnusedTime(d.getAssetsBuytime());
-            u.setAccount(ComTool.UserDatas(request).getAccount());
-            u.setUserName(ComTool.UserDatas(request).getUserRealname());
+            u.setAccount(ComUtil.UserDatas(request).getAccount());
+            u.setUserName(ComUtil.UserDatas(request).getUserRealname());
             u.setRemark(d.getAssetsRemark());
             u.setStayplace(d.getStorageLocation());
             type = "unused";
@@ -117,14 +115,14 @@ public class AssetsDetailController {
                 bt.setPrescriptIncome(d.getPrescriptIncome());
                 bt.setUserType("1");
             }
-            bt.setBoreturnId(ComTool.deptId(ComTool.BORETURN_ID));
+            bt.setBoreturnId(ComUtil.deptId(ComUtil.BORETURN_ID));
             bt.setAssetsId(d.getAssetsId());
             bt.setAssetsName(d.getAssetsName());
             bt.setBoreturnAccount(d.getUseId());
             bt.setBoreturnUserealname("");
             bt.setPrescriptReturntime(d.getPrescriptReturntime());
-            bt.setManagerAccount(ComTool.UserDatas(request).getAccount());
-            bt.setManagerName(ComTool.UserDatas(request).getUserRealname());
+            bt.setManagerAccount(ComUtil.UserDatas(request).getAccount());
+            bt.setManagerName(ComUtil.UserDatas(request).getUserRealname());
             bt.setAssetsStateId("2");
             bt.setAssetsStateName("已借出");
             bt.setRemark(d.getAssetsRemark());
@@ -137,7 +135,7 @@ public class AssetsDetailController {
         map.put("boreturn", bt);
         map.put("type", type);
         String s = detailService.insertMore(map);
-        Log.ADDLOG(request, "新增资产");
+        LogUtil.ADDLOG(request, "新增资产");
         return "success";
     }
 
@@ -152,7 +150,7 @@ public class AssetsDetailController {
         List<DvState> states = stateService.queryAllState();
         List<DvDept> depts = deptService.queryDepts();
         List<DvBorrowCmp> borrowCmps = borrowCmpService.queryCmp();
-        Log.ADDLOG(request, "查询资产状态/部门/租借企业/资产类型信息");
+        LogUtil.ADDLOG(request, "查询资产状态/部门/租借企业/资产类型信息");
         map.put("types", types);
         map.put("states", states);
         map.put("depts", depts);
@@ -170,23 +168,23 @@ public class AssetsDetailController {
         String data = "";
         if (type.equals("cmp")){ //新增企业
             DvBorrowCmp cmp = JSON.parseArray(str, DvBorrowCmp.class).get(0);
-            cmp.setCmpId(ComTool.deptId(ComTool.CMP_ID));
+            cmp.setCmpId(ComUtil.deptId(ComUtil.CMP_ID));
             try{
                 data = borrowCmpService.insertSelective(cmp);
             }catch (Exception e){
                 e.printStackTrace();
             }
-            Log.ADDLOG(request, "新增企业信息");
+            LogUtil.ADDLOG(request, "新增企业信息");
         }
         if (type.equals("dept")){ //新增部门
            DvDept dept = JSON.parseArray(str, DvDept.class).get(0);
-           dept.setDeptId(ComTool.deptId(ComTool.DEPT_ID));
+           dept.setDeptId(ComUtil.deptId(ComUtil.DEPT_ID));
            try{
                data = deptService.insertSelective(dept);
            }catch (Exception e){
                e.printStackTrace();
            }
-            Log.ADDLOG(request, "新增部门信息");
+            LogUtil.ADDLOG(request, "新增部门信息");
         }
 
         return data;

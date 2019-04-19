@@ -2,7 +2,7 @@ package com.huxl.fam.web;
 
 import com.huxl.fam.entity.DvUser;
 import com.huxl.fam.service.UserService;
-import com.huxl.fam.tool.Log;
+import com.huxl.fam.tool.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +67,7 @@ public class LoginController {
             e.printStackTrace();
             view.setViewName("login");
         }
-        Log.ADDLOG(request, "登陆操作");
+        LogUtil.ADDLOG(request, "登陆操作");
         return view;
     }
 

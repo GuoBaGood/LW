@@ -10,12 +10,12 @@ import java.util.Date;
 /**
  * Created with IDEA
  * 项目名: fam
- * 文件名: ComTool
+ * 文件名: ComUtil
  * 作者:huxl_oup
  * 日期:2019/4/17 15:16
  * 描述：生成一些表的主键
  */
-public class ComTool {
+public class ComUtil {
 
     public static String DEPT_ID = "d"; //部门表
     public static String CMP_ID = "cmp"; //企业
@@ -35,7 +35,7 @@ public class ComTool {
     //时间转换
     public static Date StingToDate(String time){
         if (time != null && time != ""){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 return sdf.parse(time);
             } catch (ParseException e) {

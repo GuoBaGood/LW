@@ -274,7 +274,7 @@
 
                         购买时间：
                         <div class="layui-inline">
-                            <input type="text" class="layui-input" name="buytime" id="buytime" placeholder="yyyy-MM-dd">
+                            <input type="text" class="layui-input timeYMD" name="buytime" id="buytime" placeholder="yyyy-MM-dd">
                         </div>
 
                         <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
@@ -350,9 +350,9 @@
                     <div class="layui-row" style="margin-left: 2%;">
 
                             <div class="layui-form-item">
-                                资产名称：
+                                <b class="red" style="color:red">*</b>资产名称：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsName"  placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" lay-verify="required" name="assetsName"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 规格型号：
@@ -378,14 +378,14 @@
                                     <input type="text" class="layui-input timeYMD" name="assetsBuytime"  placeholder="yyyy-MM-dd">
                                 </div>
 
-                                购买数量：
+                                <b class="red" style="color:red">*</b>购买数量：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsNum"  placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" lay-verify="required" name="assetsNum"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
-                                购买单价：
+                                <b class="red" style="color:red">*</b>购买单价：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsUnivalent"  placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" lay-verify="required" name="assetsUnivalent"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
                                 购买金额：
@@ -398,22 +398,18 @@
                             <div class="layui-form-item">
                                 资产原值：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetInitialval" id="" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetInitialval"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
                                 增加方式：
                                 <div class="layui-inline">
-                                    <input type="text" name="assetsAddway" id="" placeholder="" autocomplete="off" class="layui-input">
+                                    <input type="text" name="assetsAddway"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
 
-                                资产状态：
-                                <div class="layui-inline">
-                                    <input type="text" class="layui-input timeYMD" name="assetsStateName" id="" placeholder="yyyy-MM-dd">
-                                </div>
 
                                 出厂时间：
                                 <div class="layui-inline">
                                     <div class="layui-inline">
-                                        <input type="text" class="layui-input timeYMD" name="assetsOutfactoryTime" id="" placeholder="yyyy-MM-dd">
+                                        <input type="text" class="layui-input timeYMD" name="assetsOutfactoryTime"  placeholder="yyyy-MM-dd">
                                     </div>
                                 </div>
 
@@ -514,8 +510,15 @@
         var form = layui.form;
 
         //时间样式：
-        laydate.render({
-            elem: '.timeYMD',
+//        laydate.render({
+//            elem: '.timeYMD',
+//        });
+
+        lay('.timeYMD').each(function () {
+            laydate.render({
+                elem: this,
+                trigger : 'click'
+            });
         });
         table.render({
             elem: '#detailTb'
@@ -721,22 +724,22 @@
             type: 'get',
             url: '/details/addNewDetails',
             data:{datas:JSON.stringify(arry)},
-            async:false,
             success: function (data) {
                 if (data == "success"){
                     layer.msg('新建资产列表成功!', {
                         icon: 1,
                         time: 1000
                     });
+                    $(".deptC").hide();
+                    $(".cmpC").hide();
+                    document.getElementById("addNewForm").reset();
                 }else {
                     layer.msg('新建失败!', {
                         icon: 5,
                         time: 1000
                     });
                 }
-                $(".deptC").hide();
-                $(".cmpC").hide();
-                document.getElementById("addNewForm").reset();
+
             }
         });
 

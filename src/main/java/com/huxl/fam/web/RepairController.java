@@ -3,8 +3,8 @@ package com.huxl.fam.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsRepair;
 import com.huxl.fam.service.RepairService;
-import com.huxl.fam.tool.ComTool;
-import com.huxl.fam.tool.Log;
+import com.huxl.fam.tool.ComUtil;
+import com.huxl.fam.tool.LogUtil;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -54,10 +52,10 @@ public class RepairController {
             d.setRepairStyle("1"); //维修完成
             desc = "查询资产维修记录";
         }
-        d.setRepairTime(ComTool.StingToDate(sendtime));
+        d.setRepairTime(ComUtil.StingToDate(sendtime));
         List<DvAssetsRepair> list = repairService.queryRepairingAssets(d, pageBounds);
         int num = repairService.queryRepairingAssetsNum(d);
-        Log.ADDLOG(request, desc);
+        LogUtil.ADDLOG(request, desc);
         res.setTotal(num);
         res.setData(list);
         res.setResponseCode(200);

@@ -3,8 +3,8 @@ package com.huxl.fam.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
 import com.huxl.fam.service.BoreturnService;
-import com.huxl.fam.tool.ComTool;
-import com.huxl.fam.tool.Log;
+import com.huxl.fam.tool.ComUtil;
+import com.huxl.fam.tool.LogUtil;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -52,14 +50,14 @@ public class BoreturnController {
         b.setAssetsName(request.getParameter("assetsName"));
         b.setBoreturnUserealname(request.getParameter("boreturnUserealname"));
         String boreturnTime = request.getParameter("boreturnTime");
-        b.setBoreturnTime(ComTool.StingToDate(boreturnTime));
+        b.setBoreturnTime(ComUtil.StingToDate(boreturnTime));
         List<DvAssetsBoreturn> list = boreturnService.selectBoreturn(b, pageBounds);
         int num = boreturnService.queryNum(b);
         res.setTotal(num);
         res.setData(list);
         res.setResponseCode(200);
         res.setResponseDesc("操作成功！");
-        Log.ADDLOG(request, desc);
+        LogUtil.ADDLOG(request, desc);
         return res;
     }
 }

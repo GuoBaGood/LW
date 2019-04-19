@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日志管理</title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+</head>
+<body>
+<div class="weadmin-body">
+    <div class="layui-row" id="model">
+        <form class="layui-form we-search" style="color: #666;">
+            操作人账号：
+            <div class="layui-inline">
+                <input type="text" name="account" id="account" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            操作行为：
+            <div class="layui-inline">
+                <input type="text" name="logDesc" id="logDesc" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+
+            操作时间：
+            <div class="layui-inline">
+                <input type="text" class="layui-input" name="manageTime" id="manageTime" placeholder="yyyy-MM-dd">
+            </div>
+
+            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+
+    <div style="">
+        <table class="layui-table" id="logTb" lay-filter="logTb"></table>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery-1.11.3.min.js"></script>
+<script src="/static/layui.js"></script>
+<script src="/static/js/c-component.js"></script>
+<script>
+    layui.use(['table','laydate', 'form', 'element'], function(){
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var element = layui.element;
+
+        //时间样式：
+        laydate.render({
+            elem: '#manageTime',
+        });
+
+        table.render({
+            elem: '#logTb'
+            ,limit:8
+            ,url:'/log/aboutlog'
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            ,cols: [[
+                {field:'logId', title: '编号', sort: true}
+                ,{field:'account', title: '操作者账号'}
+                ,{field:'manageName', title: '操作者姓名'}
+                ,{field:'manageTime', title: '操作时间'}
+                ,{field:'logDesc', title: '操作行为'}
+
+            ]]
+        });
+
+        // 搜索条件表单监听
+        form.on('submit(search)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            table.reload('logTb', {where: serchDatas});
+        });
+
+    });
+</script>
+
+</html>

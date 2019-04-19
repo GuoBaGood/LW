@@ -90,4 +90,37 @@
       log_desc = #{logDesc,jdbcType=VARCHAR}
     where log_id = #{logId,jdbcType=VARCHAR}
   </update>
+
+  <!--分页条件查找-->
+  <sql id="conditions">
+    <if test="account != null and account != '' " >
+      AND account = #{account,jdbcType=VARCHAR}
+    </if>
+
+    <if test="logDesc != null and logDesc != '' " >
+      AND log_desc LIKE '%${logDesc}%'
+    </if>
+
+    <if test="manageTime != null " >
+      AND DATE(manage_time)= date_format(#{manageTime,jdbcType=TIMESTAMP}, '%Y-%m-%d')
+    </if>
+
+
+  </sql>
+
+  <select id="queryLogRecord" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dv_log
+    where 1=1
+    <include refid="conditions"/>
+  </select>
+
+  <select id="queryNum" resultType="java.lang.Integer">
+    select
+    COUNT(*)
+    from dv_log
+    where 1=1
+    <include refid="conditions"/>
+  </select>
 </mapper>
