@@ -1,7 +1,13 @@
 package com.huxl.fam.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsReduce;
+import com.huxl.fam.mapper.DvAssetsReduceMapper;
 import com.huxl.fam.service.AssetsReduceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -14,4 +20,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AssetsReduceServiceImpl implements AssetsReduceService{
+    @Autowired
+    private DvAssetsReduceMapper reduceMapper;
+
+    @Override
+    public List<DvAssetsReduce> queryReduce(DvAssetsReduce d, PageBounds pageBounds) {
+        return reduceMapper.queryReduce(d, pageBounds);
+    }
+
+    @Override
+    public int queryNum(DvAssetsReduce d) {
+        return reduceMapper.queryNum(d);
+    }
 }

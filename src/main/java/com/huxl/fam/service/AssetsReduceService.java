@@ -1,5 +1,10 @@
 package com.huxl.fam.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsReduce;
+
+import java.util.List;
+
 /**
  * Created with IDEA
  * 项目名: fam
@@ -9,4 +14,6 @@ package com.huxl.fam.service;
  * 描述：减少资产
  */
 public interface AssetsReduceService {
+    List<DvAssetsReduce> queryReduce(DvAssetsReduce d , PageBounds pageBounds);
+    int queryNum(DvAssetsReduce d);
 }

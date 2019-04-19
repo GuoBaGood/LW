@@ -174,4 +174,19 @@
       remark = #{remark,jdbcType=VARCHAR}
     where reduce_id = #{reduceId,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="queryReduce" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dv_assets_reduce
+    where 1=1
+  </select>
+
+  <select id="queryNum" resultType="java.lang.Integer">
+    select
+    count(*)
+    from dv_assets_reduce
+    where 1=1
+  </select>
 </mapper>

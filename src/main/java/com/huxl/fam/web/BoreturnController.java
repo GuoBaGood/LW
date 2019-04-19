@@ -3,6 +3,7 @@ package com.huxl.fam.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
 import com.huxl.fam.service.BoreturnService;
+import com.huxl.fam.tool.ComTool;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,15 +48,7 @@ public class BoreturnController {
         b.setAssetsName(request.getParameter("assetsName"));
         b.setBoreturnUserealname(request.getParameter("boreturnUserealname"));
         String boreturnTime = request.getParameter("boreturnTime");
-        if (boreturnTime !=null || boreturnTime != ""){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                b.setBoreturnTime(sdf.parse(boreturnTime));
-            } catch (ParseException e) {
-                e.printStackTrace();
-                b.setBoreturnTime(null);
-            }
-        }
+        b.setBoreturnTime(ComTool.StingToDate(boreturnTime));
         List<DvAssetsBoreturn> list = boreturnService.selectBoreturn(b, pageBounds);
         int num = boreturnService.queryNum(b);
         res.setTotal(num);

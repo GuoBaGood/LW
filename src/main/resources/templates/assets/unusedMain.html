@@ -59,7 +59,7 @@
         table.render({
             elem: '#unusedTb'
             ,limit:8
-            ,url:'/boreturn/aboutUnused'
+            ,url:'/unused/aboutUnused'
             ,page:true
             ,response: {
                 statusName: 'responseCode',
@@ -68,14 +68,14 @@
                 countName: 'total'
             }
             ,cols: [[
-                {field:'assetsId', width:'10%', title: '资产编号', sort: true}
-                ,{field:'assetsName', width:'10%', title: '资产名称'}
-                ,{field:'unusedTime', width:'10%', title: '闲置时间'}
-                ,{field:'stayplace', width:'10%', title: '存储地'}
-                ,{field:'account', width:'10%', title: '经办人账号'}
-                ,{field:'userName', width:'10%', title: '经办人姓名'}
-                ,{field:'remark', width:'10%', title: '补充说明'}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: '10%'}
+                {field:'assetsId',  title: '资产编号', sort: true}
+                ,{field:'assetsName',title: '资产名称'}
+                ,{field:'unusedTime',  title: '闲置时间'}
+                ,{field:'stayplace', title: '存储地'}
+                ,{field:'account',  title: '经办人账号'}
+                ,{field:'userName', title: '经办人姓名'}
+                ,{field:'remark',title: '补充说明'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
             ]]
         });
 
