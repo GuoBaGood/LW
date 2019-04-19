@@ -57,6 +57,28 @@ public class DvAssetsDetails implements Serializable {
 
     private String useId;
 
+    //新增的
+    private Date prescriptReturntime;
+
+    private Float prescriptIncome;
+
+
+    public Float getPrescriptIncome() {
+        return prescriptIncome;
+    }
+
+    public void setPrescriptIncome(Float prescriptIncome) {
+        this.prescriptIncome = prescriptIncome;
+    }
+
+    public Date getPrescriptReturntime() {
+        return prescriptReturntime;
+    }
+
+    public void setPrescriptReturntime(Date prescriptReturntime) {
+        this.prescriptReturntime = prescriptReturntime;
+    }
+
     public String getAssetsId() {
         return assetsId;
     }

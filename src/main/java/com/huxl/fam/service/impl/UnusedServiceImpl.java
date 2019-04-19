@@ -30,4 +30,9 @@ public class UnusedServiceImpl implements UnusedService{
     public int queryNum() {
         return unusedMapper.queryNum();
     }
+
+    @Override
+    public int insertSelective(DvAssetsUnused record) {
+        return unusedMapper.insertSelective(record);
+    }
 }

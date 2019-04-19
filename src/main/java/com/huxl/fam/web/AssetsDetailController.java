@@ -1,11 +1,10 @@
 package com.huxl.fam.web;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.*;
 import com.huxl.fam.service.*;
-import com.huxl.fam.tool.IdTool;
+import com.huxl.fam.tool.ComTool;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,15 +66,7 @@ public class AssetsDetailController {
         d.setAssetsName(assetsName);
         d.setAssetsType(atype);
         d.setAssetsStateId(astate);
-        if (buytime != null && buytime != ""){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                d.setAssetsBuytime(sdf.parse(buytime));
-            } catch (ParseException e) {
-                e.printStackTrace();
-                d.setAssetsBuytime(null);
-            }
-        }
+        d.setAssetsBuytime(ComTool.StingToDate(buytime));
         //条件查询
         List<DvAssetsDetails> detailsList = new ArrayList<>();
         try{
@@ -99,7 +90,53 @@ public class AssetsDetailController {
     @ResponseBody
     @RequestMapping(value = "/addNewDetails")
     public String addNewDetails(HttpServletRequest request){
-        return null;
+        String str = request.getParameter("datas");
+        List<DvAssetsDetails> details = JSON.parseArray(str, DvAssetsDetails.class);
+        DvAssetsDetails d = details.get(0);
+        d.setAssetsId(ComTool.deptId(ComTool.ASSETS_ID));
+        DvAssetsUnused u = new DvAssetsUnused();
+        DvAssetsBoreturn bt = new DvAssetsBoreturn();
+        String type = "";
+        if (d.getUseAccountype().equals("")){ //闲置资产
+            u.setUnusedId(ComTool.deptId(ComTool.UNUSED_ID));
+            u.setAssetsId(d.getAssetsId());
+            u.setAssetsName(d.getAssetsName());
+            u.setUnusedTime(d.getAssetsBuytime());
+            u.setAccount(ComTool.UserDatas(request).getAccount());
+            u.setUserName(ComTool.UserDatas(request).getUserRealname());
+            u.setRemark(d.getAssetsRemark());
+            u.setStayplace(d.getStorageLocation());
+            type = "unused";
+        }else { //租借
+            if (d.getUseAccountype().equals("0")) { //企业内部租用
+                bt.setUserType("0");
+            }
+
+            if (d.getUseAccountype().equals("1")){ //对外租用
+                bt.setPrescriptIncome(d.getPrescriptIncome());
+                bt.setUserType("1");
+            }
+            bt.setBoreturnId(ComTool.deptId(ComTool.BORETURN_ID));
+            bt.setAssetsId(d.getAssetsId());
+            bt.setAssetsName(d.getAssetsName());
+            bt.setBoreturnAccount(d.getUseId());
+            bt.setBoreturnUserealname("");
+            bt.setPrescriptReturntime(d.getPrescriptReturntime());
+            bt.setManagerAccount(ComTool.UserDatas(request).getAccount());
+            bt.setManagerName(ComTool.UserDatas(request).getUserRealname());
+            bt.setAssetsStateId("2");
+            bt.setAssetsStateName("已借出");
+            bt.setRemark(d.getAssetsRemark());
+            bt.setBoreturnStyle("0");
+            type = "boreturn";
+        }
+        Map map = new HashMap();
+        map.put("assets", d);
+        map.put("unused", u);
+        map.put("boreturn", bt);
+        map.put("type", type);
+        String s = detailService.insertMore(map);
+        return "success";
     }
 
     /**
@@ -130,7 +167,7 @@ public class AssetsDetailController {
         String data = "";
         if (type.equals("cmp")){ //新增企业
             DvBorrowCmp cmp = JSON.parseArray(str, DvBorrowCmp.class).get(0);
-            cmp.setCmpId(IdTool.deptId(IdTool.CMP_ID));
+            cmp.setCmpId(ComTool.deptId(ComTool.CMP_ID));
             try{
                 data = borrowCmpService.insertSelective(cmp);
             }catch (Exception e){
@@ -139,7 +176,7 @@ public class AssetsDetailController {
         }
         if (type.equals("dept")){ //新增部门
            DvDept dept = JSON.parseArray(str, DvDept.class).get(0);
-           dept.setDeptId(IdTool.deptId(IdTool.DEPT_ID));
+           dept.setDeptId(ComTool.deptId(ComTool.DEPT_ID));
            try{
                data = deptService.insertSelective(dept);
            }catch (Exception e){

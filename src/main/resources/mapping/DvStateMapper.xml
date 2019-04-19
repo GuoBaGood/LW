@@ -8,6 +8,55 @@
   <sql id="Base_Column_List" >
     state_id, state_name
   </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dv_state
+    where state_id = #{stateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_state
+    where state_id = #{stateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvState" >
+    insert into dv_state (state_id, state_name)
+    values (#{stateId,jdbcType=VARCHAR}, #{stateName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvState" >
+    insert into dv_state
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stateId != null" >
+        state_id,
+      </if>
+      <if test="stateName != null" >
+        state_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stateId != null" >
+        #{stateId,jdbcType=VARCHAR},
+      </if>
+      <if test="stateName != null" >
+        #{stateName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvState" >
+    update dv_state
+    <set >
+      <if test="stateName != null" >
+        state_name = #{stateName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where state_id = #{stateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvState" >
+    update dv_state
+    set state_name = #{stateName,jdbcType=VARCHAR}
+    where state_id = #{stateId,jdbcType=VARCHAR}
+  </update>
+
   <select id="queryAllState" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

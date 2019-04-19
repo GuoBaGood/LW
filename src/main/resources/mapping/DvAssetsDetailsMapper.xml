@@ -52,7 +52,7 @@
       assets_addway, assets_state_id, assets_state_name, 
       assets_outfactory_time, dep_way, dep_monthnum, 
       assets_remark, carry_monthnum, dep_mothly, 
-      except_netval, dep_all, dept_use, 
+      except_netval, dep_all, use_name, 
       assets_type, storage_location)
     values (#{assetsId,jdbcType=VARCHAR}, #{assetsName,jdbcType=VARCHAR}, #{assetsNormtype,jdbcType=VARCHAR}, 
       #{assetsFactory,jdbcType=VARCHAR}, #{assetsBuytime,jdbcType=TIMESTAMP}, #{assetsNum,jdbcType=INTEGER}, 
@@ -60,7 +60,7 @@
       #{assetsAddway,jdbcType=VARCHAR}, #{assetsStateId,jdbcType=VARCHAR}, #{assetsStateName,jdbcType=VARCHAR}, 
       #{assetsOutfactoryTime,jdbcType=TIMESTAMP}, #{depWay,jdbcType=VARCHAR}, #{depMonthnum,jdbcType=INTEGER}, 
       #{assetsRemark,jdbcType=VARCHAR}, #{carryMonthnum,jdbcType=INTEGER}, #{depMothly,jdbcType=REAL}, 
-      #{exceptNetval,jdbcType=REAL}, #{depAll,jdbcType=REAL}, #{deptUse,jdbcType=VARCHAR}, 
+      #{exceptNetval,jdbcType=REAL}, #{depAll,jdbcType=REAL}, #{useName,jdbcType=VARCHAR}, 
       #{assetsType,jdbcType=VARCHAR}, #{storageLocation,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvAssetsDetails" >
@@ -126,8 +126,8 @@
       <if test="depAll != null" >
         dep_all,
       </if>
-      <if test="deptUse != null" >
-        dept_use,
+      <if test="useName != null" >
+        use_name,
       </if>
       <if test="assetsType != null" >
         assets_type,
@@ -197,8 +197,8 @@
       <if test="depAll != null" >
         #{depAll,jdbcType=REAL},
       </if>
-      <if test="deptUse != null" >
-        #{deptUse,jdbcType=VARCHAR},
+      <if test="useName != null" >
+        #{useName,jdbcType=VARCHAR},
       </if>
       <if test="assetsType != null" >
         #{assetsType,jdbcType=VARCHAR},
@@ -268,8 +268,8 @@
       <if test="depAll != null" >
         dep_all = #{depAll,jdbcType=REAL},
       </if>
-      <if test="deptUse != null" >
-        dept_use = #{deptUse,jdbcType=VARCHAR},
+      <if test="useName != null" >
+        use_name = #{useName,jdbcType=VARCHAR},
       </if>
       <if test="assetsType != null" >
         assets_type = #{assetsType,jdbcType=VARCHAR},
@@ -301,7 +301,7 @@
       dep_mothly = #{depMothly,jdbcType=REAL},
       except_netval = #{exceptNetval,jdbcType=REAL},
       dep_all = #{depAll,jdbcType=REAL},
-      dept_use = #{deptUse,jdbcType=VARCHAR},
+      use_name = #{useName,jdbcType=VARCHAR},
       assets_type = #{assetsType,jdbcType=VARCHAR},
       storage_location = #{storageLocation,jdbcType=VARCHAR}
     where assets_id = #{assetsId,jdbcType=VARCHAR}

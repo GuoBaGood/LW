@@ -14,6 +14,14 @@
         #model .we-search input.layui-input {
             width: 150px;
         }
+
+        .cmpC {
+            display: none;
+        }
+
+        .deptC {
+            display: none;
+        }
     </style>
 </head>
 
@@ -280,7 +288,7 @@
         </div>
         <div class="layui-tab-item">
             <div class="weadmin-body">
-                <form class="layui-form we-search" style="color: #666;">
+                <form class="layui-form we-search" style="color: #666;" id="addNewForm">
                     <div class="layui-row">
                         <div class="layui-form-item">
                             <span style="    font-size: 16px;font-weight: 34;">使用信息<i class="iconfont icon-wenhao" title="若您需要填写使用信息,则需要完整的填写使用部门,使用人,使用地,领用时间的信息.不填写则默认改为资产为闲置状态"></i></span>
@@ -289,47 +297,59 @@
                             <b class="red" style="color:red">*</b>使用者类型<i class="iconfont icon-wenhao" title="是企业内部使用还是租借给其他公司"></i>
                             <div class="layui-inline">
                                 <select name="useAccountype" id="useAccountype" lay-filter="useAccountype">
-                                    <option>请选择类型</option>
+                                    <option value="">请选择类型</option>
                                     <option value="0">企业内部</option>
                                     <option value="1">租借单位</option>
                                 </select>
                             </div>
-                            <!--部门信息-->
-                            <span class="deptC">使用部门：</span>
-                            <div class="layui-inline deptC" style="margin-right: 0px;">
-                                <select name="useName" lay-search id="useName" lay-filter="useName">
-                                    <option value="">请选择</option>
-                                </select>
-                            </div>
-                            <a class="layui-btn layui-btn-xs deptC" href="javascript:;" title="新增部门" onclick="addDC('dept')">新增</a>
-
-
-                            <!--租借企业信息-->
-                            <span class="cmpC">&nbsp;&nbsp;租借单位</span>：
-                            <div class="layui-inline cmpC" style="margin-right: 0px;">
-                                <select name="useName" id="cmpName" lay-filter="useName">
-                                    <option value="">请选择</option>
-                                </select>
-                            </div>
-                            <a class="layui-btn layui-btn-xs cmpC" href="javascript:;" title="新增企业"  onclick="addDC('cmp')">新增</a>
-
-                            <span>&nbsp;&nbsp;领用时间</span>
+                            <span>领用时间</span>
                             <div class="layui-inline">
                                 <input type="text" class="layui-input timeYMD" name="useTime" id="useTime" placeholder="yyyy-MM-dd">
 
                             </div>
+                            预计归还时间
+                            <div class="layui-inline">
+                                <div class="layui-inline">
+                                    <input type="text" class="layui-input timeYMD" name="prescriptReturntime"  placeholder="yyyy-MM-dd">
+                                </div>
+                            </div>
+                            <div class="deptC">
+                                <!--部门信息-->
+                                <b class="red" style="color:red">*</b><span class="">使用部门</span>
+                                <div class="layui-inline " style="margin-right: 0px;">
+                                    <select name="useId" lay-search id="useName" lay-filter="useName">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <a class="layui-btn layui-btn-xs " href="javascript:;" title="新增部门" onclick="addDC('dept')">新增</a>
+                            </div>
 
-                        <fieldset class="layui-elem-field layui-field-title" style="">
+                            <!--租借企业信息-->
+                            <div class="cmpC">
+                                <b class="red" style="color:red">*</b><span class="">&nbsp;&nbsp;租借单位</span>
+                                <div class="layui-inline " style="margin-right: 0px;">
+                                    <select name="useId" id="cmpName" lay-filter="useName">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                                <a class="layui-btn layui-btn-xs" href="javascript:;" title="新增企业"  onclick="addDC('cmp')">新增</a>
+                                &nbsp;&nbsp;预计收入
+                                <div class="layui-inline">
+                                    <div class="layui-inline">
+                                        <input type="text" class="layui-input" name="prescriptIncome" placeholder="" autocomplete="off" >
+                                    </div>
+                                </div>
+                            </div>
+                            <input style="display: none;" name="useName" type="text" id="useNameinput">
+
+
+                        <fieldset class="layui-elem-field layui-field-title" style="" placeholder="" autocomplete="off">
                         </fieldset>
                     </div>
                     </div>
                     <div class="layui-row" style="margin-left: 2%;">
 
                             <div class="layui-form-item">
-                                资产编号：
-                                <div class="layui-inline">
-                                    <input type="text" name="assetsId"  placeholder="" autocomplete="off" class="layui-input">
-                                </div>
                                 资产名称：
                                 <div class="layui-inline">
                                     <input type="text" name="assetsName"  placeholder="" autocomplete="off" class="layui-input">
@@ -343,6 +363,11 @@
                                 制造厂家：
                                 <div class="layui-inline">
                                     <input type="text" name="assetsFactory"  placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+
+                                存储地：
+                                <div class="layui-inline">
+                                    <input type="text" name="storageLocation"  placeholder="" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -506,12 +531,12 @@
             ,cols: [[
                 {field:'assetsId', width:'10%', title: '资产编号', sort: true}
                 ,{field:'assetsName', width:'10%', title: '资产名称'}
+                ,{field:'assetsNormtype', width:'10%', title: '规格型号'}
+                ,{field:'assetsFactory', width:'10%', title: '生产厂家'}
                 ,{field:'assetsBuytime', title: '购买时间', sort: true, width:'15%'}
                 ,{field:'assetsNum', width:'5%', title: '数量', sort: true}
                 ,{field:'assetInitialval', title: '资产原值', sort: true, width:'10%'}
-                ,{field:'exceptNetval', title: '预计净残值', width:'10%'}
                 ,{field:'assetsType', title: '资产类型', width: '10%'}
-                ,{field:'useName', width:'10%', title: '使用部门'}
                 ,{field:'assetsStateName', width:'10%', title: '使用情况', templet: function(d){
                     var color = "";
                     var state = d.assetsStateName;
@@ -599,9 +624,44 @@
             addNewDc(type, arry);
         });
 
+        form.on('select(useAccountype)', function (data) {
+            var value = data.value;
+            if (value == '0'){ //企业内部租用；
+                $(".cmpC").hide();
+                $(".deptC").show();
+            }
+            else if (value == "1"){ //对外租用
+                $(".deptC").hide();
+                $(".cmpC").show();
+
+            }
+            else {
+                $(".deptC").hide();
+                $(".cmpC").hide();
+            }
+        });
+
+        form.on('select(cmpName)', function (data) {
+            var text = this.textContent;
+            $("#useNameinput").val(text);
+        });
+
+        form.on('select(useName)', function (data) {
+            var text = this.textContent;
+            $("#useNameinput").val(text);
+        });
+
+
+
+        form.on('submit(addNew)',function (data) { //新建资产
+            var serchDatas = data.field;// data.field获取整个表单
+            var arry = [];
+            arry.push(serchDatas);
+            addNewDetails(arry);
+        });
+
 
     });
-
 
     //负责打开弹窗
     var newDC; //弹窗对象
@@ -638,6 +698,7 @@
 
     }
 
+    //新增企业或者用户信息
     function addNewDc(type, arry) {
         $.ajax({
             type: 'get',
@@ -645,10 +706,40 @@
             data:{datas:JSON.stringify(arry)},
             async:false,
             success: function (data) {
-                alert("hh");
+                layer.msg('新建成功!', {
+                    icon: 1,
+                    time: 1000
+                });
                 layer.close(newDC);
             }
         });
+    }
+
+    //新增资产订单
+    function addNewDetails(arry){
+        $.ajax({
+            type: 'get',
+            url: '/details/addNewDetails',
+            data:{datas:JSON.stringify(arry)},
+            async:false,
+            success: function (data) {
+                if (data == "success"){
+                    layer.msg('新建资产列表成功!', {
+                        icon: 1,
+                        time: 1000
+                    });
+                }else {
+                    layer.msg('新建失败!', {
+                        icon: 5,
+                        time: 1000
+                    });
+                }
+                $(".deptC").hide();
+                $(".cmpC").hide();
+                document.getElementById("addNewForm").reset();
+            }
+        });
+
     }
 
 

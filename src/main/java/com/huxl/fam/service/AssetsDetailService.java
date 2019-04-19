@@ -2,8 +2,10 @@ package com.huxl.fam.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IDEA
@@ -20,4 +22,6 @@ public interface AssetsDetailService {
     int queryNumByCon(DvAssetsDetails d);
 
     String insertSelective(DvAssetsDetails record);
+
+    String insertMore(Map map);
 }

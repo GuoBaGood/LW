@@ -18,4 +18,6 @@ public interface UnusedService {
     List<DvAssetsUnused> queryUnusedByPage(DvAssetsUnused d, PageBounds pageBounds);
 
     int queryNum();
+
+    int insertSelective(DvAssetsUnused record);
 }
