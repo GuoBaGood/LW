@@ -11,7 +11,7 @@ public class DvLog {
 
     private Date manageTime;
 
-    private String desc;
+    private String logDesc;
 
     public String getLogid() {
         return logid;
@@ -45,11 +45,11 @@ public class DvLog {
         this.manageTime = manageTime;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getLogDesc() {
+        return logDesc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setLogDesc(String logDesc) {
+        this.logDesc = logDesc == null ? null : logDesc.trim();
     }
 }

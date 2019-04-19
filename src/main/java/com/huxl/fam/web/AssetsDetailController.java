@@ -5,6 +5,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.*;
 import com.huxl.fam.service.*;
 import com.huxl.fam.tool.ComTool;
+import com.huxl.fam.tool.Log;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,7 +77,7 @@ public class AssetsDetailController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        Log.ADDLOG(request, "查找资产详情列表");
         res.setData(detailsList);
         res.setResponseCode(200);
         res.setResponseDesc("操作成功！");
@@ -136,6 +137,7 @@ public class AssetsDetailController {
         map.put("boreturn", bt);
         map.put("type", type);
         String s = detailService.insertMore(map);
+        Log.ADDLOG(request, "新增资产");
         return "success";
     }
 
@@ -150,6 +152,7 @@ public class AssetsDetailController {
         List<DvState> states = stateService.queryAllState();
         List<DvDept> depts = deptService.queryDepts();
         List<DvBorrowCmp> borrowCmps = borrowCmpService.queryCmp();
+        Log.ADDLOG(request, "查询资产状态/部门/租借企业/资产类型信息");
         map.put("types", types);
         map.put("states", states);
         map.put("depts", depts);
@@ -173,6 +176,7 @@ public class AssetsDetailController {
             }catch (Exception e){
                 e.printStackTrace();
             }
+            Log.ADDLOG(request, "新增企业信息");
         }
         if (type.equals("dept")){ //新增部门
            DvDept dept = JSON.parseArray(str, DvDept.class).get(0);
@@ -182,7 +186,9 @@ public class AssetsDetailController {
            }catch (Exception e){
                e.printStackTrace();
            }
+            Log.ADDLOG(request, "新增部门信息");
         }
+
         return data;
     }
 

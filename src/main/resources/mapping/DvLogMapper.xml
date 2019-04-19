@@ -6,10 +6,10 @@
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="manage_name" property="manageName" jdbcType="VARCHAR" />
     <result column="manage_time" property="manageTime" jdbcType="TIMESTAMP" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="log_desc" property="logDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    LogId, account, manage_name, manage_time, desc
+    LogId, account, manage_name, manage_time, log_desc
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -23,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.huxl.fam.entity.DvLog" >
     insert into dv_log (LogId, account, manage_name, 
-      manage_time, desc)
+      manage_time, log_desc)
     values (#{logid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{manageName,jdbcType=VARCHAR}, 
-      #{manageTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR})
+      #{manageTime,jdbcType=TIMESTAMP}, #{logDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvLog" >
     insert into dv_log
@@ -42,8 +42,8 @@
       <if test="manageTime != null" >
         manage_time,
       </if>
-      <if test="desc != null" >
-        desc,
+      <if test="logDesc != null" >
+        log_desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -59,8 +59,8 @@
       <if test="manageTime != null" >
         #{manageTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="desc != null" >
-        #{desc,jdbcType=VARCHAR},
+      <if test="logDesc != null" >
+        #{logDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -76,8 +76,8 @@
       <if test="manageTime != null" >
         manage_time = #{manageTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="logDesc != null" >
+        log_desc = #{logDesc,jdbcType=VARCHAR},
       </if>
     </set>
     where LogId = #{logid,jdbcType=VARCHAR}
@@ -87,7 +87,7 @@
     set account = #{account,jdbcType=VARCHAR},
       manage_name = #{manageName,jdbcType=VARCHAR},
       manage_time = #{manageTime,jdbcType=TIMESTAMP},
-      desc = #{desc,jdbcType=VARCHAR}
+      log_desc = #{logDesc,jdbcType=VARCHAR}
     where LogId = #{logid,jdbcType=VARCHAR}
   </update>
 </mapper>

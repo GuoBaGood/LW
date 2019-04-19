@@ -3,6 +3,7 @@ package com.huxl.fam.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsUnused;
 import com.huxl.fam.service.UnusedService;
+import com.huxl.fam.tool.Log;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class UnusedController {
         DvAssetsUnused d = new DvAssetsUnused();
         List<DvAssetsUnused> list = unusedService.queryUnusedByPage(d, pageBounds);
         int num = unusedService.queryNum();
+        Log.ADDLOG(request, "查询闲置资产");
         res.setResponseDesc("操作成功");
         res.setData(list);
         res.setTotal(num);

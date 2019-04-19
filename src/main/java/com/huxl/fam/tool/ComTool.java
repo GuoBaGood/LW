@@ -22,12 +22,13 @@ public class ComTool {
     public static String UNUSED_ID = "un"; //闲置资产
     public static String ASSETS_ID = "GD"; //资产id
     public static String BORETURN_ID = "bt"; //租借资产
+    public static String LOG_ID = "lg"; //日志
 
     //生产id
     public static String deptId(String type){
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH:mm:ss");
-        String id = "d" + sdf.format(date).replaceAll(":", "");//去掉所有空格
+        String id = type + sdf.format(date).replaceAll(":", "");//去掉所有空格
         return id;
     }
 

@@ -3,6 +3,8 @@ package com.huxl.fam.web;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsRepair;
 import com.huxl.fam.service.RepairService;
+import com.huxl.fam.tool.ComTool;
+import com.huxl.fam.tool.Log;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,21 +45,19 @@ public class RepairController {
         d.setAssetsId(request.getParameter("aId"));
         d.setAssetsName(request.getParameter("aName"));
         String sendtime = request.getParameter("sendtime");
+        String desc = "";
         if (type.equals("repairing")){
             d.setRepairStyle("0");
+            desc = "查询维修中的资产";
         }
         if (type.equals("repaired")){
             d.setRepairStyle("1"); //维修完成
+            desc = "查询资产维修记录";
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        try {
-//            d.setRepairTime(sdf.parse(sendtime));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            d.setRepairTime(null);
-//        }
+        d.setRepairTime(ComTool.StingToDate(sendtime));
         List<DvAssetsRepair> list = repairService.queryRepairingAssets(d, pageBounds);
         int num = repairService.queryRepairingAssetsNum(d);
+        Log.ADDLOG(request, desc);
         res.setTotal(num);
         res.setData(list);
         res.setResponseCode(200);

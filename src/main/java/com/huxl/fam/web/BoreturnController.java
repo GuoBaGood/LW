@@ -4,6 +4,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
 import com.huxl.fam.service.BoreturnService;
 import com.huxl.fam.tool.ComTool;
+import com.huxl.fam.tool.Log;
 import com.huxl.fam.tool.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,14 @@ public class BoreturnController {
         PageResponse res = new PageResponse();
         //获取前端传回的数据
         DvAssetsBoreturn b = new DvAssetsBoreturn();
+        String desc = "";
         if (type.equals("borrow")){ //租借中
             b.setBoreturnStyle("0");
+            desc = "查询租借出的资产";
         }
         if (type.equals("return")){//租借完成，已经归还；
             b.setBoreturnStyle("1");
+            desc = "查寻租借资产的历史记录";
         }
         b.setAssetsId(request.getParameter("assetsId"));
         b.setAssetsName(request.getParameter("assetsName"));
@@ -55,6 +59,7 @@ public class BoreturnController {
         res.setData(list);
         res.setResponseCode(200);
         res.setResponseDesc("操作成功！");
+        Log.ADDLOG(request, desc);
         return res;
     }
 }
