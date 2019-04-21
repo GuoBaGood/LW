@@ -5,6 +5,7 @@ import com.huxl.fam.entity.DvUser;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -56,7 +57,9 @@ public class ComUtil {
                 return null;
             }
         }else {
-            return null;
+            Calendar cal = Calendar.getInstance();
+            int year = cal.get(Calendar.YEAR);
+            return year;
         }
     }
     //获取当前登陆者信息

@@ -286,6 +286,7 @@
 	dv_assets_boreturn
     WHERE
 	1=1
+	<include refid="conditionByYear"/>
   </select>
 
   <sql id="conditionByYear">

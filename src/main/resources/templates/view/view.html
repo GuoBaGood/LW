@@ -6,15 +6,16 @@
     <title>数据可视化</title>
     <link rel="stylesheet" href="/static/css/item/layui.css">
     <link rel="stylesheet" href="/static/css/weadmin.css">
+    <link rel="stylesheet" href="/static/iconfont/QuestionMark.css">
 
 </head>
 <body style="height: 100%; margin: 0">
 <div class="weadmin-body" style="height: 100%;">
     <div class="layui-row" id="model">
         <form class="layui-form we-search" style="color: #666;">
-            查询年数据：
+            查询年数据<i class="iconfont icon-wenhao" title="默认是今年数据"></i>
             <div class="layui-inline">
-                <input type="text" name="year" id="year" placeholder="yyyy" autocomplete="off" class="layui-input timeYMD">
+                <input type="text" name="year" id="year" placeholder="yyyy" class="layui-input timeYMD">
             </div>
 
             <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
@@ -36,9 +37,6 @@
 <script type="text/javascript">
 
         $(function(){
-            var date=new Date;
-            var year=date.getFullYear();
-            $("#year").val(year);
             setDatas("");
         });
 
