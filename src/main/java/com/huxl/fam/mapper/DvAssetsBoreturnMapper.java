@@ -2,6 +2,7 @@ package com.huxl.fam.mapper;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
+import com.huxl.fam.vo.BarVo;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface DvAssetsBoreturnMapper {
     List<DvAssetsBoreturn> selectBoreturn(DvAssetsBoreturn boreturn, PageBounds pageBounds);
 
     int queryNum(DvAssetsBoreturn boreturn);
+
+    List<Integer> queryByDate();
 }

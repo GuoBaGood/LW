@@ -5,6 +5,7 @@ import com.huxl.fam.entity.DvState;
 import com.huxl.fam.mapper.DvDeptMapper;
 import com.huxl.fam.mapper.DvStateMapper;
 import com.huxl.fam.service.DeptService;
+import com.huxl.fam.service.ViewService;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,31 +53,14 @@ public class FamApplicationTests {
 	@Autowired
 	private DvStateMapper stateMapper;
 
-	//@Transactional(rollbackFor = Exception.class)
-	@Transactional
+	@Autowired
+	private ViewService viewService;
 	@Test
-	public void dummy() {
-		DvState s = new DvState();
-		DvDept d = new DvDept();
-
-		d.setDeptId("66");
-		d.setDeptName("text");
-		d.setDeptPrinciple("text");
-
-		s.setStateName("text");
-		s.setStateId("66");
-
-		try{
-			stateMapper.insertSelective(s);
-			dvDeptMapper.insertSelective(d);
-			return ;
-
-		}catch (Exception e){
-			e.printStackTrace();
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//关键
-		}
-
-		String  a = "hhh";
+	public void bfff() throws Exception {
+		viewService.queryByDate();
+		String a = "hh";
 	}
+
+
 }
 

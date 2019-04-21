@@ -265,4 +265,23 @@
     WHERE 1=1
     <include refid="conditions"/>
   </select>
+
+
+  <!--可视化处理-->
+
+  <select id="queryByDate" resultType="java.lang.Integer">
+    SELECT count(*) as num
+    -- , str_to_date(
+    -- 		date_format(repair_time, '%Y-%m'),
+    -- 		'%Y-%m'
+    -- 	) AS repair_time
+    from dv_assets_repair
+    where 1=1
+    and repair_time &lt;&gt; ''
+    group by str_to_date(
+    date_format(repair_time, '%Y-%m'),
+    '%Y-%m'
+    )
+
+  </select>
 </mapper>

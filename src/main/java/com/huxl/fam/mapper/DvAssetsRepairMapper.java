@@ -2,6 +2,7 @@ package com.huxl.fam.mapper;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsRepair;
+import com.huxl.fam.vo.BarVo;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface DvAssetsRepairMapper {
 
     //满足条件的数量
     int queryRepairingAssetsNum(DvAssetsRepair d);
+
+    List<Integer> queryByDate();
 }

@@ -264,4 +264,23 @@
     <include refid="conditions"/>
   </select>
 
+
+  <!--关于可视化-->
+
+
+  <select id="queryByDate" resultType="java.lang.Integer">
+    SELECT count(*) as num
+    -- , str_to_date(
+    -- 		date_format(boreturn_time, '%Y-%m'),
+    -- 		'%Y-%m'
+    -- 	) AS boreturn_time
+    from dv_assets_boreturn
+    where 1=1
+    and boreturn_time &lt;&gt; ''
+    group by str_to_date(
+    date_format(boreturn_time, '%Y-%m'),
+    '%Y-%m'
+    )
+  </select>
+
 </mapper>
