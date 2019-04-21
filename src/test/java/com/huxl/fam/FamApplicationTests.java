@@ -20,10 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -77,6 +74,7 @@ public class FamApplicationTests {
 			list1.add(value);
 		}
 		String ab = "hh";
+		Map<String, Object> m = new LinkedHashMap<>();
 	}
 
 

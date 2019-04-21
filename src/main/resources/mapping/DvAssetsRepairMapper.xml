@@ -269,7 +269,7 @@
 
   <!--可视化处理-->
 
-  <select id="queryDataByYear" resultType="java.util.HashMap">
+  <select id="queryDataByYear" resultType="java.util.LinkedHashMap">
      SELECT
 	sum( CASE MONTH ( repair_time ) WHEN '1' THEN 1 ELSE 0 END ) AS january,
 	sum( CASE MONTH ( repair_time ) WHEN '2' THEN 1 ELSE 0 END ) AS february,
