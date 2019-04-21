@@ -1,6 +1,7 @@
 package com.huxl.fam.service;
 
 import com.huxl.fam.vo.BarVo;
+import com.huxl.fam.vo.ConditionVo;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ import java.util.List;
  * 描述：视图处理
  */
 public interface ViewService {
-    List<BarVo> queryByDate();
+    List<BarVo> queryByDate(ConditionVo cvo);
 }

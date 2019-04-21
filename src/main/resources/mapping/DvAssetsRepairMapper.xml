@@ -269,19 +269,30 @@
 
   <!--可视化处理-->
 
-  <select id="queryByDate" resultType="java.lang.Integer">
-    SELECT count(*) as num
-    -- , str_to_date(
-    -- 		date_format(repair_time, '%Y-%m'),
-    -- 		'%Y-%m'
-    -- 	) AS repair_time
-    from dv_assets_repair
-    where 1=1
-    and repair_time &lt;&gt; ''
-    group by str_to_date(
-    date_format(repair_time, '%Y-%m'),
-    '%Y-%m'
-    )
+  <select id="queryDataByYear" resultType="java.util.HashMap">
+     SELECT
+	sum( CASE MONTH ( repair_time ) WHEN '1' THEN 1 ELSE 0 END ) AS january,
+	sum( CASE MONTH ( repair_time ) WHEN '2' THEN 1 ELSE 0 END ) AS february,
+	sum( CASE MONTH ( repair_time ) WHEN '3' THEN 1 ELSE 0 END ) AS march,
+	sum( CASE MONTH ( repair_time ) WHEN '4' THEN 1 ELSE 0 END ) AS april,
+	sum( CASE MONTH ( repair_time ) WHEN '5' THEN 1 ELSE 0 END ) AS may,
+	sum( CASE MONTH ( repair_time ) WHEN '6' THEN 1 ELSE 0 END ) AS june,
+	sum( CASE MONTH ( repair_time ) WHEN '7' THEN 1 ELSE 0 END ) AS july,
+	sum( CASE MONTH ( repair_time ) WHEN '8' THEN 1 ELSE 0 END ) AS august,
+	sum( CASE MONTH ( repair_time ) WHEN '9' THEN 1 ELSE 0 END ) AS september,
+	sum( CASE MONTH ( repair_time ) WHEN '10' THEN 1 ELSE 0 END ) AS october,
+	sum( CASE MONTH ( repair_time ) WHEN '11' THEN 1 ELSE 0 END ) AS november,
+	sum( CASE MONTH ( repair_time ) WHEN '12' THEN 1 ELSE 0 END ) AS december
+    FROM
+	dv_assets_repair
+    WHERE
+	1=1
+	<include refid="conditionByYear"/>
+</select>
 
-  </select>
+  <sql id="conditionByYear">
+    <if test="year != null " >
+      AND YEAR ( repair_time ) = #{year}
+    </if>
+  </sql>
 </mapper>

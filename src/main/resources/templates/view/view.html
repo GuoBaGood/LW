@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>数据可视化</title>
-    <script type="text/javascript" src="/static/js/echarts/echarts.js"></script>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+
 </head>
-<body>
-    <div id="container" style="width: 600px;height:400px;"></div>
+<body style="height: 100%; margin: 0">
+<div class="weadmin-body" style="height: 100%;">
+    <div class="layui-row" id="model">
+        <form class="layui-form we-search" style="color: #666;">
+            查询年数据：
+            <div class="layui-inline">
+                <input type="text" name="year" id="year" placeholder="yyyy" autocomplete="off" class="layui-input timeYMD">
+            </div>
+
+            <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+    <div class="layui-row" style="height: 80%;">
+        <div id="container" style="height: 100%;">
+        </div>
+    </div>
+</div>
+
+
+
 </body>
-    <script src="../../static/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript" src="/static/js/echarts/echarts.js"></script>
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="/static/layui.js"></script>
+<script src="/static/js/c-component.js"></script>
+<script type="text/javascript">
 
         $(function(){
-            setDatas();
+            var date=new Date;
+            var year=date.getFullYear();
+            $("#year").val(year);
+            setDatas("");
         });
 
         var dom = document.getElementById("container");
@@ -116,7 +142,7 @@
                 }
             },
             legend: {
-                data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+                data: ['1', '2', '2', '3', '3', '3', '3', '3', '3', '3', '3', '3']
             },
             toolbox: {
                 show: true,
@@ -136,7 +162,7 @@
                 {
                     type: 'category',
                     axisTick: {show: false},
-                    data: ['2012', '2013', '2014', '2015', '2016']
+                    data:['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
                 }
             ],
             yAxis: [
@@ -171,23 +197,48 @@
                     data: [98, 77, 101, 99, 40]
                 }
             ]
-        };;
+        };
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
         }
 
+        layui.use(['table','laydate', 'form', 'element'], function(){
+            var table = layui.table;
+            var laydate = layui.laydate;
+            var form = layui.form;
+            var element = layui.element;
 
-        function setDatas(){
+            //时间样式：
+            lay('.timeYMD').each(function () {
+                laydate.render({
+                    elem: this,
+                    type: 'year',
+                    trigger : 'click'
+                });
+            });
+
+            // 搜索条件表单监听
+            form.on('submit(search)', function (data) {
+                var serchDatas = data.field;// data.field获取整个表单
+                setDatas(serchDatas);
+            });
+        });
+
+        function setDatas(datas){
             $.ajax({
                 type: 'get',
                 url: '/view/manyBar',
+                data: datas,
                 success: function (data) {
-                    alert("hhh");
+                    var nameList = [];
                     for (var i=0; i<data.length; i++){
                         data[i].label = labelOption;
+                        nameList.push(data[i].name);
                     }
+                    option.legend.data = nameList;
                     option.series = data;
                     myChart.setOption(option, true);
+
                 }
             });
         }

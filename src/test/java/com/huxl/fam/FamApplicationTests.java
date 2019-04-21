@@ -1,11 +1,15 @@
 package com.huxl.fam;
 
+import com.huxl.fam.entity.DvAssetsReduce;
 import com.huxl.fam.entity.DvDept;
 import com.huxl.fam.entity.DvState;
+import com.huxl.fam.mapper.DvAssetsReduceMapper;
 import com.huxl.fam.mapper.DvDeptMapper;
 import com.huxl.fam.mapper.DvStateMapper;
 import com.huxl.fam.service.DeptService;
 import com.huxl.fam.service.ViewService;
+import com.huxl.fam.tool.ComUtil;
+import com.huxl.fam.vo.ConditionVo;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,10 +62,21 @@ public class FamApplicationTests {
 
 	@Autowired
 	private ViewService viewService;
+
+	@Autowired
+	private DvAssetsReduceMapper reduceMapper;
 	@Test
 	public void bfff() throws Exception {
-		viewService.queryByDate();
 		String a = "hh";
+		ConditionVo vo = new ConditionVo();
+		vo.setYear(2018);
+		Map<String ,Object> bt = reduceMapper.queryDataByYear(vo);
+		List<Integer> list1 = new ArrayList<>();
+		for (String key:bt.keySet()){
+			Integer value = Integer.parseInt(bt.get(key.toString()).toString());
+			list1.add(value);
+		}
+		String ab = "hh";
 	}
 
 

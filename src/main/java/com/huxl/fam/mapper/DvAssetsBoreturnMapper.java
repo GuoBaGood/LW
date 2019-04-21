@@ -3,8 +3,10 @@ package com.huxl.fam.mapper;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsBoreturn;
 import com.huxl.fam.vo.BarVo;
+import com.huxl.fam.vo.ConditionVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DvAssetsBoreturnMapper {
     int deleteByPrimaryKey(String boreturnId);
@@ -23,5 +25,5 @@ public interface DvAssetsBoreturnMapper {
 
     int queryNum(DvAssetsBoreturn boreturn);
 
-    List<Integer> queryByDate();
+    Map<String,Object> queryDataByYear(ConditionVo vo);
 }

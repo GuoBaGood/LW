@@ -35,7 +35,7 @@ public class ComUtil {
     //时间转换
     public static Date StingToDate(String time){
         if (time != null && time != ""){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 return sdf.parse(time);
             } catch (ParseException e) {
@@ -47,6 +47,18 @@ public class ComUtil {
         }
     }
 
+    public static Integer StringToInt(String str){
+        if (str != null && str != ""){
+            try{
+                return Integer.parseInt(str);
+            }catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
+        }else {
+            return null;
+        }
+    }
     //获取当前登陆者信息
     public  static DvUser UserDatas(HttpServletRequest request){
         DvUser u = (DvUser) request.getSession().getAttribute("user");

@@ -142,4 +142,34 @@
   </select>
 
 
+  <!--可视化处理-->
+  <select id="queryDataByYear" resultType="java.util.HashMap">
+    SELECT
+    sum( CASE MONTH ( unused_time ) WHEN '1' THEN 1 ELSE 0 END ) AS january,
+    sum( CASE MONTH ( unused_time ) WHEN '2' THEN 1 ELSE 0 END ) AS february,
+    sum( CASE MONTH ( unused_time ) WHEN '3' THEN 1 ELSE 0 END ) AS march,
+    sum( CASE MONTH ( unused_time ) WHEN '4' THEN 1 ELSE 0 END ) AS april,
+    sum( CASE MONTH ( unused_time ) WHEN '5' THEN 1 ELSE 0 END ) AS may,
+    sum( CASE MONTH ( unused_time ) WHEN '6' THEN 1 ELSE 0 END ) AS june,
+    sum( CASE MONTH ( unused_time ) WHEN '7' THEN 1 ELSE 0 END ) AS july,
+    sum( CASE MONTH ( unused_time ) WHEN '8' THEN 1 ELSE 0 END ) AS august,
+    sum( CASE MONTH ( unused_time ) WHEN '9' THEN 1 ELSE 0 END ) AS september,
+    sum( CASE MONTH ( unused_time ) WHEN '10' THEN 1 ELSE 0 END ) AS october,
+    sum( CASE MONTH ( unused_time ) WHEN '11' THEN 1 ELSE 0 END ) AS november,
+    sum( CASE MONTH ( unused_time ) WHEN '12' THEN 1 ELSE 0 END ) AS december
+    FROM
+    dv_assets_unused
+    WHERE
+    1=1
+    <include refid="conditionByYear"/>
+  </select>
+
+  <sql id="conditionByYear">
+    <if test="year != null " >
+      AND YEAR ( unused_time ) = #{year}
+
+    </if>
+  </sql>
+
+
 </mapper>

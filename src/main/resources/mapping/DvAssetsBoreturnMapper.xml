@@ -268,19 +268,30 @@
   <!--关于可视化-->
 
 
-  <select id="queryByDate" resultType="java.lang.Integer">
-    SELECT count(*) as num
-    -- , str_to_date(
-    -- 		date_format(boreturn_time, '%Y-%m'),
-    -- 		'%Y-%m'
-    -- 	) AS boreturn_time
-    from dv_assets_boreturn
-    where 1=1
-    and boreturn_time &lt;&gt; ''
-    group by str_to_date(
-    date_format(boreturn_time, '%Y-%m'),
-    '%Y-%m'
-    )
+  <select id="queryDataByYear" resultType="java.util.HashMap">
+    SELECT
+	sum( CASE MONTH ( boreturn_time ) WHEN '1' THEN 1 ELSE 0 END ) AS january,
+	sum( CASE MONTH ( boreturn_time ) WHEN '2' THEN 1 ELSE 0 END ) AS february,
+	sum( CASE MONTH ( boreturn_time ) WHEN '3' THEN 1 ELSE 0 END ) AS march,
+	sum( CASE MONTH ( boreturn_time ) WHEN '4' THEN 1 ELSE 0 END ) AS april,
+	sum( CASE MONTH ( boreturn_time ) WHEN '5' THEN 1 ELSE 0 END ) AS may,
+	sum( CASE MONTH ( boreturn_time ) WHEN '6' THEN 1 ELSE 0 END ) AS june,
+	sum( CASE MONTH ( boreturn_time ) WHEN '7' THEN 1 ELSE 0 END ) AS july,
+	sum( CASE MONTH ( boreturn_time ) WHEN '8' THEN 1 ELSE 0 END ) AS august,
+	sum( CASE MONTH ( boreturn_time ) WHEN '9' THEN 1 ELSE 0 END ) AS september,
+	sum( CASE MONTH ( boreturn_time ) WHEN '10' THEN 1 ELSE 0 END ) AS october,
+	sum( CASE MONTH ( boreturn_time ) WHEN '11' THEN 1 ELSE 0 END ) AS november,
+	sum( CASE MONTH ( boreturn_time ) WHEN '12' THEN 1 ELSE 0 END ) AS december
+    FROM
+	dv_assets_boreturn
+    WHERE
+	1=1
   </select>
+
+  <sql id="conditionByYear">
+    <if test="year != null " >
+      AND YEAR ( boreturn_time ) = #{year}
+    </if>
+  </sql>
 
 </mapper>

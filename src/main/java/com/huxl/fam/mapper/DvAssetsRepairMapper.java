@@ -3,8 +3,10 @@ package com.huxl.fam.mapper;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvAssetsRepair;
 import com.huxl.fam.vo.BarVo;
+import com.huxl.fam.vo.ConditionVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DvAssetsRepairMapper {
     int deleteByPrimaryKey(String repairId);
@@ -25,5 +27,5 @@ public interface DvAssetsRepairMapper {
     //满足条件的数量
     int queryRepairingAssetsNum(DvAssetsRepair d);
 
-    List<Integer> queryByDate();
+    Map<String,Object> queryDataByYear(ConditionVo vo);
 }
