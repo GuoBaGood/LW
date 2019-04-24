@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huxl.fam.mapper.DvUserPowerMapper" >
+  <resultMap id="BaseResultMap" type="com.huxl.fam.entity.DvUserPower" >
+    <id column="userp_id" property="userpId" jdbcType="VARCHAR" />
+    <result column="dv_user_id" property="dvUserId" jdbcType="VARCHAR" />
+    <result column="dv_power_id" property="dvPowerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userp_id, dv_user_id, dv_power_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dv_user_power
+    where userp_id = #{userpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dv_user_power
+    where userp_id = #{userpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huxl.fam.entity.DvUserPower" >
+    insert into dv_user_power (userp_id, dv_user_id, dv_power_id
+      )
+    values (#{userpId,jdbcType=VARCHAR}, #{dvUserId,jdbcType=VARCHAR}, #{dvPowerId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvUserPower" >
+    insert into dv_user_power
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userpId != null" >
+        userp_id,
+      </if>
+      <if test="dvUserId != null" >
+        dv_user_id,
+      </if>
+      <if test="dvPowerId != null" >
+        dv_power_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userpId != null" >
+        #{userpId,jdbcType=VARCHAR},
+      </if>
+      <if test="dvUserId != null" >
+        #{dvUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="dvPowerId != null" >
+        #{dvPowerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huxl.fam.entity.DvUserPower" >
+    update dv_user_power
+    <set >
+      <if test="dvUserId != null" >
+        dv_user_id = #{dvUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="dvPowerId != null" >
+        dv_power_id = #{dvPowerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userp_id = #{userpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huxl.fam.entity.DvUserPower" >
+    update dv_user_power
+    set dv_user_id = #{dvUserId,jdbcType=VARCHAR},
+      dv_power_id = #{dvPowerId,jdbcType=VARCHAR}
+    where userp_id = #{userpId,jdbcType=VARCHAR}
+  </update>
+</mapper>
