@@ -32,10 +32,11 @@
 <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
         <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline NavigateUL" lay-filter="demo">
-            <li class="layui-nav-item layui-nav-itemed">
+            <li class="layui-nav-item layui-nav-itemed layui-this"><a href="##/view/view.html">资产概况</a></li>
+            <li class="layui-nav-item">
                 <a href="javascript:;" class="aclass">资产管理</a>
                 <dl class="layui-nav-child">
-                    <dd class="layui-this"><a href="##/assets/adetailMain.html">资产列表</a></dd>
+                    <dd><a href="##/assets/adetailMain.html">资产列表</a></dd>
                     <dd><a href="##/assets/repairMain.html">维修资产</a></dd>
                     <dd><a href="##/assets/boreturnMain.html">租借资产</a></dd>
                     <dd><a href="##/assets/unusedMain.html">闲置资产</a></dd>
@@ -54,7 +55,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="##/system/person.html">人员管理</a></dd>
                     <dd><a href="##/system/log.html">日志管理</a></dd>
-                    <dd><a href="##/system/other.html">其他</a></dd>
+                    <dd><a href="##/system/other.html">系统参数</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="##/view/view.html">数据可视化</a></li>
@@ -62,7 +63,7 @@
     </div>
 </div>
 <div class="layui-body site-demo">
-    <iframe id="bodyIframe" src="../static/assets/adetailMain.html" frameborder="0" data-name="main" style="width: 100%;height: 100%;"></iframe>
+    <iframe id="bodyIframe" src="../static/view/view.html" frameborder="0" data-name="main" style="width: 100%;height: 100%;"></iframe>
 </div>
 </div>
 </body>

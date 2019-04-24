@@ -29,7 +29,7 @@ public class ComUtil {
     public static String deptId(String type){
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHH:mm:ss");
-        String id = type + sdf.format(date).replaceAll(":", "");//去掉所有空格
+        String id = type + sdf.format(date).replaceAll(":", "")+(int)(Math.random()*100);//去掉所有空格
         return id;
     }
 
