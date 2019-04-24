@@ -30,4 +30,9 @@ public class RepairServiceImpl implements RepairService{
     public int queryRepairingAssetsNum(DvAssetsRepair d) {
         return repairMapper.queryRepairingAssetsNum(d);
     }
+
+    @Override
+    public void updateObject(DvAssetsRepair dRepair) {
+        repairMapper.updateObject( dRepair);
+    }
 }

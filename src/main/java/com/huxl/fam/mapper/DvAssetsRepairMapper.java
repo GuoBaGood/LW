@@ -28,4 +28,7 @@ public interface DvAssetsRepairMapper {
     int queryRepairingAssetsNum(DvAssetsRepair d);
 
     Map<String,Object> queryDataByYear(ConditionVo vo);
+
+    //更新修改的数据
+    void updateObject(DvAssetsRepair dRepair);
 }

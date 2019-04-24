@@ -18,4 +18,7 @@ public interface RepairService {
 
     //满足条件的数量
     int queryRepairingAssetsNum(DvAssetsRepair d);
+
+    //更新数据
+    void updateObject(DvAssetsRepair dRepair);
 }

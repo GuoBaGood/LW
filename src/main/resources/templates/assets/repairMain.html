@@ -11,6 +11,117 @@
         }
     </style>
 </head>
+
+<!--详情的弹窗-->
+<div id="detailsWindow" style="display: none;margin-top: 1%;">
+
+    <form class="layui-form" style="color: #666;" id="adetailform">
+
+        <div id="tdetail">
+            <div class="layui-form-item">
+                <label for="assetsId" class="layui-form-label">
+                    资产编号
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly  type="text" id="assetsId" name="assetsId" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="assetsName" class="layui-form-label">
+                    资产名称
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="assetsName" name="assetsName" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="repairTime" class="layui-form-label">
+                    送修时间
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="repairTime" name="repairTime" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="repairSituation" class="layui-form-label">
+                    维修原因
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="repairSituation" name="repairSituation" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="repairCompany" class="layui-form-label">
+                    维修单位
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="repairCompany" name="repairCompany" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="repairCompanyphone" class="layui-form-label">
+                    联系方式
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="repairCompanyphone" name="repairCompanyphone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  for="estimatedRepairPrice" class="layui-form-label">
+                    预计维修价格
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="estimatedRepairPrice" name="estimatedRepairPrice" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="estimatedCompletionTime" class="layui-form-label">
+                    预计完修时间
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="estimatedCompletionTime" name="estimatedCompletionTime" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="repairPrice" class="layui-form-label repair-Price-class" style="display: none">
+                    实际完修金额
+                </label>
+                <div class="layui-input-inline repair-Price-class" style="display: none">
+                    <input  type="text" id="repairPrice" name="repairPrice" autocomplete="off" class="layui-input" >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+
+                <label for="userName" class="layui-form-label">
+                    经办人姓名
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="userName" name="userName" autocomplete="off" class="layui-input">
+                </div>
+                <label for="account" class="layui-form-label">
+                    经办人账号
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="account" name="account" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="width: 50%">
+                <label for="remark" class="layui-form-label">
+                    补充说明
+                </label>
+                <div class="layui-input-block">
+                    <textarea  type="text"  id="remark" name="remark" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+                <input readonly type="hidden" id="repairId" name="repairId" autocomplete="off" class="layui-input" value="null">
+                <input readonly type="hidden" id="tag" name="tag" autocomplete="off" class="layui-input" value="null">
+            </div>
+        </div>
+        <button title="提交" type="button" style="background-color: #675eea; position: absolute; right: 20px;  bottom: 20px;" class="layui-btn" lay-submit="" lay-filter="save">提交</button>
+
+    </form>
+
+</div>
+
+
+
 <body>
 <div class="weadmin-body">
     <div class="layui-row" id="model">
@@ -90,6 +201,70 @@
         // 搜索条件表单监听
         form.on('submit(search)', function (data) {
             var serchDatas = data.field;// data.field获取整个表单
+            table.reload('repairTb', {where: serchDatas});
+        });
+
+        //监听行的操作事件：
+        var detailsDOC  ;
+        table.on('tool(repairTb)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){// 弹出完修弹窗
+                //弹窗添加实际维修价格，
+                //获取弹窗数据发送后台
+                openWindows(data);
+                $('.repair-Price-class').show();
+                $('#tag').val(1);
+            } else if(obj.event === 'details'){//弹出修改弹窗
+
+                openWindows(data);
+            }
+        });
+
+
+        /*打开弹窗*/
+        function  openWindows(data){
+            detailsDOC =  layer.open({
+                type:1,
+                area:['1100px','600px'],
+                title:"维修详情",
+                // btn:['确定','取消'],
+                success: function(layero, index){ //弹窗打开的发生的事件
+                    for (var k in data){
+                        var str = "#tdetail #"+k;
+                        $(str).val(data[k]);
+                    }
+                    $("#detailsWindow").show();
+                },
+                yes:function (index,layero) { },
+                btn2:function (index,layero) { },
+                content:$("#detailsWindow"),
+                end: function (){
+                    $('#tag').val("");
+                    $('.repair-Price-class').hide();
+                    $("#detailsWindow").hide();
+                }
+            });
+        }
+        // 修改弹窗提交监听
+        form.on('submit(save)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            var arry = [];
+            if(serchDatas.tag!=1){
+                serchDatas.repairPrice="null";
+            }else{
+                if(serchDatas.repairPrice==null||serchDatas.repairPrice==""||serchDatas.repairPrice<1){
+                    alert("请填写维修总价！");
+                    return;
+                }
+            }
+            delete  serchDatas.tag;
+            arry.push(serchDatas);
+            var url = "/repair/updateObject";
+            var params = {datas:JSON.stringify(arry)};
+            $.post(url, params, function(result) {
+            alert(result)
+            });
+            layer.close(detailsDOC);
             table.reload('repairTb', {where: serchDatas});
         });
 

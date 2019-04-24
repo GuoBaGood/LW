@@ -1,6 +1,8 @@
 package com.huxl.fam.web;
 
+import com.alibaba.fastjson.JSON;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.huxl.fam.entity.DvAssetsDetails;
 import com.huxl.fam.entity.DvAssetsRepair;
 import com.huxl.fam.service.RepairService;
 import com.huxl.fam.tool.ComUtil;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.RespectBinding;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -63,7 +67,33 @@ public class RepairController {
         return res;
     }
 
+/**
+ * 维修单更新
+ */
+@ResponseBody
+@RequestMapping("/updateObject")
+public String updateObject ( HttpServletRequest request){
+    try{
+        String str = request.getParameter("datas");
+        List<DvAssetsRepair> d = JSON.parseArray(str, DvAssetsRepair.class);
+        DvAssetsRepair dRepair = d.get(0);
+        //设置返回文字
+        String rstr = "修改成功!";
+        //区分状态添加数据（修改/完修）
+        if(dRepair.getRepairPrice()!=null){
+            dRepair.setCompletionTime(new Date());
+            dRepair.setRepairStyle("1");
+            rstr = "保存成功!";
+        }
+        repairService.updateObject(dRepair);
 
+        return rstr;
+    }catch (Exception e){
+        return "修改失败！！";
+    }
+
+
+}
     /**
      * 维修记录
      * */

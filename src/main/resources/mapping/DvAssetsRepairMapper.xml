@@ -295,4 +295,60 @@
       AND YEAR ( repair_time ) = #{year}
     </if>
   </sql>
+
+  <!--更新修改的数据-->
+  <update id="updateObject" parameterType="com.huxl.fam.entity.DvAssetsRepair" >
+    update dv_assets_repair
+    <set >
+      <if test="assetsId != null" >
+        assets_id = #{assetsId,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsName != null" >
+        assets_name = #{assetsName,jdbcType=VARCHAR},
+      </if>
+      <if test="assetsNum != null" >
+        assets_num = #{assetsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="repairTime != null" >
+        repair_time = #{repairTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedCompletionTime != null" >
+        estimated_completion_time = #{estimatedCompletionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionTime != null" >
+        completion_time = #{completionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repairPrice != null" >
+        repair_price = #{repairPrice,jdbcType=REAL},
+      </if>
+      <if test="estimatedRepairPrice != null" >
+        estimated_repair_price = #{estimatedRepairPrice,jdbcType=REAL},
+      </if>
+      <if test="repairCompany != null" >
+        repair_company = #{repairCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="repairCompanyphone != null" >
+        repair_companyphone = #{repairCompanyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="repairSituation != null" >
+        repair_situation = #{repairSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="malfunctionReson != null" >
+        malfunction_reson = #{malfunctionReson,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="repairStyle != null" >
+        repair_style = #{repairStyle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
 </mapper>
