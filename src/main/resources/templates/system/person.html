@@ -3,8 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <title>人员管理</title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+    <link rel="stylesheet" href="/static/iconfont/QuestionMark.css">
 </head>
+
+
+
+<div id="detailsWindow" style="display: none;margin-top: 1%;">
+
+    <form class="layui-form" style="color: #666;" id="adetailform">
+
+        <div id="tdetail">
+            <div class="layui-form-item">
+                <label for="account" class="layui-form-label">
+                    账号
+                </label>
+                <div class="layui-input-inline">
+                    <input   type="text" id="account" name="account" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="userPwd" class="layui-form-label">
+                    密码
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="userPwd" name="userPwd" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+
+                <label for="userRealname" class="layui-form-label">
+                    登录名
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="userRealname" name="userRealname" autocomplete="off" class="layui-input">
+                </div>
+                <label for="deptName" class="layui-form-label">
+                    部门名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="deptName" name="deptName" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+
+                <label for="userEmail" class="layui-form-label">
+                    邮箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="userEmail" name="userEmail" autocomplete="off" class="layui-input">
+                </div>
+
+                <label for="userPhone" class="layui-form-label">
+                    电话
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="userPhone" name="userPhone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" style="width: 50%">
+                <label for="roleId" class="layui-form-label">
+                    用户角色
+                </label>
+                <div class="layui-input-inline">
+                    <select name="roleId" lay-search id="roleId" lay-filter="atype">
+                        <option value="">请选择</option>
+                    </select>
+
+                </div>
+
+                <input readonly type="hidden" id="userId" name="userId" autocomplete="off" class="layui-input" value="null">
+                <input readonly type="hidden" id="tag" name="tag" autocomplete="off" class="layui-input" value="null">
+            </div>
+        </div>
+        <button title="提交" type="button" style="background-color: #675eea; position: absolute; right: 20px;  bottom: 20px;" class="layui-btn" lay-submit="" lay-filter="save">提交</button>
+
+    </form>
+
+</div>
+
+
 <body>
-人员管理
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this" style="margin-left: 1%;">人员管理</li>
+
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <div class="weadmin-body">
+                <div class="layui-row" id="model">
+                    <form class="layui-form we-search" style="color: #666;">
+
+                        用户名：
+                        <div class="layui-inline">
+                            <input type="text" name="userRealname" id="userRealname" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <button title="搜索" type="button" style="background-color: #675eea;" class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+                        <button title="新增人员" type="button" style="background-color: #56bdea;" class="layui-btn" lay-submit="" lay-filter="new">新增</button>
+
+                    </form>
+                </div>
+
+                <div style="">
+                    <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+                </div>
+            </div>
+        </div>
+      <!--  <div class="layui-tab-item">
+            <div class="weadmin-body">
+                <form class="layui-form we-search" style="color: #666;" id="">
+
+                    <div class="layui-row" style="margin-left: 2%;">
+
+                        权限目录
+
+                        <button title="新建" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addNew" >提交</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    -->
+    </div>
+</div>
+
 </body>
+<script src="../../static/layui.js"></script>
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="../../static/js/c-component.js"></script>
+<script src="../../static/js/jquery.tmpl.js"></script>
+<!--表格的操作事件-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="details">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+
+</script>
+<!--角色选项-->
+<script type="text/x-jquery-tmpl" id="selectrole">
+    <option value=${roleId}>${roleName}</option>
+</script>
+
+<script>
+
+    $(function (){
+        //初始化下拉列表
+        start();
+    });
+    function start() {
+        // 发送请求获取下拉框数据
+        var url = "/role/getrolelist";
+        $.get(url, null, function(result) {
+            if (result.length>0 && result!=null){
+                $('#selectrole').tmpl(result).appendTo('#roleId');
+            }
+        });
+    }
+    layui.use(['table','laydate', 'form','element'], function(){
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+        lay('.timeYMD').each(function () {
+            laydate.render({
+                elem: this,
+                trigger : 'click'
+            });
+        });
+        table.render({
+            elem: '#detailTb'
+            ,limit:10
+            ,url:'/person/personDat'
+            ,page:true
+            ,response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            ,cols: [[
+                {field:'account', width:'12%', title: '账号', sort: true}
+                ,{field:'userPwd', width:'12%', title: '密码'}
+                ,{field:'userRealname', width:'12%', title: '登录名'}
+                ,{field:'deptName', width:'12%', title: '部门名称'}
+                ,{field:'roleId', width:'12%', title: '角色'}
+                ,{field:'userEmail',  width:'12%', title: '邮箱'}
+                ,{field:'userPhone', width:'12%', title: '电话'}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo',width: '16%'}
+            ]]
+        });
+
+        //监听行的操作事件：
+        table.on('tool(detailTb)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    //发送ajax
+                    var url = "/person/personDelete";
+                    var params = {userId:data.userId};
+                    $.get(url, params, function(result) {
+                        if(result=="ok"){
+                            alert("删除成功！")
+                            obj.del();
+                            layer.close(index);
+                        }else{
+                            alert("删除失败！");
+                        }
+                    });
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'details'){
+                //详情
+                openwindows(data,"人员编辑");
+
+            }
+        });
+
+
+        //弹出人员详情窗口
+        var newWindows;
+        function openwindows(data,tit) {
+            newWindows =  layer.open({
+                type: 1,
+                area: ['800px', '400px'],
+                title: tit,
+                // btn:['确定','取消'],
+                success: function (layero, index) { //弹窗打开的发生的事件
+                    for (var k in data) {
+                        var str = "#tdetail #" + k;
+                        $(str).val(data[k]);
+                    }
+                    $("#detailsWindow").show();
+                },
+                yes: function (index, layero) {
+                    layer.close(index);
+                },
+                btn2: function (index, layero) {
+                },
+                content: $("#detailsWindow"),
+                end: function () {
+                    $("#detailsWindow").hide();
+                }
+            });
+        }
+        // 搜索条件表单监听
+        form.on('submit(search)', function (data) {
+            var serchDatas = data.field;// data.field获取整个表单
+            table.reload('detailTb', {where: serchDatas});
+        });
+        //打开人员新曾弹窗
+        form.on('submit(new)', function (data) {
+
+           var datan = {account: "", deptId: "",deptName: "",roleId:  "",userEmail:  "",userId:  "",userPhone:  "",userPwd:  "",userRealname:  ""};
+            openwindows(datan , "人员新增");
+
+        });
+        //人员弹窗信息提交按钮
+        form.on('submit(save)', function (data) {
+            var serchDatas = data.field;
+            var arry = [];
+            arry.push(serchDatas);
+            var url = "/person/savePersonObj";
+            var params = {datas:JSON.stringify(arry)};
+            $.post(url, params, function(result) {
+                alert(result)
+            });
+            layer.close(newWindows);
+
+        });
+
+    });
+
+</script>
 </html>

@@ -10,12 +10,14 @@
     <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
     <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
     <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    user_id, account, user_pwd, user_realname, dept_id, dept_name, user_email, user_phone
+    user_id, account, user_pwd, user_realname, dept_id, dept_name, user_email, user_phone,
+    role_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from dv_user
     where user_id = #{userId,jdbcType=VARCHAR}
@@ -25,12 +27,14 @@
     where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.huxl.fam.entity.DvUser" >
-    insert into dv_user (user_id, account, user_pwd, 
-      user_realname, dept_id, dept_name, 
-      user_email, user_phone)
-    values (#{userId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      #{userRealname,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
-      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR})
+    insert into dv_user (user_id, account, user_pwd,
+      user_realname, dept_id, dept_name,
+      user_email, user_phone, role_id
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR},
+      #{userRealname,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR},
+      #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.huxl.fam.entity.DvUser" >
     insert into dv_user
@@ -59,6 +63,9 @@
       <if test="userPhone != null" >
         user_phone,
       </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -84,6 +91,9 @@
       </if>
       <if test="userPhone != null" >
         #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +121,9 @@
       <if test="userPhone != null" >
         user_phone = #{userPhone,jdbcType=VARCHAR},
       </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
@@ -122,7 +135,8 @@
       dept_id = #{deptId,jdbcType=VARCHAR},
       dept_name = #{deptName,jdbcType=VARCHAR},
       user_email = #{userEmail,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=VARCHAR}
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 
@@ -134,4 +148,31 @@
     WHERE account = #{account,jdbcType=VARCHAR}
     AND user_pwd = #{userPwd,jdbcType=VARCHAR}
   </select>
+
+  <!--查询条件-->
+  <sql id="conditions">
+  <if test="userRealname != null and userRealname != '' " >
+    AND user_realname LIKE '%${userRealname}%'
+  </if>
+  </sql>
+  <!--根据条件查询用户列表-->
+  <select id="personDat" resultMap="BaseResultMap">
+    SELECT u.user_id, u.account, u.user_pwd, u.user_realname, u.dept_id, u.dept_name, u.user_email, u.user_phone,r.role_name role_id
+    FROM dv_user u LEFT JOIN dv_role r ON u.role_id = r.role_id
+    WHERE 1=1
+    <include refid="conditions"/>
+  </select>
+
+  <!--查询所有用户数据-->
+  <select id="queryNumByCon" resultType="java.lang.Integer">
+    SELECT count(*) FROM dv_user
+    WHERE 1=1
+    <include refid="conditions"/>
+  </select>
+
+  <!--根据id删除用户-->
+  <delete id="personDelete"  >
+    delete from dv_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

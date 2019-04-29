@@ -9,7 +9,102 @@
     <link rel="stylesheet" href="/static/css/layui.css"  media="all">
     <link rel="stylesheet" href="/static/iconfont/title.css">
 </head>
+<!--//个人信息修改-->
+<div id="information" style="display: none;margin-top: 1%;">
+
+    <form class="layui-form" style="color: #666;" id="adetailform">
+
+        <div id="tdetail">
+            <div class="layui-form-item"  style="height: 10px">
+                <input readonly type="hidden" id="userId" name="userId" autocomplete="off" class="layui-input" value="null">
+            </div>
+            <div class="layui-form-item">
+                <label for="account" class="layui-form-label">
+                    账号
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly  type="text" id="account" name="account" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="layui-form-item">
+
+                <label for="userRealname" class="layui-form-label">
+                    登录名
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="userRealname" name="userRealname" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="deptName" class="layui-form-label">
+                    部门名称
+                </label>
+                <div class="layui-input-inline">
+                    <input readonly type="text" id="deptName" name="deptName" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+
+                <label for="userEmail" class="layui-form-label">
+                    邮箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="userEmail" name="userEmail" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="userPhone" class="layui-form-label">
+                    电话
+                </label>
+                <div class="layui-input-inline">
+                    <input  type="text" id="userPhone" name="userPhone" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+        </div>
+        <button title="提交" type="button" style="background-color: #675eea; position: absolute; right: 20px;  bottom: 20px;" class="layui-btn" lay-submit="" lay-filter="saveuser">提交</button>
+    </form>
+
+</div>
+<!--//密码修改-->
+<div id="passwdiv" style="display: none;margin-top: 1%;">
+    <form class="layui-form" style="color: #666;" id="passwfrom">
+        <div class="layui-form-item"  style="height: 10px">
+            <input readonly type="hidden" id="userIdPwd" name="userId" autocomplete="off" class="layui-input" value="null">
+        </div>
+        <div class="layui-form-item">
+            <label for="oldPwd"  class="layui-form-label">
+                原始密码
+            </label>
+            <div class="layui-input-inline">
+                <input  type="password" lay-verify="required" id="oldPwd"  name="oldPwd" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="tpassword"  class="layui-form-label">
+                新密码
+            </label>
+            <div class="layui-input-inline">
+                <input  type="password" lay-verify="required" id="tpassword"  autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="tpasswAgain" class="layui-form-label">
+                确认密码
+            </label>
+            <div class="layui-input-inline">
+                <input  type="password" lay-verify="required|isPassw" id="tpasswAgain" name="loginPwd" autocomplete="off" class="layui-input">
+            </div>
+         </div>
+        <button title="提交" type="button" style="background-color: #675eea; position: absolute; right: 20px;  bottom: 20px;" class="layui-btn" lay-submit="" lay-filter="savePwd">提交</button>
+
+    </form>
+
+</div>
 <body>
+
 <div class="layui-layout layui-layout-admin">
 <div class="layui-header header header-demo">
     <ul class="layui-nav">
@@ -19,7 +114,8 @@
         <li class="layui-nav-item" lay-unselect="" style="float: right;">
             <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">哈喽哈喽</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;" onclick="updateD()">修改信息</a></dd>
+                <dd><a href="javascript:;" onclick="updatePwd()">修改密码</a></dd>
                 <dd><a href="javascript:;">安全退出</a></dd>
             </dl>
         </li>
@@ -71,8 +167,13 @@
 <script src="../static/layui.js"></script>
 <script src="../static/js/jquery-1.11.3.min.js"></script>
 <script>
-    layui.use('element', function(){
+
+
+    layui.use(['table','laydate', 'form','element'], function(){
         var element = layui.element;
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
 
         //监听导航点击
         element.on('nav(demo)', function(elem){
@@ -84,12 +185,95 @@
             $("#bodyIframe").attr("src", href);
         });
 
-        //
-//        $("#headTitle").hover(function (e) {
-//            e.stopPropagation();
-//        });
 
+        window.updatePwd=function(){
+            openwindows("修改密码",null ,"400px","400px","passwdiv");
+        }
+        window.updateD=function() {
+            var url = "/person/findPerson";
+            $.get(url,null, function(result) {
+                openwindows("人员编辑",result ,"370px","500px","information");
+            });
+        }
+        var newWindows;
+        //弹出个人信息窗口
+        function openwindows(title,data , w , h ,Wdid) {
+            newWindows =  layer.open({
+                type: 1,
+                area: [w, h],
+                title: title,
+                // btn:['确定','取消'],
+                success: function (layero, index) { //弹窗打开的发生的事件
+                    for (var k in data) {
+                        var str = "#tdetail #" + k;
+                        $(str).val(data[k]);
+                    }
+                    $("#"+Wdid).show();
+                },
+                yes: function (index, layero) {
+                    layer.close(index);
+                },
+                btn2: function (index, layero) {
+                },
+                content: $("#"+Wdid),
+                end: function () {
+                    $("#"+Wdid).hide();
+                }
+            });
+        }
+
+        //个人信息提交按钮
+        form.on('submit(saveuser)', function (data) {
+           sava( data.field);
+        });
+        //密码校验
+       /* form.verify({
+            isPassw:function (value, item) {
+                var a = $("#tpassword").val();
+                if (a != value)
+                    return '两次密码输入不一致';
+            }
+        });*/
+        //密码提交按钮
+        form.on('submit(savePwd)', function (data) {
+            var url = "/person/findPerson";
+            var user;
+            $.get(url,null, function(result) {
+                user = result;
+            });
+            var a = $("#tpassword").val();
+            var b = $("#tpasswAgain").val();
+            var c = $("#oldPwd").val();
+            if(user.userPwd != c){
+                alert("请输入正确的当前密码！");
+                return ;
+            }else if(a!=c){
+                alert("两次密码不一致！");
+                return ;
+            }
+//新建用户对象
+
+
+
+
+
+            sava( data.field);
+        });
+        //个人信息提交
+        function sava(Data){
+
+            var arry = [];
+            arry.push(data);
+            var url = "/person/savePersonObj";
+            var params = {datas:JSON.stringify(arry)};
+            $.post(url, params, function(result) {
+                alert(result)
+            });
+            layer.close(newWindows);
+        }
     });
+
+
 
 </script>
 

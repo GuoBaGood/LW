@@ -2,8 +2,9 @@ package com.huxl.fam.entity;
 
 import java.io.Serializable;
 
-public class DvUser implements Serializable {
-    private static final long serialVersionUID = -5218692653575679868L;
+
+public class DvUser  implements Serializable {
+    private static final long serialVersionUID = -5870765551158388704L;
     private String userId;
 
     private String account;
@@ -19,6 +20,8 @@ public class DvUser implements Serializable {
     private String userEmail;
 
     private String userPhone;
+
+    private String roleId;
 
     public String getUserId() {
         return userId;
@@ -82,5 +85,13 @@ public class DvUser implements Serializable {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone == null ? null : userPhone.trim();
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId == null ? null : roleId.trim();
     }
 }

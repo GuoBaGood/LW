@@ -1,10 +1,13 @@
 package com.huxl.fam.service.impl;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.huxl.fam.entity.DvUser;
 import com.huxl.fam.mapper.DvUserMapper;
 import com.huxl.fam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IDEA
@@ -21,5 +24,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public DvUser queryUserByAP(DvUser user) {
         return dvUserMapper.queryUserByAP(user);
+    }
+
+    @Override
+    public List<DvUser> personDat(DvUser user, PageBounds pageBounds) {
+        return dvUserMapper.personDat(user,pageBounds);
+    }
+    @Override
+    public int queryNumByCon(){ return dvUserMapper.queryNumByCon();}
+
+    @Override
+    public void personDelete(DvUser user) {
+        dvUserMapper.personDelete(user);
     }
 }
