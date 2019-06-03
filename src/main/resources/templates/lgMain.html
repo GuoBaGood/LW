@@ -112,8 +112,10 @@
             <a href="javascript:;"><i class="iconfont  icon-ziyuan"></i><span class="" style="font-size: 26px">&nbsp;固定资产管理系统</span></a>
         </li>
         <li class="layui-nav-item" lay-unselect="" style="float: right;">
-            <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">哈喽哈喽</a>
+            <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img"><span id="spanId"></span><input id="ipt" hidden th:value="${userName}"/></a>
             <dl class="layui-nav-child">
+                <dd><a href="javascript:;">修改信息</a></dd>
+                <dd><a href="javascript:;" onclick="loginOut();">安全退出</a></dd>
                 <dd><a href="javascript:;" onclick="updateD()">修改信息</a></dd>
                 <dd><a href="javascript:;" onclick="updatePwd()">修改密码</a></dd>
                 <dd><a href="javascript:;">安全退出</a></dd>
@@ -128,8 +130,8 @@
 <div class="layui-side layui-bg-black">
     <div class="layui-side-scroll">
         <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline NavigateUL" lay-filter="demo">
-            <li class="layui-nav-item layui-nav-itemed layui-this"><a href="##/view/view.html">资产概况</a></li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item layui-this"><a href="##/view/view.html">资产概况</a></li>
+            <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;" class="aclass">资产管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="##/assets/adetailMain.html">资产列表</a></dd>
@@ -138,7 +140,7 @@
                     <dd><a href="##/assets/unusedMain.html">闲置资产</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item">
+         ·   <li class="layui-nav-item">
                 <a href="javascript:;" class="aclass">历史记录</a>
                 <dl class="layui-nav-child">
                     <dd><a href="##/record/repairecord.html">维修记录</a></dd>
@@ -154,11 +156,10 @@
                     <dd><a href="##/system/other.html">系统参数</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="##/view/view.html">数据可视化</a></li>
         </ul>
     </div>
 </div>
-<div class="layui-body site-demo">
+<div class="layui-body site-demo" style="overflow:hidden;">
     <iframe id="bodyIframe" src="../static/view/view.html" frameborder="0" data-name="main" style="width: 100%;height: 100%;"></iframe>
 </div>
 </div>
@@ -175,6 +176,8 @@
         var laydate = layui.laydate;
         var form = layui.form;
 
+        var name = $("#ipt").val();
+        $("#spanId").html(name);
         //监听导航点击
         element.on('nav(demo)', function(elem){
             var className = elem[0].className;
@@ -274,6 +277,18 @@
     });
 
 
+
+    //退出登录
+    function loginOut(){
+        $.ajax({
+            url:'/loginOut',
+            type:'get',
+            async:false,
+            success:function () {
+
+            }
+        });
+    }
 
 </script>
 

@@ -2,9 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>其他</title>
+    <title>系统参数</title>
+    <link rel="stylesheet" href="/static/css/item/layui.css">
+    <link rel="stylesheet" href="/static/css/weadmin.css">
+    <link rel="stylesheet" href="/static/iconfont/QuestionMark.css">
 </head>
 <body>
-其他设置
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this" style="margin-left: 1%;">部门管理</li>
+        <li>租借企业管理</li>
+        <li>资产类型管理</li>
+        <li>资产使用状态管理</li>
+        <li>角色权限管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <div class="weadmin-body">
+                <div class="layui-row" id="model">
+                 <form class="layui-form" style="color: #666;" id="dform">
+                    <div class="layui-form-item">
+                        <label for="deptName" class="layui-form-label">
+                            使用部门
+                        </label>
+                        <div class="layui-input-inline">
+                            <input  type="text" id="deptName" name="deptName" autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label for="deptPrinciple" class="layui-form-label">
+                            部门负责人
+                        </label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="deptPrinciple" name="deptPrinciple" autocomplete="off" class="layui-input">
+                        </div>
+
+                        <label for="storageLocation" class="layui-form-label">
+                            联系电话
+                        </label>
+                        <div class="layui-input-inline">
+                            <input  type="text" id="deptPhone" name="deptPhone" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <textarea placeholder="补充说明" class="layui-textarea" name="deptAdddesec"  style="width: 84%; margin-left: 3%;"></textarea>
+
+                    </div>
+                    <button title="新增" type="button" style="background-color: #675eea;margin-left: 86%;" class="layui-btn" lay-submit="" lay-filter="addDept" >新增</button>
+
+                </form>
+                </div>
+                <div style="">
+                    <table class="layui-table" id="detailTb" lay-filter="detailTb"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script src="../../static/layui.js"></script>
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="../../static/js/c-component.js"></script>
+<script src="../../static/js/jquery.tmpl.js"></script>
+
+<!--表格的操作事件-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="details">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['table','laydate', 'form','element'], function() {
+        var table = layui.table;
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        //时间样式：
+//        laydate.render({
+//            elem: '.timeYMD',
+//        });
+
+        lay('.timeYMD').each(function () {
+            laydate.render({
+                elem: this,
+                trigger: 'click'
+            });
+        });
+        table.render({
+            elem: '#detailTb'
+            , limit: 5
+            , url: '/sysParam/queryDvDept'
+            , page: true
+            , response: {
+                statusName: 'responseCode',
+                statusCode: 200,
+                msgName: 'responseDesc',
+                countName: 'total'
+            }
+            , cols: [[
+                {field: 'deptId', title: '部门编号', sort: true}
+                , {field: 'deptName', title: '部门名称'}
+                , {field: 'deptPrinciple', title: '部门负责人'}
+                , {field: 'deptPhone',  title: '部门电话'}
+                , {field: 'deptAdddesec', title: '补充说明', sort: true}
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo'}
+            ]]
+        });
+    });
+
+</script>
 </html>

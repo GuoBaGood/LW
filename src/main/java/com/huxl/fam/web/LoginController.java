@@ -2,6 +2,7 @@ package com.huxl.fam.web;
 
 import com.huxl.fam.entity.DvUser;
 import com.huxl.fam.service.UserService;
+import com.huxl.fam.tool.ComUtil;
 import com.huxl.fam.tool.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -57,6 +59,7 @@ public class LoginController {
             if (u != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("user", u); //保存用户的值；
+                view.addObject("userName", u.getAccount());
                 view.setViewName("lgMain");
             }else {
                 view.setViewName("login");
@@ -70,5 +73,18 @@ public class LoginController {
         LogUtil.ADDLOG(request, "登陆操作");
         return view;
     }
+    /*
+    *
+    * 退出
+    * */
+    @ResponseBody
+    @RequestMapping(value = "/loginOut", method=GET)
+    public ModelAndView loginOut(HttpServletRequest request, ModelAndView view){
+        ComUtil.DELET_SESSION(request);
+        view.setViewName("login");
+        return view;
+    }
+
+
 
 }

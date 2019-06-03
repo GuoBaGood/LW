@@ -3,6 +3,7 @@ package com.huxl.fam.tool;
 import com.huxl.fam.entity.DvUser;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -66,5 +67,11 @@ public class ComUtil {
     public  static DvUser UserDatas(HttpServletRequest request){
         DvUser u = (DvUser) request.getSession().getAttribute("user");
         return u;
+    }
+
+    //清除session中的值
+    public static void DELET_SESSION(HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        session.removeAttribute("user");
     }
 }
